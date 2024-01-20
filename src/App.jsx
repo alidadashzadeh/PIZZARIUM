@@ -7,6 +7,7 @@ import AppLayout from "./pages/AppLayout";
 import SignaturePizzas from "./pages/SignaturePizzas";
 import CreateYourPizza from "./pages/CreateYourPizza";
 import Drinks from "./pages/Drinks";
+import { OrderProvider } from "./context/context";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,19 +16,21 @@ const queryClient = new QueryClient({
 });
 function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ReactQueryDevtools initialIsOpen={false} />
-			<GlobalStyles />
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<AppLayout />}>
-						<Route path="signature-pizzas" element={<SignaturePizzas />} />
-						<Route path="create-your-pizza" element={<CreateYourPizza />} />
-						<Route path="drinks" element={<Drinks />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
-		</QueryClientProvider>
+		<OrderProvider>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools initialIsOpen={false} />
+				<GlobalStyles />
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<AppLayout />}>
+							<Route path="signature-pizzas" element={<SignaturePizzas />} />
+							<Route path="create-your-pizza" element={<CreateYourPizza />} />
+							<Route path="drinks" element={<Drinks />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</QueryClientProvider>
+		</OrderProvider>
 	);
 }
 

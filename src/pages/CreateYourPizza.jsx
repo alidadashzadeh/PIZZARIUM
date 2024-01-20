@@ -1,5 +1,11 @@
+import CreatePizzaNav from "../features/content/CreatePizzaNav";
+
 function CreateYourPizza() {
-	return <div>create your own pizza</div>;
+	return (
+		<div>
+			<CreatePizzaNav />
+		</div>
+	);
 }
 
 export default CreateYourPizza;

@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 import { useState } from "react";
 import styled, { css } from "styled-components";
+import { useOrder } from "../context/context";
 
 const StyledPopup = styled.div`
 	opacity: 0.8;
@@ -72,10 +74,26 @@ const AddButton = styled.button`
 `;
 
 function AddPopup({ pizza }) {
-	const [count, setcount] = useState(0);
+	const { addToOrder } = useOrder();
+
+	const [quantity, setQuantity] = useState(0);
 	const [selectedSize, setSelectedSize] = useState("small");
 	const { name, details, Veggie, picture, price } = pizza;
 
+	function handleAddToOrder() {
+		const newItem = {
+			title: name,
+			details,
+			price,
+			quantity,
+			picture,
+			selectedSize,
+			id: Date.now(),
+			Veggie,
+		};
+
+		addToOrder(newItem);
+	}
 	return (
 		<StyledPopup>
 			<Buttons>
@@ -99,12 +117,14 @@ function AddPopup({ pizza }) {
 				</Button>
 			</Buttons>
 			<Count>
-				<StyledIconMinus onClick={() => setcount((s) => (s > 0 ? s - 1 : s))} />
-				<Input value={count} />
-				<StyledIconPlus onClick={() => setcount((s) => s + 1)} />
+				<StyledIconMinus
+					onClick={() => setQuantity((s) => (s > 0 ? s - 1 : s))}
+				/>
+				<Input value={quantity} />
+				<StyledIconPlus onClick={() => setQuantity((s) => s + 1)} />
 			</Count>
-			<TotalPrice>Total: ${count * price[selectedSize]}</TotalPrice>
-			<AddButton>ADD</AddButton>
+			<TotalPrice>Total: ${quantity * price[selectedSize]}</TotalPrice>
+			<AddButton onClick={handleAddToOrder}>ADD</AddButton>
 		</StyledPopup>
 	);
 }
