@@ -12,7 +12,7 @@ const NavigationList = styled.ul`
 	list-style: none;
 	display: flex;
 	justify-content: space-evenly;
-	border: 2px solid var(--color-yellow-300);
+	border: 1px solid var(--color-yellow-300);
 	border-radius: 10px;
 `;
 

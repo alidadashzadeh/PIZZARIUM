@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import SignaturePizzaItem from "../features/content/SignaturePizzaItem";
+import SignaturePizzaItem from "../features/signaturePizza/SignaturePizzaItem";
 import { useQuery } from "@tanstack/react-query";
 import { getPizzas } from "../services/apiSignatures";
 import Spinner from "../ui/Spinner";
-import SignaturePizzasHeader from "../features/content/SignaturePizzasHeader";
+import SignaturePizzasHeader from "../features/signaturePizza/SignaturePizzasHeader";
 import { useSearchParams } from "react-router-dom";
 
 const StyledSignaturePizzas = styled.div``;
