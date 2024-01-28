@@ -11,7 +11,7 @@ import { OrderProvider } from "./context/context";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
-		queries: { staleTime: 60 * 1000 },
+		queries: { staleTime: 60000 },
 	},
 });
 function App() {

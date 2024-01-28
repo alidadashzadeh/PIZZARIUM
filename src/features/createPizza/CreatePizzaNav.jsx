@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
@@ -6,14 +7,13 @@ const StyledCreatePizzaNav = styled.div`
 	flex-direction: column;
 `;
 
-const H1 = styled.h1``;
-
 const NavigationList = styled.ul`
 	list-style: none;
 	display: flex;
 	justify-content: space-evenly;
 	border: 1px solid var(--color-yellow-300);
 	border-radius: 10px;
+	overflow: hidden;
 `;
 
 const NavItem = styled.li`
@@ -30,11 +30,9 @@ const NavItem = styled.li`
 		`}
 `;
 
-function CreatePizzaNav() {
-	const [selected, setSelected] = useState("dough");
+function CreatePizzaNav({ selected, setSelected }) {
 	return (
 		<StyledCreatePizzaNav>
-			<H1>CREATE YOUR OWN STYLE PIZZA</H1>
 			<NavigationList>
 				<NavItem
 					selected={selected === "dough"}
@@ -67,8 +65,8 @@ function CreatePizzaNav() {
 					Toppings
 				</NavItem>
 				<NavItem
-					selected={selected === "cook"}
-					onClick={() => setSelected("cook")}
+					selected={selected === "size&cook"}
+					onClick={() => setSelected("size&cook")}
 				>
 					Cook
 				</NavItem>

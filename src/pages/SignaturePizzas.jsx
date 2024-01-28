@@ -33,6 +33,7 @@ function SignaturePizzas() {
 		filteredPizzas = signaturePizzas?.filter((pizza) => !pizza.Veggie);
 
 	if (isLoading) return <Spinner />;
+
 	return (
 		<StyledSignaturePizzas>
 			<SignaturePizzasHeader />

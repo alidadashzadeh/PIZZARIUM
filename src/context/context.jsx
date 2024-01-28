@@ -12,6 +12,17 @@ function OrderProvider({ children }) {
 		return storedTodos ? JSON.parse(storedTodos) : [];
 	});
 
+	const [customPizza, setCustomPizza] = useState({
+		dough: "Regular Dough",
+		crust: "Regular Thick Crust",
+		sauce: "No-Sauce",
+		cheese: "Diary Free Cheese",
+		topping: [],
+		cookType: "Regular",
+		size: "Medium",
+		price: 14.99,
+	});
+
 	useEffect(
 		function () {
 			localStorage.setItem("order", JSON.stringify(order));
@@ -45,8 +56,6 @@ function OrderProvider({ children }) {
 	}
 
 	function ChangeSize(id, size) {
-		console.log(id);
-		console.log(size);
 		setOrder(
 			order.map((item) =>
 				item.id === id ? { ...item, selectedSize: size } : item
@@ -58,6 +67,50 @@ function OrderProvider({ children }) {
 		setOrder(order.filter((item) => item.id !== id));
 	}
 
+	function selectCustomDough(selectedDough) {
+		setCustomPizza({
+			...customPizza,
+			dough: selectedDough,
+		});
+	}
+
+	function selectCustomCrust(selectedCrust) {
+		setCustomPizza({ ...customPizza, crust: selectedCrust });
+	}
+	function selectCustomSauce(selectedSauce) {
+		setCustomPizza({ ...customPizza, sauce: selectedSauce });
+	}
+	function selectCustomCheese(selectedCheese) {
+		setCustomPizza({ ...customPizza, cheese: selectedCheese });
+	}
+	function selectCustomTopping(selectedTopping) {
+		if (customPizza.topping.includes(selectedTopping)) {
+			setCustomPizza({
+				...customPizza,
+				topping: [
+					...customPizza.topping.filter(
+						(topping) => topping !== selectedTopping
+					),
+				],
+			});
+			return;
+		}
+		setCustomPizza({
+			...customPizza,
+			topping: [...customPizza.topping, selectedTopping],
+		});
+	}
+	function customInstructions(specialInstructions) {
+		setCustomPizza({ ...customPizza, instructions: specialInstructions });
+	}
+
+	function selectCookType(selectedCookType) {
+		setCustomPizza({ ...customPizza, cookType: selectedCookType });
+	}
+	function selectSize(selectedSize) {
+		setCustomPizza({ ...customPizza, size: selectedSize });
+	}
+
 	return (
 		<orderContext.Provider
 			value={{
@@ -67,6 +120,15 @@ function OrderProvider({ children }) {
 				decreaseQuantity,
 				ChangeSize,
 				removeItemFromOrder,
+				customPizza,
+				selectCustomDough,
+				selectCustomCrust,
+				selectCustomSauce,
+				selectCustomCheese,
+				selectCustomTopping,
+				customInstructions,
+				selectCookType,
+				selectSize,
 			}}
 		>
 			{children}
