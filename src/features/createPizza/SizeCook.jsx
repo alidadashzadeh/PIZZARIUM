@@ -41,19 +41,48 @@ const Option = styled.div`
 	cursor: pointer;
 	flex-grow: 1;
 	padding: 1rem;
-	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
 
 	${(props) =>
 		props.selected &&
 		css`
 			background-color: var(--color-yellow-700);
-		`}
+		`};
+`;
+
+const Slices = styled.div`
+	width: 100px;
+	aspect-ratio: 1;
+	border: 2px solid var(--color-yellow-300);
+	border-radius: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+`;
+
+const PartySlice = styled.div`
+	width: 200px;
+	aspect-ratio: 1.75;
+	border: 2px solid var(--color-yellow-300);
+	border-radius: 10px;
+	display: flex;
+
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
 `;
 
 const Textarea = styled.textarea`
 	padding: 0.5rem;
 	width: 50%;
-	height: 300px;
+	height: 150px;
 	&::placeholder {
 		font-size: 16px;
 		font-weight: 400;
@@ -62,10 +91,9 @@ const Textarea = styled.textarea`
 `;
 
 function SizeCook() {
-	const { customPizza, selectCookType, selectSize } = useOrder();
+	const { customPizza, selectCookType, selectSize, selectInstructions } =
+		useOrder();
 
-	console.log(customPizza.cookType);
-	console.log(customPizza);
 	return (
 		<>
 			<Size>
@@ -76,30 +104,35 @@ function SizeCook() {
 						onClick={() => selectSize("Small")}
 					>
 						Small
+						<Slices>6 Slices</Slices>
 					</Option>
 					<Option
 						selected={customPizza.size === "Medium"}
 						onClick={() => selectSize("Medium")}
 					>
 						Medium
+						<Slices>8 Slices</Slices>
 					</Option>
 					<Option
 						selected={customPizza.size === "Large"}
 						onClick={() => selectSize("Large")}
 					>
 						Large
+						<Slices>10 Slices</Slices>
 					</Option>
 					<Option
 						selected={customPizza.size === "Extra Large"}
 						onClick={() => selectSize("Extra Large")}
 					>
 						Extra Large
+						<Slices>12 Slices</Slices>
 					</Option>
 					<Option
-						selected={customPizza.size === "Partty Size"}
-						onClick={() => selectSize("Partty Size")}
+						selected={customPizza.size === "Party Size"}
+						onClick={() => selectSize("Party Size")}
 					>
-						Partty Size
+						Party Size
+						<PartySlice>24 Slices</PartySlice>
 					</Option>
 				</SizeOptions>
 			</Size>
@@ -107,19 +140,19 @@ function SizeCook() {
 				<span>Cook</span>
 				<CookOptions>
 					<Option
-						selected={customPizza.cookType === "Regular"}
+						selected={customPizza.cook === "Regular"}
 						onClick={() => selectCookType("Regular")}
 					>
 						Regular
 					</Option>
 					<Option
-						selected={customPizza.cookType === "Well Done"}
+						selected={customPizza.cook === "Well Done"}
 						onClick={() => selectCookType("Well Done")}
 					>
 						Well Done
 					</Option>
 					<Option
-						selected={customPizza.cookType === "Lighly Done"}
+						selected={customPizza.cook === "Lighly Done"}
 						onClick={() => selectCookType("Lighly Done")}
 					>
 						Lighly Done
@@ -127,7 +160,11 @@ function SizeCook() {
 				</CookOptions>
 			</Cook>
 
-			<Textarea placeholder="Special Instructions" />
+			<Textarea
+				placeholder="Special Instructions"
+				onChange={(e) => selectInstructions(e.target.value)}
+			/>
+			
 		</>
 	);
 }

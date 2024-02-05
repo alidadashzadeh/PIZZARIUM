@@ -41,8 +41,10 @@ function CrustItem({ crust }) {
 
 	return (
 		<StyledDoughItem
-			selected={customPizza.crust === crust.name}
-			onClick={() => selectCustomCrust(crust.name)}
+			selected={customPizza.crust.name === crust.name}
+			onClick={() =>
+				selectCustomCrust({ name: crust.name, extraPrice: crust.extraPrice })
+			}
 		>
 			<img src={crust.picture} />
 			<DoughDetails>{crust.name}</DoughDetails>

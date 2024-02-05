@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import { useOrder } from "../../context/context";
-import OrderItem from "./OrderItem";
+import OrderItemSignaturePizza from "./OrderItemSignaturePizza";
 
 const StyledOrder = styled.div`
 	position: fixed;
 	top: 0;
+	bottom: 0;
 	right: 0;
 	width: 26rem;
-	min-height: 100vh;
 	border-left: 1px solid var(--color-grey-400);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	overflow-y: scroll;
+	overflow-x: hidden;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 `;
 
 const OrderFooter = styled.div`
@@ -26,9 +31,12 @@ function Order() {
 	const { order: currentOrder } = useOrder();
 	return (
 		<StyledOrder>
-			{currentOrder?.map((el) => (
-				<OrderItem key={el.id} item={el} />
-			))}
+			{currentOrder?.map((el) => {
+				if (el.isSignaturePizza)
+					return <OrderItemSignaturePizza key={el.id} item={el} />;
+
+				if (el.isCustomPizza) return <div>Custom</div>;
+			})}
 			<OrderFooter>
 				<span>total Balance: </span>
 				<span>

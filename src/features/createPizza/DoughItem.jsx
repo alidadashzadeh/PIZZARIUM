@@ -42,8 +42,10 @@ function DoughItem({ dough }) {
 	const { customPizza, selectCustomDough } = useOrder();
 	return (
 		<StyledDoughItem
-			selected={customPizza.dough === dough.name}
-			onClick={() => selectCustomDough(dough.name)}
+			selected={customPizza.dough.name === dough.name}
+			onClick={() =>
+				selectCustomDough({ name: dough.name, extraPrice: dough.extraPrice })
+			}
 		>
 			<img src={dough.picture} />
 			<DoughDetails>

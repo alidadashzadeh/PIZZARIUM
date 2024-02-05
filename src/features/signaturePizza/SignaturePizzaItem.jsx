@@ -93,6 +93,7 @@ function SignaturePizzaItem({ pizza }) {
 	const [addPopup, setAddPopup] = useState(false);
 	const { name, details, Veggie, picture, price } = pizza;
 
+	console.log(pizza);
 	return (
 		<StyledSignaturePizzaItem onMouseLeave={() => setAddPopup(false)}>
 			<ImgContainer>

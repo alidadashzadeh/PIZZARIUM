@@ -8,7 +8,6 @@ import ToppingList from "../features/createPizza/ToppingList";
 import CheeseList from "../features/createPizza/CheeseList";
 import SizeCook from "../features/createPizza/SizeCook";
 import CustomPizzaSummary from "../features/createPizza/CustomPizzaSummary";
-import CreatePizzaFooter from "../features/createPizza/CreatePizzaFooter";
 import styled from "styled-components";
 
 const StyledCreatePizza = styled.div`
@@ -28,7 +27,6 @@ function CreateYourPizza() {
 			{selected === "cheese" && <CheeseList />}
 			{selected === "toppings" && <ToppingList />}
 			{selected === "size&cook" && <SizeCook />}
-			{/* <CreatePizzaFooter /> */}
 		</StyledCreatePizza>
 	);
 }

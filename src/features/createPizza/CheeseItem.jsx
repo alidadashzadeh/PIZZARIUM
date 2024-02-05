@@ -40,8 +40,13 @@ function CheeseItem({ cheese }) {
 	const { customPizza, selectCustomCheese } = useOrder();
 	return (
 		<StyledCheeseItem
-			selected={customPizza.cheese === cheese.name}
-			onClick={() => selectCustomCheese(cheese.name)}
+			selected={customPizza.cheese.name === cheese.name}
+			onClick={() =>
+				selectCustomCheese({
+					name: cheese.name,
+					extraPrice: cheese.extraPrice,
+				})
+			}
 		>
 			<img src={cheese.picture} />
 			<CheeseDetails>{cheese.name}</CheeseDetails>

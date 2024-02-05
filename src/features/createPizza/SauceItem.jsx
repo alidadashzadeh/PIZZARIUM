@@ -37,8 +37,10 @@ function SauceItem({ sauce }) {
 
 	return (
 		<StyledSauceItem
-			selected={customPizza.sauce === sauce.name}
-			onClick={() => selectCustomSauce(sauce.name)}
+			selected={customPizza.sauce.name === sauce.name}
+			onClick={() =>
+				selectCustomSauce({ name: sauce.name, extraPrice: sauce.extraPrice })
+			}
 		>
 			<SauceDetails>{sauce.name}</SauceDetails>
 			<Img src={sauce.picture} />

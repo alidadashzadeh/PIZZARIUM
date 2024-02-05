@@ -90,6 +90,8 @@ function AddPopup({ pizza }) {
 			selectedSize,
 			id: Date.now(),
 			Veggie,
+			isSignaturePizza: true,
+			isCustomPizza: false,
 		};
 
 		addToOrder(newItem);

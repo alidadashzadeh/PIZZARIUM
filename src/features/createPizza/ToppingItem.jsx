@@ -40,8 +40,13 @@ function ToppingItem({ topping }) {
 	const { customPizza, selectCustomTopping } = useOrder();
 	return (
 		<StyledToppingItem
-			selected={customPizza.topping.includes(topping.name)}
-			onClick={() => selectCustomTopping(topping.name)}
+			selected={customPizza.topping.some((ss) => ss.name === topping.name)}
+			onClick={() =>
+				selectCustomTopping({
+					name: topping.name,
+					extraPrice: topping.extraPrice,
+				})
+			}
 		>
 			<img src={topping.picture} />
 			<ToppingDetails>{topping.name}</ToppingDetails>
