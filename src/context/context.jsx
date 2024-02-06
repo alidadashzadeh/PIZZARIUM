@@ -21,15 +21,20 @@ function OrderProvider({ children }) {
 		cheese: { extraPrice: 1.99, name: "Diary Free Cheese" },
 		topping: [],
 		cook: "Regular",
-		size: "Medium",
+		selectedSize: "medium",
 		specialInstruction: "",
-		price: 17.97,
+		quantity: 1,
+		price: {
+			small: 17.97,
+			medium: 17.97,
+			large: 17.97,
+			extraLarge: 17.97,
+			partySize: 17.97,
+		},
 		picture: "",
 		isCustomPizza: true,
 		isSignaturePizza: false,
 	});
-
-	const { price, setPrice } = useState();
 
 	useEffect(
 		function () {
@@ -37,32 +42,6 @@ function OrderProvider({ children }) {
 		},
 		[order]
 	);
-
-	// useEffect(
-	// 	function () {
-	// 		const toppingPrices = customPizza.topping.reduce(function (
-	// 			total,
-	// 			currentvalue
-	// 		) {
-	// 			return total + currentvalue.extraPrice;
-	// 		},
-	// 		0);
-
-	// 		const sizeMultiplier = SizePrice(customPizza.size);
-	// 		const x = (
-	// 			(14.99 +
-	// 				customPizza.dough.extraPrice +
-	// 				customPizza.crust.extraPrice +
-	// 				customPizza.sauce.extraPrice +
-	// 				customPizza.cheese.extraPrice +
-	// 				toppingPrices) *
-	// 			sizeMultiplier
-	// 		).toFixed(2);
-
-	// 		// setCustomPizza({ ...customPizza, Price: x });
-	// 	},
-	// 	[customPizza]
-	// );
 
 	function addToOrder(newItem) {
 		setOrder((s) => [...s, newItem]);
@@ -82,7 +61,7 @@ function OrderProvider({ children }) {
 				item.id === id
 					? {
 							...item,
-							quantity: item.quantity > 0 ? item.quantity - 1 : item.quantity,
+							quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
 					  }
 					: item
 			)
@@ -142,9 +121,11 @@ function OrderProvider({ children }) {
 		setCustomPizza({ ...customPizza, cook: selectedCookType });
 	}
 	function selectSize(selectedSize) {
-		setCustomPizza({ ...customPizza, size: selectedSize });
+		setCustomPizza({ ...customPizza, selectedSize: selectedSize });
 	}
 	function selectTitle(selectedTitle) {
+		console.log(selectedTitle.trim());
+		if (!selectedTitle.trim()) return;
 		setCustomPizza({ ...customPizza, title: selectedTitle });
 	}
 	function selectInstructions(selectedInstructions) {
@@ -154,9 +135,36 @@ function OrderProvider({ children }) {
 		});
 	}
 
-	function updatePrice(receivedPrice = 0) {
+	function AddOrderCustom() {
+		setOrder([
+			...order,
+			{ ...customPizza, price: SizePrice(customPizza), id: Date.now() },
+		]);
+		resetCustomPizza();
+	}
+
+	function resetCustomPizza() {
 		setCustomPizza({
-			...customPizza,
+			title: "Custom Pizza",
+			dough: { extraPrice: 0, name: "Regular Dough" },
+			crust: { extraPrice: 0.99, name: "Regular Thin Crust" },
+			sauce: { extraPrice: 0, name: "No-Sauce" },
+			cheese: { extraPrice: 1.99, name: "Diary Free Cheese" },
+			topping: [],
+			cook: "Regular",
+			selectedSize: "medium",
+			specialInstruction: "",
+			quantity: 1,
+			price: {
+				small: 17.97,
+				medium: 17.97,
+				large: 17.97,
+				extraLarge: 17.97,
+				partySize: 17.97,
+			},
+			picture: "",
+			isCustomPizza: true,
+			isSignaturePizza: false,
 		});
 	}
 
@@ -180,6 +188,7 @@ function OrderProvider({ children }) {
 				selectSize,
 				selectInstructions,
 				selectTitle,
+				AddOrderCustom,
 			}}
 		>
 			{children}

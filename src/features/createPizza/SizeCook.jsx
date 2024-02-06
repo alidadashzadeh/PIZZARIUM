@@ -100,36 +100,36 @@ function SizeCook() {
 				<span>Size</span>
 				<SizeOptions>
 					<Option
-						selected={customPizza.size === "Small"}
-						onClick={() => selectSize("Small")}
+						selected={customPizza.selectedSize === "small"}
+						onClick={() => selectSize("small")}
 					>
 						Small
 						<Slices>6 Slices</Slices>
 					</Option>
 					<Option
-						selected={customPizza.size === "Medium"}
-						onClick={() => selectSize("Medium")}
+						selected={customPizza.selectedSize === "medium"}
+						onClick={() => selectSize("medium")}
 					>
 						Medium
 						<Slices>8 Slices</Slices>
 					</Option>
 					<Option
-						selected={customPizza.size === "Large"}
-						onClick={() => selectSize("Large")}
+						selected={customPizza.selectedSize === "large"}
+						onClick={() => selectSize("large")}
 					>
 						Large
 						<Slices>10 Slices</Slices>
 					</Option>
 					<Option
-						selected={customPizza.size === "Extra Large"}
-						onClick={() => selectSize("Extra Large")}
+						selected={customPizza.selectedSize === "extraLarge"}
+						onClick={() => selectSize("extraLarge")}
 					>
 						Extra Large
 						<Slices>12 Slices</Slices>
 					</Option>
 					<Option
-						selected={customPizza.size === "Party Size"}
-						onClick={() => selectSize("Party Size")}
+						selected={customPizza.selectedSize === "partySize"}
+						onClick={() => selectSize("partySize")}
 					>
 						Party Size
 						<PartySlice>24 Slices</PartySlice>
@@ -164,7 +164,6 @@ function SizeCook() {
 				placeholder="Special Instructions"
 				onChange={(e) => selectInstructions(e.target.value)}
 			/>
-			
 		</>
 	);
 }

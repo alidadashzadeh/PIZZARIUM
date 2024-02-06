@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useOrder } from "../../context/context";
+import { LuChefHat } from "react-icons/lu";
 
 const StyledOrderItem = styled.div`
 	position: relative;
@@ -71,6 +72,10 @@ const Button = styled.button`
 	}
 `;
 
+const StyledChef = styled(LuChefHat)`
+	font-size: 72px;
+`;
+
 function OrderItem({ item }) {
 	const {
 		increaseQuantity,
@@ -82,7 +87,7 @@ function OrderItem({ item }) {
 		<>
 			<StyledOrderItem>
 				<OrderImage>
-					<img src={item.picture} />
+					{item.isCustomPizza ? <StyledChef /> : <img src={item.picture} />}
 				</OrderImage>
 				<Details>
 					{item.title}
@@ -95,6 +100,8 @@ function OrderItem({ item }) {
 						<option value="small">Sm: ${item.price.small}</option>
 						<option value="medium">Md: ${item.price.medium}</option>
 						<option value="large">Lg: ${item.price.large}</option>
+						<option value="extraLarge">XL: ${item.price.extraLarge}</option>
+						<option value="partySize">prty: ${item.price.partySize}</option>
 					</Select>
 					<Count>
 						<StyledIconMinus onClick={() => decreaseQuantity(item.id)} />

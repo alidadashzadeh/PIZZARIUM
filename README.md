@@ -1,10 +1,8 @@
+todos:
+1- both signature pizza and custom pizza should have the same size
+2- try to make stuff reusable as much as you can specially for orderItem
+
 Signature Pizza data table
-1- name
-2- Veggie: true/False
-3- price JSON
-4- Details
-5- picture
-6-
 
 technology
 

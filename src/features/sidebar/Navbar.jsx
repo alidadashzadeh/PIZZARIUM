@@ -42,7 +42,6 @@ const StyledNavlink = styled(NavLink)`
 
 	& svg {
 		font-size: 36px;
-		/* color: var(--color-red-700); */
 	}
 `;
 
@@ -54,7 +53,7 @@ function Navbar() {
 					<StyledNavlink to="signature-pizzas">
 						<GiFullPizza />
 						<span>SIGNATURE PIZZAS</span>
-					</StyledNavlink>{" "}
+					</StyledNavlink>
 				</li>
 				<li>
 					<StyledNavlink to="create-your-pizza">

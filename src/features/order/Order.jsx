@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useOrder } from "../../context/context";
-import OrderItemSignaturePizza from "./OrderItemSignaturePizza";
+import OrderItem from "./OrderItem";
 
 const StyledOrder = styled.div`
 	position: fixed;
@@ -32,10 +32,7 @@ function Order() {
 	return (
 		<StyledOrder>
 			{currentOrder?.map((el) => {
-				if (el.isSignaturePizza)
-					return <OrderItemSignaturePizza key={el.id} item={el} />;
-
-				if (el.isCustomPizza) return <div>Custom</div>;
+				return <OrderItem key={el.id} item={el} />;
 			})}
 			<OrderFooter>
 				<span>total Balance: </span>

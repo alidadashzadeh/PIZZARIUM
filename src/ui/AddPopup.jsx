@@ -117,6 +117,18 @@ function AddPopup({ pizza }) {
 				>
 					Large: ${price.large} - 10 Slices
 				</Button>
+				<Button
+					selected={selectedSize === "extraLarge"}
+					onClick={() => setSelectedSize("extraLarge")}
+				>
+					extra Large: ${price.extraLarge} - 12 Slices
+				</Button>
+				<Button
+					selected={selectedSize === "partySize"}
+					onClick={() => setSelectedSize("partySize")}
+				>
+					party Size: ${price.partySize} - 24 Slices
+				</Button>
 			</Buttons>
 			<Count>
 				<StyledIconMinus
