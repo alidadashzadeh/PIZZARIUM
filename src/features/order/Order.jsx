@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { useOrder } from "../../context/context";
 import OrderItem from "./OrderItem";
+import OrderFooter from "./OrderFooter";
 
 const StyledOrder = styled.div`
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	width: 26rem;
+	min-height: 100vh;
 	border-left: 1px solid var(--color-grey-400);
 	display: flex;
 	flex-direction: column;
@@ -20,13 +17,6 @@ const StyledOrder = styled.div`
 	}
 `;
 
-const OrderFooter = styled.div`
-	font-size: 18px;
-	padding: 1rem 0;
-	margin: 0 auto;
-	margin-top: auto;
-`;
-
 function Order() {
 	const { order: currentOrder } = useOrder();
 	return (
@@ -34,19 +24,8 @@ function Order() {
 			{currentOrder?.map((el) => {
 				return <OrderItem key={el.id} item={el} />;
 			})}
-			<OrderFooter>
-				<span>total Balance: </span>
-				<span>
-					{currentOrder.length === 0
-						? "zero balance"
-						: currentOrder
-								.reduce(function (total, cur) {
-									return total + cur.quantity * cur.price[cur.selectedSize];
-								}, 0)
-								.toFixed(2)}
-				</span>
-				<span> $</span>
-			</OrderFooter>
+
+			<OrderFooter />
 		</StyledOrder>
 	);
 }

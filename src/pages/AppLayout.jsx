@@ -6,13 +6,25 @@ import { Outlet } from "react-router-dom";
 
 const StyledAppLayout = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 26rem;
-	margin-left: 28rem;
+	height: 100vh;
+	grid-template-columns: 28rem 1fr 26rem;
+	grid-template-rows: auto 1fr auto;
 `;
 
 const Main = styled.main`
-	background-color: var(--color-yellow-100);
-	min-height: 110vh;
+	background-color: var(--color-grey-50);
+	overflow: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+`;
+
+const Container = styled.div`
+	overflow: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 `;
 
 function AppLayout() {
@@ -24,7 +36,9 @@ function AppLayout() {
 				<Main>
 					<Outlet />
 				</Main>
-				<Order />
+				<Container>
+					<Order />
+				</Container>
 				{isModalOpen && <Modal />}
 			</StyledAppLayout>
 		</>

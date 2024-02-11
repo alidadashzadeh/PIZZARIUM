@@ -4,6 +4,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import SizePrice from "../utils/customPizza";
+import toast from "react-hot-toast";
 
 const orderContext = createContext();
 
@@ -44,6 +45,23 @@ function OrderProvider({ children }) {
 	);
 
 	function addToOrder(newItem) {
+		if (
+			order.some(
+				(item) =>
+					item.title === newItem.title &&
+					item.selectedSize === newItem.selectedSize
+			)
+		) {
+			setOrder(
+				order.map((item) =>
+					item.title === newItem.title
+						? { ...item, quantity: item.quantity + newItem.quantity }
+						: item
+				)
+			);
+			return;
+		}
+
 		setOrder((s) => [...s, newItem]);
 	}
 
@@ -108,6 +126,11 @@ function OrderProvider({ children }) {
 			});
 			return;
 		}
+
+		if (customPizza.topping.length >= 5) {
+			toast.error("Its not a good idea to have more than 5 toppings!!");
+			return;
+		}
 		setCustomPizza({
 			...customPizza,
 			topping: [...customPizza.topping, selectedTopping],
@@ -168,6 +191,20 @@ function OrderProvider({ children }) {
 		});
 	}
 
+	function addOrderDrink(newDrink) {
+		if (order.some((item) => item.title === newDrink.title)) {
+			setOrder(
+				order.map((item) =>
+					item.title === newDrink.title
+						? { ...item, quantity: item.quantity + newDrink.quantity }
+						: item
+				)
+			);
+			return;
+		}
+		setOrder([...order, { ...newDrink, id: Date.now() }]);
+	}
+
 	return (
 		<orderContext.Provider
 			value={{
@@ -189,6 +226,7 @@ function OrderProvider({ children }) {
 				selectInstructions,
 				selectTitle,
 				AddOrderCustom,
+				addOrderDrink,
 			}}
 		>
 			{children}

@@ -2,19 +2,20 @@
 import { useState } from "react";
 import styled from "styled-components";
 import AddPopup from "../../ui/AddPopup";
+import Button from "../../ui/Button";
 
-const Button = styled.button`
-	background-color: var(--color-yellow-700);
-	color: var(--color-grey-50);
-	letter-spacing: 1px;
-	font-size: 16px;
-	font-weight: 500;
-	padding: 0.5rem 2rem;
-	margin-top: 1rem;
-	border-radius: 10px;
-	transition: all 0.3s;
-	opacity: 0;
-`;
+// const Button = styled.button`
+// 	background-color: var(--color-yellow-700);
+// 	color: var(--color-grey-50);
+// 	letter-spacing: 1px;
+// 	font-size: 16px;
+// 	font-weight: 500;
+// 	padding: 0.5rem 2rem;
+// 	margin-top: 1rem;
+// 	border-radius: 10px;
+// 	transition: all 0.3s;
+// 	opacity: 0;
+// `;
 
 const Img = styled.img`
 	transition: all 0.3s;
@@ -89,6 +90,10 @@ const Description = styled.div`
 
 const Price = styled.div``;
 
+const StyledAddButton = styled(Button)`
+	opacity: 0;
+`;
+
 function SignaturePizzaItem({ pizza }) {
 	const [addPopup, setAddPopup] = useState(false);
 	const { name, details, Veggie, picture, price } = pizza;
@@ -103,7 +108,9 @@ function SignaturePizzaItem({ pizza }) {
 				<Description>{details}</Description>
 				<Price>Starting from: {price.small}</Price>
 
-				<Button onClick={() => setAddPopup(true)}>ADD TO ORDER</Button>
+				<StyledAddButton onClick={() => setAddPopup(true)}>
+					ADD TO ORDER
+				</StyledAddButton>
 			</Details>
 			{Veggie && <Type>Veggie</Type>}
 			{addPopup && <AddPopup pizza={pizza} setAddPopup={setAddPopup} />}

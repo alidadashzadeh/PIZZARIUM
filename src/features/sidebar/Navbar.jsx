@@ -13,7 +13,6 @@ const StyledNav = styled.nav`
 const NavList = styled.ul`
 	display: flex;
 	flex-direction: column;
-	/* gap: 2rem; */
 `;
 
 const StyledNavlink = styled(NavLink)`
@@ -50,19 +49,19 @@ function Navbar() {
 		<StyledNav>
 			<NavList className="nav__list">
 				<li>
-					<StyledNavlink to="signature-pizzas">
+					<StyledNavlink to="/signature-pizzas">
 						<GiFullPizza />
 						<span>SIGNATURE PIZZAS</span>
 					</StyledNavlink>
 				</li>
 				<li>
-					<StyledNavlink to="create-your-pizza">
+					<StyledNavlink to="/create-your-pizza">
 						<LuChefHat />
 						<span>CREATE YOUR PIZZA</span>
 					</StyledNavlink>
 				</li>
 				<li>
-					<StyledNavlink to="drinks">
+					<StyledNavlink to="/drinks">
 						<BsCupStraw />
 						<span>DRINKS</span>
 					</StyledNavlink>

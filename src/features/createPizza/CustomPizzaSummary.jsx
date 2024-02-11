@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import SizePrice, { sizeLabel } from "../../utils/customPizza";
 import ToppingSummaryItem from "./ToppingSummaryItem";
 import { useState } from "react";
+import Button from "../../ui/Button";
 
 const StyledSummary = styled.div`
 	margin: 1rem;
@@ -43,21 +44,22 @@ const Input = styled.input`
 	}
 `;
 
-const Button = styled.button`
-	border: 2px solid var(--color-yellow-700);
-	border-radius: 10px;
+const StyledButton = styled(Button)`
 	margin-top: 5px;
-	padding: 1rem 2rem;
-	color: var(--color-grey-700);
-	font-weight: 500;
 
 	&:hover {
-		background-color: var(--color-yellow-700);
+		color: white;
 	}
-
 	&:disabled {
 		opacity: 0.5;
 	}
+`;
+
+const ExpandButton = styled.button`
+	border-radius: 5px;
+	padding: 0 1rem;
+	color: var(--color-grey-700);
+	background-color: var(--color-yellow-700);
 `;
 function CustomPizzaSummary() {
 	const { customPizza, selectTitle, AddOrderCustom } = useOrder();
@@ -85,9 +87,11 @@ function CustomPizzaSummary() {
 									? customPizza.specialInstruction
 									: customPizza.specialInstruction.slice(0, 10)}
 								{customPizza.specialInstruction.length > 10 && (
-									<button onClick={() => setExpandInstructions((s) => !s)}>
-										{expandInstructions ? "Show Less" : "More..."}
-									</button>
+									<ExpandButton
+										onClick={() => setExpandInstructions((s) => !s)}
+									>
+										{expandInstructions ? "Show Less" : "Show More..."}
+									</ExpandButton>
 								)}
 							</>
 						}
@@ -98,7 +102,7 @@ function CustomPizzaSummary() {
 				<RecipeItem>
 					Size: <strong>{sizeLabel(customPizza.selectedSize)}</strong>
 				</RecipeItem>
-				{customPizza.cook !== "Regular" && <span>{customPizza.cook} cook</span>}
+				<span>{customPizza.cook} cook</span>
 				<div>
 					<span> Price: </span>
 					<span>
@@ -109,7 +113,8 @@ function CustomPizzaSummary() {
 					placeholder="title ..."
 					onChange={(e) => selectTitle(e.target.value)}
 				/>
-				<Button
+				<StyledButton
+					variation={"primary"}
 					onClick={() => {
 						if (customPizza.topping.length < 3) {
 							toast.error(
@@ -119,10 +124,12 @@ function CustomPizzaSummary() {
 						}
 						AddOrderCustom();
 					}}
-					disabled={customPizza.topping.length === 0}
+					disabled={customPizza.topping.length < 3}
 				>
-					Add to order
-				</Button>
+					{customPizza.topping.length < 3
+						? "Minimum 3 Toppings"
+						: "Add to order"}
+				</StyledButton>
 			</SummaryDetails>
 		</StyledSummary>
 	);

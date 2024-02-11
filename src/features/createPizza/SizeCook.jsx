@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { useOrder } from "../../context/context";
+import SizePrice from "../../utils/customPizza";
 
 const Size = styled.div`
 	display: flex;
@@ -83,11 +84,16 @@ const Textarea = styled.textarea`
 	padding: 0.5rem;
 	width: 50%;
 	height: 150px;
+
 	&::placeholder {
 		font-size: 16px;
 		font-weight: 400;
 		color: var(--color-grey-400);
 	}
+`;
+
+const Price = styled.div`
+	text-align: center;
 `;
 
 function SizeCook() {
@@ -105,6 +111,7 @@ function SizeCook() {
 					>
 						Small
 						<Slices>6 Slices</Slices>
+						<Price>{SizePrice(customPizza)["small"]} $</Price>
 					</Option>
 					<Option
 						selected={customPizza.selectedSize === "medium"}
@@ -112,6 +119,7 @@ function SizeCook() {
 					>
 						Medium
 						<Slices>8 Slices</Slices>
+						<Price>{SizePrice(customPizza)["medium"]} $</Price>
 					</Option>
 					<Option
 						selected={customPizza.selectedSize === "large"}
@@ -119,6 +127,7 @@ function SizeCook() {
 					>
 						Large
 						<Slices>10 Slices</Slices>
+						<Price>{SizePrice(customPizza)["large"]} $</Price>
 					</Option>
 					<Option
 						selected={customPizza.selectedSize === "extraLarge"}
@@ -126,6 +135,7 @@ function SizeCook() {
 					>
 						Extra Large
 						<Slices>12 Slices</Slices>
+						<Price>{SizePrice(customPizza)["extraLarge"]} $</Price>
 					</Option>
 					<Option
 						selected={customPizza.selectedSize === "partySize"}
@@ -133,6 +143,7 @@ function SizeCook() {
 					>
 						Party Size
 						<PartySlice>24 Slices</PartySlice>
+						<Price>{SizePrice(customPizza)["partySize"]} $</Price>
 					</Option>
 				</SizeOptions>
 			</Size>

@@ -4,6 +4,8 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useOrder } from "../context/context";
+import Count from "./Count";
+import Button from "./Button";
 
 const StyledPopup = styled.div`
 	opacity: 0.8;
@@ -20,7 +22,8 @@ const Buttons = styled.div`
 	flex-direction: column;
 	gap: 4px;
 `;
-const Button = styled.button`
+
+const SizeSelect = styled.button`
 	padding: 0.5rem 1rem;
 	border-radius: 5px;
 	border: 1px solid var(--color-yellow-700);
@@ -32,45 +35,21 @@ const Button = styled.button`
 		`}
 `;
 
-const Count = styled.div`
-	display: flex;
-	justify-content: center;
-	gap: 1rem;
-	margin: 0.5rem 0;
-`;
-
-const Input = styled.input`
-	width: 24px;
-	border-radius: 50px;
-	border: none;
-	outline: none;
-	text-align: center;
-`;
-const StyledIconMinus = styled(CiCircleMinus)`
-	font-size: 24px;
-`;
-const StyledIconPlus = styled(CiCirclePlus)`
-	font-size: 24px;
+const StyledSizeSelect = styled(Button)`
+	${(props) =>
+		props.selected &&
+		css`
+			background-color: var(--color-yellow-700);
+		`}
 `;
 
 const TotalPrice = styled.div`
 	text-align: center;
 `;
 
-const AddButton = styled.button`
+const AddButton = styled(Button)`
 	display: block;
 	margin: 0 auto;
-	width: 50%;
-	text-align: center;
-	background-color: var(--color-yellow-300);
-	color: var(--color-grey-100);
-	padding: 0.25rem 1rem;
-	border-radius: 5px;
-
-	&:hover {
-		color: #fff;
-		background-color: var(--color-yellow-700);
-	}
 `;
 
 function AddPopup({ pizza }) {
@@ -96,47 +75,63 @@ function AddPopup({ pizza }) {
 
 		addToOrder(newItem);
 	}
+
+	function handePlusQuantity() {
+		setQuantity((s) => s + 1);
+	}
+
+	function handeMinusQuantity() {
+		setQuantity((s) => (s > 1 ? s - 1 : s));
+	}
 	return (
 		<StyledPopup>
 			<Buttons>
-				<Button
+				<StyledSizeSelect
+					variation={"secondary"}
+					size={"small"}
 					selected={selectedSize === "small"}
 					onClick={() => setSelectedSize("small")}
 				>
 					Small: ${price.small} - 6 Slices
-				</Button>
-				<Button
+				</StyledSizeSelect>
+				<StyledSizeSelect
+					variation={"secondary"}
+					size={"small"}
 					selected={selectedSize === "medium"}
 					onClick={() => setSelectedSize("medium")}
 				>
 					Medium: ${price.medium} - 8 Slices
-				</Button>
-				<Button
+				</StyledSizeSelect>
+				<StyledSizeSelect
+					variation={"secondary"}
+					size={"small"}
 					selected={selectedSize === "large"}
 					onClick={() => setSelectedSize("large")}
 				>
 					Large: ${price.large} - 10 Slices
-				</Button>
-				<Button
+				</StyledSizeSelect>
+				<StyledSizeSelect
+					variation={"secondary"}
+					size={"small"}
 					selected={selectedSize === "extraLarge"}
 					onClick={() => setSelectedSize("extraLarge")}
 				>
 					extra Large: ${price.extraLarge} - 12 Slices
-				</Button>
-				<Button
+				</StyledSizeSelect>
+				<StyledSizeSelect
+					variation={"secondary"}
+					size={"small"}
 					selected={selectedSize === "partySize"}
 					onClick={() => setSelectedSize("partySize")}
 				>
 					party Size: ${price.partySize} - 24 Slices
-				</Button>
+				</StyledSizeSelect>
 			</Buttons>
-			<Count>
-				<StyledIconMinus
-					onClick={() => setQuantity((s) => (s > 0 ? s - 1 : s))}
-				/>
-				<Input value={quantity} />
-				<StyledIconPlus onClick={() => setQuantity((s) => s + 1)} />
-			</Count>
+			<Count
+				onPlusClick={handePlusQuantity}
+				onMinusClick={handeMinusQuantity}
+				quantity={quantity}
+			/>
 			<TotalPrice>Total: ${quantity * price[selectedSize]}</TotalPrice>
 			<AddButton onClick={handleAddToOrder}>ADD</AddButton>
 		</StyledPopup>

@@ -32,28 +32,6 @@ const Select = styled.select`
 	border-radius: 5px;
 	padding: 0.25rem 0.5rem;
 `;
-const Count = styled.div`
-	display: flex;
-	justify-content: center;
-	gap: 1rem;
-	margin: 0.5rem 0;
-`;
-
-const Input = styled.input`
-	width: 24px;
-	border-radius: 50px;
-	border: none;
-	outline: none;
-	text-align: center;
-`;
-const StyledIconMinus = styled(CiCircleMinus)`
-	font-size: 24px;
-	cursor: pointer;
-`;
-const StyledIconPlus = styled(CiCirclePlus)`
-	font-size: 24px;
-	cursor: pointer;
-`;
 
 const Button = styled.button`
 	position: absolute;
@@ -76,6 +54,30 @@ const StyledChef = styled(LuChefHat)`
 	font-size: 72px;
 `;
 
+const Count = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin: 0.5rem 0;
+	//
+`;
+
+const Input = styled.input`
+	width: 24px;
+	border-radius: 50px;
+	border: none;
+	outline: none;
+	text-align: center;
+`;
+const StyledIconMinus = styled(CiCircleMinus)`
+	font-size: 24px;
+	cursor: pointer;
+`;
+const StyledIconPlus = styled(CiCirclePlus)`
+	font-size: 24px;
+	cursor: pointer;
+`;
+
 function OrderItem({ item }) {
 	const {
 		increaseQuantity,
@@ -91,18 +93,23 @@ function OrderItem({ item }) {
 				</OrderImage>
 				<Details>
 					{item.title}
-					<Select
-						name="SelectedSize"
-						id="size"
-						defaultValue={item.selectedSize}
-						onChange={(e) => ChangeSize(item.id, e.target.value)}
-					>
-						<option value="small">Sm: ${item.price.small}</option>
-						<option value="medium">Md: ${item.price.medium}</option>
-						<option value="large">Lg: ${item.price.large}</option>
-						<option value="extraLarge">XL: ${item.price.extraLarge}</option>
-						<option value="partySize">prty: ${item.price.partySize}</option>
-					</Select>
+					{!item.isDrink && (
+						<Select
+							name="SelectedSize"
+							id="size"
+							defaultValue={item.selectedSize}
+							onChange={(e) => ChangeSize(item.id, e.target.value)}
+						>
+							<option value="small">Sm: ${item.price.small}</option>
+							<option value="medium">Md: ${item.price.medium}</option>
+							<option value="large">Lg: ${item.price.large}</option>
+							<option value="extraLarge">XL: ${item.price.extraLarge}</option>
+							<option value="partySize">prty: ${item.price.partySize}</option>
+						</Select>
+					)}
+
+					{item.isDrink && <span>Price: ${item.price}</span>}
+
 					<Count>
 						<StyledIconMinus onClick={() => decreaseQuantity(item.id)} />
 						<Input value={item.quantity} />

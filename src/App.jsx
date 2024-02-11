@@ -9,6 +9,7 @@ import CreateYourPizza from "./pages/CreateYourPizza";
 import Drinks from "./pages/Drinks";
 import { OrderProvider } from "./context/context";
 import { Toaster } from "react-hot-toast";
+import Checkout from "./pages/Checkout";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -28,6 +29,7 @@ function App() {
 							<Route path="create-your-pizza" element={<CreateYourPizza />} />
 							<Route path="drinks" element={<Drinks />} />
 						</Route>
+						<Route path="/Checkout" element={<Checkout />} />
 					</Routes>
 				</BrowserRouter>
 			</QueryClientProvider>
