@@ -1,23 +1,15 @@
 /* eslint-disable react/jsx-key */
 import styled from "styled-components";
-import { useOrder } from "../../context/context";
+import { useOrder } from "../../context/OrderContext";
 import toast from "react-hot-toast";
 import SizePrice, { sizeLabel } from "../../utils/customPizza";
-import ToppingSummaryItem from "./ToppingSummaryItem";
-import { useState } from "react";
 import Button from "../../ui/Button";
+import Recipe from "./Recipe";
 
 const StyledSummary = styled.div`
 	margin: 1rem;
 	display: flex;
 	justify-content: space-between;
-`;
-
-const Recipe = styled.ul`
-	list-style: none;
-	display: flex;
-	flex-direction: column;
-	width: 70%;
 `;
 
 const RecipeItem = styled.li`
@@ -55,49 +47,12 @@ const StyledButton = styled(Button)`
 	}
 `;
 
-const ExpandButton = styled.button`
-	border-radius: 5px;
-	padding: 0 1rem;
-	color: var(--color-grey-700);
-	background-color: var(--color-yellow-700);
-`;
 function CustomPizzaSummary() {
 	const { customPizza, selectTitle, AddOrderCustom } = useOrder();
-	const [expandInstructions, setExpandInstructions] = useState(false);
 	return (
 		<StyledSummary>
-			<Recipe>
-				Your recipe:
-				<RecipeItem> {customPizza.dough.name}</RecipeItem>
-				<RecipeItem> {customPizza.crust.name}</RecipeItem>
-				<RecipeItem> {customPizza.sauce.name}</RecipeItem>
-				<RecipeItem> {customPizza.cheese.name}</RecipeItem>
-				<RecipeItem>
-					toppings:
-					{customPizza.topping.map((topping) => (
-						<ToppingSummaryItem item={topping} key={topping.name} />
-					))}
-				</RecipeItem>
-				{customPizza.specialInstruction && (
-					<RecipeItem>
-						Special Instruction:
-						{
-							<>
-								{expandInstructions
-									? customPizza.specialInstruction
-									: customPizza.specialInstruction.slice(0, 10)}
-								{customPizza.specialInstruction.length > 10 && (
-									<ExpandButton
-										onClick={() => setExpandInstructions((s) => !s)}
-									>
-										{expandInstructions ? "Show Less" : "Show More..."}
-									</ExpandButton>
-								)}
-							</>
-						}
-					</RecipeItem>
-				)}
-			</Recipe>
+			<Recipe customPizza={customPizza} />
+
 			<SummaryDetails>
 				<RecipeItem>
 					Size: <strong>{sizeLabel(customPizza.selectedSize)}</strong>

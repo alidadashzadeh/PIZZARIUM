@@ -6,6 +6,7 @@ import { StyledIconPlus } from "../../ui/StyledIconPlus";
 import { StyledIconMinus } from "../../ui/StyledIconMinus";
 import { CountInput } from "../../ui/CountInput";
 import SizeSelect from "../../ui/SizeSelect";
+import Recipe from "../createPizza/Recipe";
 
 const StyledOrderItem = styled.div`
 	position: relative;
@@ -16,7 +17,7 @@ const StyledOrderItem = styled.div`
 `;
 
 const OrderImage = styled.div`
-	width: 30%;
+	width: 10%;
 	border-radius: 15px;
 	overflow: hidden;
 `;
@@ -53,7 +54,7 @@ const Count = styled.div`
 	//
 `;
 
-function OrderItem({ item }) {
+function CheckoutItem({ item }) {
 	const { increaseQuantity, decreaseQuantity, removeItemFromOrder } =
 		useOrder();
 	return (
@@ -74,11 +75,13 @@ function OrderItem({ item }) {
 						<CountInput value={item.quantity} />
 						<StyledIconPlus onClick={() => increaseQuantity(item.id)} />
 					</Count>
+
 					<Button onClick={() => removeItemFromOrder(item.id)}>&#x2716;</Button>
 				</Details>
+				{item.isCustomPizza && <Recipe customPizza={item} />}
 			</StyledOrderItem>
 		</>
 	);
 }
 
-export default OrderItem;
+export default CheckoutItem;

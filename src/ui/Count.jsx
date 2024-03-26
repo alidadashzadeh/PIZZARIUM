@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
+import { StyledIconMinus } from "./StyledIconMinus";
+import { StyledIconPlus } from "./StyledIconPlus";
+import { CountInput } from "./CountInput";
 
 const Counter = styled.div`
 	display: flex;
@@ -10,27 +12,12 @@ const Counter = styled.div`
 	//
 `;
 
-const Input = styled.input`
-	width: 24px;
-	border-radius: 50px;
-	border: none;
-	outline: none;
-	text-align: center;
-`;
-const StyledIconMinus = styled(CiCircleMinus)`
-	font-size: 24px;
-	cursor: pointer;
-`;
-const StyledIconPlus = styled(CiCirclePlus)`
-	font-size: 24px;
-	cursor: pointer;
-`;
-
 function Count({ onPlusClick, onMinusClick, quantity }) {
+	console.log(quantity);
 	return (
 		<Counter>
 			<StyledIconMinus onClick={onMinusClick} />
-			<Input value={quantity} />
+			<CountInput value={quantity} />
 			<StyledIconPlus onClick={onPlusClick} />
 		</Counter>
 	);

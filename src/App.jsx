@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import GlobalStyles from "./styles/GlobalStyles";
@@ -7,7 +7,7 @@ import AppLayout from "./pages/AppLayout";
 import SignaturePizzas from "./pages/SignaturePizzas";
 import CreateYourPizza from "./pages/CreateYourPizza";
 import Drinks from "./pages/Drinks";
-import { OrderProvider } from "./context/context";
+import { OrderProvider } from "./context/OrderContext";
 import { Toaster } from "react-hot-toast";
 import Checkout from "./pages/Checkout";
 
@@ -25,6 +25,10 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<AppLayout />}>
+							<Route
+								index
+								element={<Navigate replace to="signature-pizzas" />}
+							/>
 							<Route path="signature-pizzas" element={<SignaturePizzas />} />
 							<Route path="create-your-pizza" element={<CreateYourPizza />} />
 							<Route path="drinks" element={<Drinks />} />

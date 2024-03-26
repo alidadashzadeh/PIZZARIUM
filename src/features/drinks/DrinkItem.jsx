@@ -4,7 +4,7 @@
 import styled from "styled-components";
 import Count from "../../ui/Count";
 import { useState } from "react";
-import { useOrder } from "../../context/context";
+import { useOrder } from "../../context/OrderContext";
 
 const StyledDrinkItem = styled.li`
 	flex-basis: 220px;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useOrder } from "../../context/context";
+import { useOrder } from "../../context/OrderContext";
 import OrderItem from "./OrderItem";
 import OrderFooter from "./OrderFooter";
 

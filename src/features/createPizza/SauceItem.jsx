@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useOrder } from "../../context/context";
+import { useOrder } from "../../context/OrderContext";
 
 const StyledSauceItem = styled.div`
 	border: 2px solid var(--color-yellow-300);

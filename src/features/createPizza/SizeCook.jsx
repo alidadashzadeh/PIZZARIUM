@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useOrder } from "../../context/context";
+import { useOrder } from "../../context/OrderContext";
 import SizePrice from "../../utils/customPizza";
 
 const Size = styled.div`

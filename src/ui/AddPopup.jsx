@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
-import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
-
 import { useState } from "react";
 import styled, { css } from "styled-components";
-import { useOrder } from "../context/context";
+import { useOrder } from "../context/OrderContext";
 import Count from "./Count";
 import Button from "./Button";
 

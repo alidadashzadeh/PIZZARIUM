@@ -1,3 +1,5 @@
+<!-- fix --> make the applayout and routs to look like what jonas did in wild oasis
+
 todos:
 1- both signature pizza and custom pizza should have the same size
 2- try to make stuff reusable as much as you can specially for orderItem
