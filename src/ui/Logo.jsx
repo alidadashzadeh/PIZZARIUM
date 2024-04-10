@@ -12,7 +12,6 @@ const StyledLogo = styled.div`
 
 const StyledImg = styled.img`
 	max-width: 100%;
-	/* width: 80%; */
 	height: auto;
 `;
 
@@ -20,7 +19,6 @@ function Logo() {
 	return (
 		<StyledLogo>
 			<StyledImg src="logo.jpg" />
-			{/* <span>PIZZARIUM</span> */}
 		</StyledLogo>
 	);
 }

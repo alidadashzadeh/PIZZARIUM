@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "../../ui/Logo";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import SidebarFooter from "./SidebarFooter";
 
 const StyledSidebar = styled.aside`
 	grid-row: 1 / -1;
@@ -18,7 +18,7 @@ function Sidebar() {
 
 			<Navbar />
 
-			<Footer />
+			<SidebarFooter />
 		</StyledSidebar>
 	);
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useOrder } from "../../context/OrderContext";
-import Button from "../../ui/Button";
+import { Button } from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
 
 const StyledOrderFooter = styled.div`

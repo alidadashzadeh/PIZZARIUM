@@ -5,22 +5,27 @@ import { getPizzas } from "../services/apiSignatures";
 import Spinner from "../ui/Spinner";
 import SignaturePizzasHeader from "../features/signaturePizza/SignaturePizzasHeader";
 import { useSearchParams } from "react-router-dom";
+import SignaturePizaaOperations from "../features/signaturePizza/SignaturePizaaOperations";
 
-const StyledSignaturePizzas = styled.div``;
+const StyledSignaturePizzas = styled.div`
+	padding: 0 1rem;
+`;
 
 const StyledPizzaList = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 0.5rem;
-	padding: 0 1rem;
+
+	@media (min-width: 1800px) {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 `;
 function SignaturePizzas() {
 	const [searchParams] = useSearchParams();
-	const {
-		isLoading,
-		data: signaturePizzas,
-		error,
-	} = useQuery({ queryKey: ["signaturePizzas"], queryFn: getPizzas });
+	const { isLoading, data: signaturePizzas } = useQuery({
+		queryKey: ["signaturePizzas"],
+		queryFn: getPizzas,
+	});
 
 	const filterValue = searchParams.get("type") || "all";
 
@@ -37,6 +42,7 @@ function SignaturePizzas() {
 	return (
 		<StyledSignaturePizzas>
 			<SignaturePizzasHeader />
+			<SignaturePizaaOperations />
 			<StyledPizzaList>
 				{filteredPizzas.map((pizza) => (
 					<SignaturePizzaItem pizza={pizza} key={pizza.id} />

@@ -2,20 +2,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import AddPopup from "../../ui/AddPopup";
-import Button from "../../ui/Button";
-
-// const Button = styled.button`
-// 	background-color: var(--color-yellow-700);
-// 	color: var(--color-grey-50);
-// 	letter-spacing: 1px;
-// 	font-size: 16px;
-// 	font-weight: 500;
-// 	padding: 0.5rem 2rem;
-// 	margin-top: 1rem;
-// 	border-radius: 10px;
-// 	transition: all 0.3s;
-// 	opacity: 0;
-// `;
+import { Button } from "../../ui/Button";
 
 const Img = styled.img`
 	transition: all 0.3s;

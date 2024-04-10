@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useOrder } from "../../context/OrderContext";
 import toast from "react-hot-toast";
 import SizePrice, { sizeLabel } from "../../utils/customPizza";
-import Button from "../../ui/Button";
+import { Button } from "../../ui/Button";
 import Recipe from "./Recipe";
 
 const StyledSummary = styled.div`

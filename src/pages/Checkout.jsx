@@ -6,7 +6,7 @@ import CheckoutSummary from "../features/Checkout/CheckoutSummary";
 
 const StyledCheckout = styled.div`
 	display: grid;
-	grid-template-columns: 26rem 1fr 38rem;
+	grid-template-columns: 28rem 1fr 38rem;
 	grid-template-rows: auto 1fr;
 	height: 100vh;
 `;

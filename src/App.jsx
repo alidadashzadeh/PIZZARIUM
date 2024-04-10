@@ -10,6 +10,14 @@ import Drinks from "./pages/Drinks";
 import { OrderProvider } from "./context/OrderContext";
 import { Toaster } from "react-hot-toast";
 import Checkout from "./pages/Checkout";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import UserProfile from "./pages/UserProfile";
+
+import GeneralSettings from "./features/user/GeneralSettings";
+import UserPasswordSettings from "./features/user/UserPasswordSettings";
+import UserAddressSettings from "./features/user/UserAddressSettings";
+import UserOrderSettings from "./features/user/UserOrderSettings";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -34,6 +42,21 @@ function App() {
 							<Route path="drinks" element={<Drinks />} />
 						</Route>
 						<Route path="/Checkout" element={<Checkout />} />
+						<Route path="/signup" element={<Signup />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/user" element={<UserProfile />}>
+							<Route
+								index
+								element={<Navigate replace to="generalsettings" />}
+							/>
+							<Route path="generalsettings" element={<GeneralSettings />} />
+							<Route
+								path="passwordsettings"
+								element={<UserPasswordSettings />}
+							/>
+							<Route path="addresssettings" element={<UserAddressSettings />} />
+							<Route path="ordersettings" element={<UserOrderSettings />} />
+						</Route>
 					</Routes>
 				</BrowserRouter>
 			</QueryClientProvider>

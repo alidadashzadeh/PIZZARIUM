@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FormRow } from "../../ui/FormRow";
 
 const StyledDeliveryInfo = styled.div`
 	display: flex;
@@ -30,7 +29,7 @@ function CheckoutDeliveryInfo() {
 	return (
 		<StyledDeliveryInfo>
 			<h3>Delivery Informtion</h3>
-			<StyledForm>
+			{/* <StyledForm>
 				<FormRow>
 					<Label>Phone(cell)#</Label>
 					<Input type="tel" placeholder="416 888 88 88" />
@@ -47,7 +46,7 @@ function CheckoutDeliveryInfo() {
 					<Label>city</Label>
 					<Input type="text" />
 				</FormRow>
-			</StyledForm>
+			</StyledForm> */}
 		</StyledDeliveryInfo>
 	);
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useOrder } from "../context/OrderContext";
 import Count from "./Count";
-import Button from "./Button";
+import { Button } from "./Button";
 
 const StyledPopup = styled.div`
 	opacity: 0.8;
