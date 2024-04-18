@@ -3,19 +3,13 @@ import styled from "styled-components";
 import { useLogout } from "../features/auth/useLogout";
 
 const StyledLogoutIcon = styled(CiLogout)`
-	font-size: 32px;
+	font-size: 24px;
 	cursor: pointer;
-	border-radius: 50%;
-	background-color: var(--color-yellow-300);
-	padding: 0.5rem;
-
-	&:hover {
-		background-color: var(--color-yellow-700);
-	}
+	margin-left: 12px;
 `;
 
 function LogoutButton() {
-	const { logout, isLogingOut } = useLogout();
+	const { logout } = useLogout();
 	return <StyledLogoutIcon onClick={logout} />;
 }
 

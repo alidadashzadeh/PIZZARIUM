@@ -1,22 +1,17 @@
 import styled from "styled-components";
 import { useUser } from "../features/auth/useUser";
-import { Typography } from "./Typography";
 import Avatar from "./Avatar";
 import { UserIcon } from "./UserIcon";
 import { useNavigate } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
+import { Row } from "./Row";
+import LoginButton from "./LoginButton";
 
 const StyledUserInfo = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 12px;
 	cursor: pointer;
-	padding: 0.5rem;
-	border: 2px solid var(--color-yellow-300);
-	border-radius: 15px;
-
-	&:hover {
-		background-color: var(--color-yellow-700);
-	}
 `;
 
 const FlexItem = styled.div`
@@ -25,28 +20,40 @@ const FlexItem = styled.div`
 	justify-content: space-between;
 `;
 
+const UserNameText = styled.div`
+	font-size: 16px;
+	font-weight: 500;
+`;
+const UserEmailText = styled.div`
+	font-size: 12px;
+	font-weight: 400;
+`;
+
 function UserInfo() {
 	const { user } = useUser();
 	const navigate = useNavigate();
 
 	const currentUserInfo = user?.user.user_metadata;
 	return (
-		<StyledUserInfo
-			onClick={() => {
-				if (!user) return;
-				navigate("./user");
-			}}
-		>
-			{currentUserInfo?.avatar ? <Avatar /> : <UserIcon size={32} />}
-			<FlexItem>
-				<Typography size={20}>
-					{currentUserInfo?.fullName || "UserName"}
-				</Typography>
-				<Typography size={12}>
-					{currentUserInfo?.email || "example@user.com"}
-				</Typography>
-			</FlexItem>
-		</StyledUserInfo>
+		<Row>
+			<StyledUserInfo
+				onClick={() => {
+					if (!user) return;
+					navigate("/userprofile");
+				}}
+			>
+				{currentUserInfo?.avatar ? <Avatar /> : <UserIcon size={32} />}
+				<FlexItem>
+					<UserNameText size={20}>
+						{currentUserInfo?.fullName || "UserName"}
+					</UserNameText>
+					<UserEmailText size={12}>
+						{currentUserInfo?.email || "example@user.com"}
+					</UserEmailText>
+				</FlexItem>
+			</StyledUserInfo>
+			{!user ? <LoginButton /> : <LogoutButton />}
+		</Row>
 	);
 }
 

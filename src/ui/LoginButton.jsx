@@ -3,15 +3,9 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const StyledLogoutIcon = styled(CiLogin)`
-	font-size: 32px;
+	font-size: 24px;
 	cursor: pointer;
-	border-radius: 50%;
-	background-color: var(--color-yellow-300);
-	padding: 0.5rem;
-
-	&:hover {
-		background-color: var(--color-yellow-700);
-	}
+	margin-left: 12px;
 `;
 
 function LoginButton() {

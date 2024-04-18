@@ -4,6 +4,11 @@ const GlobalStyles = createGlobalStyle`
 :root {
   &, &.light-mode {
   /* Grey */
+
+  --color-primary:#f7781d;
+  --color-secondary:#8e8e8e;
+  --color-text:#1C1C1C;
+
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -15,6 +20,8 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-700: #374151;
   --color-grey-800: #1f2937;
   --color-grey-900: #111827;
+
+
 
   --color-blue-100: #e0f2fe;
   --color-blue-700: #0369a1;
@@ -129,9 +136,8 @@ html {
 }
 
 body {
-  font-family: "rubik", sans-serif;
-  color: var(--color-grey-700);
-  background-color: var(--color-yellow-100);
+  font-family: "poppins", sans-serif;
+  color: var(--color-text);
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
   line-height:1.2;
@@ -164,13 +170,7 @@ input:disabled {
   color: var(--color-grey-500);
 }
 
-/* input:focus,
-button:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--color-brand-600);
-  outline-offset: -1px;
-} */
+
 
 /* Parent selector, finally 😃 */
 button:has(svg) {

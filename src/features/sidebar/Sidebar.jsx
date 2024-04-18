@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Logo from "../../ui/Logo";
-import Navbar from "./Navbar";
 import SidebarFooter from "./SidebarFooter";
 
 const StyledSidebar = styled.aside`
@@ -15,8 +14,6 @@ function Sidebar() {
 	return (
 		<StyledSidebar>
 			<Logo />
-
-			<Navbar />
 
 			<SidebarFooter />
 		</StyledSidebar>

@@ -8,24 +8,31 @@ import { useUpdateUser } from "./useUpdateUser";
 import { Button } from "../../ui/Button";
 import ButtonGroup from "../../ui/ButtonGroup";
 import Spinner from "../../ui/Spinner";
-import FileInput from "../../ui/FileInput";
-import Avatar from "../../ui/Avatar";
 
 const Form = styled.form`
 	width: 50%;
 	margin: 0 auto;
-	margin-top: 5rem;
 	border: 2px solid var(--color-yellow-700);
 	border-radius: 15px;
-	padding: 2rem 4.6rem;
+	padding: 2rem 4rem;
+	position: relative;
 `;
 
+const FormTitle = styled.div`
+	position: absolute;
+	padding: 0 1rem;
+	top: 0;
+	left: 2rem;
+	transform: translateY(-50%);
+	background-color: var(--color-grey-0);
+	font-size: 20px;
+`;
 const FlexItem = styled.div`
 	display: flex;
 	gap: 2rem;
 `;
 
-function GeneralSettingsForm() {
+function GeneralInformationForm() {
 	const { user, isLoading } = useUser();
 	const { register, handleSubmit, formState, reset } = useForm();
 	const { errors } = formState;
@@ -53,6 +60,7 @@ function GeneralSettingsForm() {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
+			<FormTitle>General Information</FormTitle>
 			<FormRow label="Full Name *" error={errors?.fullName?.message}>
 				<Input
 					type="text"
@@ -75,13 +83,6 @@ function GeneralSettingsForm() {
 				/>
 			</FormRow>
 
-			<FormRow label="Avatar">
-				<FlexItem>
-					<Avatar />
-					<FileInput id="avatar" accept="image/*" {...register("image")} />
-				</FlexItem>
-			</FormRow>
-
 			<ButtonGroup>
 				<Button
 					variation="secondary"
@@ -98,4 +99,4 @@ function GeneralSettingsForm() {
 	);
 }
 
-export default GeneralSettingsForm;
+export default GeneralInformationForm;

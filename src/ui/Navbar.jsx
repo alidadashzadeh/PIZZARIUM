@@ -1,18 +1,16 @@
-import { NavLink } from "react-router-dom";
-
 import { BsCupStraw } from "react-icons/bs";
 import { GiFullPizza } from "react-icons/gi";
 import { LuChefHat } from "react-icons/lu";
+import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
-const StyledNav = styled.nav`
-	height: 80%;
-`;
+const StyledNav = styled.nav``;
 
 const NavList = styled.ul`
 	display: flex;
-	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 `;
 
 const StyledNavlink = styled(NavLink)`
@@ -22,26 +20,27 @@ const StyledNavlink = styled(NavLink)`
 		align-items: center;
 		gap: 1.2rem;
 
-		color: var(--color-grey-600);
-		font-size: 1.6rem;
-		font-weight: 500;
+		color: var(--color-primary);
 		padding: 1.2rem 2.4rem;
-		transition: all 0.3s;
 	}
 
 	&:hover {
-		background-color: var(--color-yellow-300);
+		background-color: var(--color-yellow-100);
 	}
 	&:active,
 	&.active:link,
 	&.active:visited {
-		color: var(--color-grey-800);
-		background-color: var(--color-yellow-700);
+		border-bottom: 2px solid var(--color-primary);
 	}
 
 	& svg {
 		font-size: 36px;
 	}
+`;
+
+const NavText = styled.div`
+	font-size: 20px;
+	font-weight: 500;
 `;
 
 function Navbar() {
@@ -51,19 +50,19 @@ function Navbar() {
 				<li>
 					<StyledNavlink to="/signature-pizzas">
 						<GiFullPizza />
-						<span>SIGNATURE PIZZAS</span>
+						<NavText>SIGNATURE PIZZA</NavText>
 					</StyledNavlink>
 				</li>
 				<li>
 					<StyledNavlink to="/create-your-pizza">
 						<LuChefHat />
-						<span>CREATE YOUR PIZZA</span>
+						<NavText>CREATE PIZZA</NavText>
 					</StyledNavlink>
 				</li>
 				<li>
 					<StyledNavlink to="/drinks">
 						<BsCupStraw />
-						<span>DRINKS</span>
+						<NavText>DRINKS</NavText>
 					</StyledNavlink>
 				</li>
 			</NavList>

@@ -9,7 +9,7 @@ const StyledAddressSettings = styled.div`
 	width: 50%;
 	margin: 0 auto;
 `;
-function UserAddressSettings() {
+function UserAddresInformationForm() {
 	const { currentUserData } = useUser();
 
 	const addressOptions = currentUserData?.address?.map((address) => {
@@ -25,4 +25,4 @@ function UserAddressSettings() {
 	);
 }
 
-export default UserAddressSettings;
+export default UserAddresInformationForm;
