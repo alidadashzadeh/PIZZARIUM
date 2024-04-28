@@ -1,109 +1,119 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import styled from "styled-components";
-import AddPopup from "../../ui/AddPopup";
-import { Button } from "../../ui/Button";
+import { keyframes } from "styled-components";
 
-const Img = styled.img`
-	transition: all 0.3s;
+const imageRotateAnimation = keyframes`
+	0% {transform:rotate(0deg)}
+	50% {transform: rotate(90deg)}
+	100% {transform: rotate(0deg)}
 `;
-const StyledSignaturePizzaItem = styled.div`
-	position: relative;
-	cursor: pointer;
-	border-radius: 25px;
+const Img = styled.img`
+  /* transition: all 0.3s; */
 
-	&:hover ${Button} {
-		opacity: 1;
-	}
+  &:hover {
+    animation-name: ${imageRotateAnimation};
+    animation-duration: 1s;
+  }
+`;
+const StyledSignaturePizzaItem = styled(motion.div)`
+  position: relative;
+  padding: 2rem;
+  cursor: pointer;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 
-	&:hover ${Img} {
-		transform: scale(1.1);
-	}
+  box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.25);
 `;
 
 const ImgContainer = styled.div`
-	display: flex;
-	align-items: center;
-	overflow: hidden;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 `;
 
-const Details = styled.div`
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: var(--color-grey-200);
-	padding: 0 1rem;
-	z-index: 1000;
-	font-size: 20px;
-	font-weight: 500;
-	letter-spacing: 1px;
-	padding-bottom: 8rem;
-`;
-
-const Overlay = styled.div`
-	position: absolute;
-	background-color: rgba(27, 19, 19, 0.7);
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 100;
-`;
-
-const Type = styled.div`
-	position: absolute;
-	right: 25px;
-	top: 0;
-	background-color: var(--color-yellow-700);
-	z-index: 1000;
-	color: var(--color-grey-50);
-	letter-spacing: 1px;
-	font-size: 18px;
-	font-weight: 500;
-	padding: 1rem;
-	border-radius: 0 0 10px 10px;
-	writing-mode: vertical-lr;
-`;
 const Title = styled.div`
-	font-size: 22px;
-	font-weight: 600;
-	margin-bottom: 1rem;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1c1c1c;
 `;
 const Description = styled.div`
-	font-size: 16px;
-	font-weight: 500;
-	margin-bottom: 1rem;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--color-secondary);
 `;
 
-const Price = styled.div``;
-
-const StyledAddButton = styled(Button)`
-	opacity: 0;
+const Price = styled.div`
+  color: var(--color-secondary);
+  font-weight: 600;
 `;
 
-function SignaturePizzaItem({ pizza }) {
-	const [addPopup, setAddPopup] = useState(false);
-	const { name, details, Veggie, picture, price } = pizza;
+const ToppingsList = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+const ToppingItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  border-radius: 50px;
+  gap: 1rem;
+  background-color: ${(props) => props.color};
 
-	return (
-		<StyledSignaturePizzaItem onMouseLeave={() => setAddPopup(false)}>
-			<ImgContainer>
-				<Img src={picture} />
-			</ImgContainer>
-			<Details>
-				<Title>{name}</Title>
-				<Description>{details}</Description>
-				<Price>Starting from: {price.small}</Price>
+  box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.25);
+`;
 
-				<StyledAddButton onClick={() => setAddPopup(true)}>
-					ADD TO ORDER
-				</StyledAddButton>
-			</Details>
-			{Veggie && <Type>Veggie</Type>}
-			{addPopup && <AddPopup pizza={pizza} setAddPopup={setAddPopup} />}
-			<Overlay />
-		</StyledSignaturePizzaItem>
-	);
+const ToppingTitle = styled.div`
+  font-size: 12px;
+  font-weight: 600;
+`;
+
+function SignaturePizzaItem({ pizza, index }) {
+  const navigate = useNavigate();
+  const {
+    name,
+    details,
+    Veggie,
+    picture,
+    price,
+    id,
+    toppings,
+    weight,
+    type,
+    calorie,
+  } = pizza;
+
+  return (
+    <StyledSignaturePizzaItem
+      onClick={() => navigate(`/signature-pizzas/${id}`)}
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.2 }}
+    >
+      <ImgContainer>
+        <Img src={picture} />
+      </ImgContainer>
+      <Price> $ {price.small}</Price>
+      <Title>{name}</Title>
+      <Description>{details}</Description>
+      <ToppingsList>
+        {toppings.map((topping) => (
+          <ToppingItem key={topping.color} color={topping.color}>
+            <div>{topping.image}</div>
+            <ToppingTitle>{topping.title}</ToppingTitle>
+          </ToppingItem>
+        ))}
+      </ToppingsList>
+    </StyledSignaturePizzaItem>
+  );
 }
 
 export default SignaturePizzaItem;
