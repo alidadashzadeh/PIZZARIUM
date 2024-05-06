@@ -15,6 +15,9 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 import Home from "./pages/Home";
+import Order from "./features/order/Order";
+import Deliveryinfo from "./pages/Deliveryinfo";
+import Payment from "./pages/Payment";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,8 +42,11 @@ function App() {
               />
               <Route path="create-your-pizza" element={<CreateYourPizza />} />
               <Route path="drinks" element={<Drinks />} />
+              <Route path="order" element={<Order />} />
+              <Route path="deliveryInfo" element={<Deliveryinfo />} />
+              <Route path="Payment" element={<Payment />} />
             </Route>
-            <Route path="/Checkout" element={<Checkout />} />
+            {/* <Route path="/Checkout" element={<Checkout />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/userprofile" element={<UserProfile />}></Route>

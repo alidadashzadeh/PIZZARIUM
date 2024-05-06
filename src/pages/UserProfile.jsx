@@ -7,33 +7,29 @@ import UserAddresInformationForm from "../features/user/UserAddressSettings";
 import AvatarForm from "../features/user/AvatarForm";
 
 const StyledUserProfile = styled.div`
-	display: grid;
-	grid-template-rows: 120px 1fr;
+  display: grid;
+  grid-template-rows: 120px 1fr;
 `;
 
 const FlexItem = styled.div`
-	display: flex;
-	gap: 2rem;
-	padding: 0 4rem;
+  display: flex;
+  gap: 2rem;
+  padding: 0 4rem;
 `;
 
 const Main = styled.div`
-	margin-top: 4rem;
+  margin-top: 4rem;
 `;
 function UserProfile() {
-	return (
-		<StyledUserProfile>
-			<Header />
-			<Main>
-				<FlexItem>
-					<GeneralInformationForm />
-					<AvatarForm />
-				</FlexItem>
-				<UserPasswordForm />
-				<UserAddresInformationForm />
-			</Main>
-		</StyledUserProfile>
-	);
+  return (
+    <StyledUserProfile>
+      <Header />
+      <GeneralInformationForm />
+      <AvatarForm />
+      <UserPasswordForm />
+      <UserAddresInformationForm />
+    </StyledUserProfile>
+  );
 }
 
 export default UserProfile;

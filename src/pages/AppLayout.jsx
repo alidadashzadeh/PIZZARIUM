@@ -4,6 +4,7 @@ import Header from "../ui/Header";
 
 const StyledAppLayout = styled.div`
   display: grid;
+  max-width: 100vw;
   grid-template-rows: 120px 1fr;
 `;
 

@@ -8,14 +8,13 @@ import { NavLink } from "react-router-dom";
 import { BsCupStraw } from "react-icons/bs";
 import { GiFullPizza } from "react-icons/gi";
 import { LuChefHat } from "react-icons/lu";
-import { Row } from "../../ui/Row";
 
 const StyledFooter = styled.div`
   display: grid;
   padding: 6rem 4rem;
   grid-template-columns: 2fr 1fr 1fr;
   border-bottom: 1px solid #000;
-  /* margin-bottom: 1rem; */
+  background-color: var(--color-grey-200);
 `;
 
 const FlexItemColumn = styled.div`
@@ -47,9 +46,15 @@ const NavText = styled.div`
   color: #1c1c1c;
 `;
 
+const Rights = styled.div`
+  background-color: var(--color-grey-200);
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem;
+`;
 const SmallText = styled.span`
   font-size: 12px;
-  margin-bottom: 2rem;
 `;
 
 export default function Footer() {
@@ -90,7 +95,7 @@ export default function Footer() {
           <FooterSocialMedia />
         </FlexItemColumn>
       </StyledFooter>
-      <Row>
+      <Rights>
         <SmallText>
           <FaRegCopyright />
           2024 PIZZARIUM. All rights reserved.
@@ -100,7 +105,7 @@ export default function Footer() {
           <SmallText>Terms of Service</SmallText>
           <SmallText>Cookies Settings</SmallText>
         </FlexItemRow>
-      </Row>
+      </Rights>
     </>
   );
 }

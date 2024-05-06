@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
+const StyledHeader = styled.div`
+  grid-column: 1/-1;
+  background-color: blue;
+`;
 const H1 = styled.h1`
-	font-size: 36px;
-	font-weight: 600;
-	margin: 1rem 0;
-	padding: 0 2rem;
+  font-size: 36px;
+  font-weight: 600;
 `;
 
 function CreatePizzaHeader() {
-	return <H1>CREATE YOUR OWN STYLE PIZZA</H1>;
+  return (
+    <StyledHeader>
+      <H1>CREATE YOUR OWN STYLE PIZZA</H1>
+    </StyledHeader>
+  );
 }
 
 export default CreatePizzaHeader;

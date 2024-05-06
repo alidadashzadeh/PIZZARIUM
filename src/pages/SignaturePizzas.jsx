@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import SignaturePizzaItem from "../features/signaturePizza/SignaturePizzaItem";
 import { useQuery } from "@tanstack/react-query";
 import { getPizzas } from "../services/apiSignatures";
@@ -8,15 +7,13 @@ import SignaturePizzasHeader from "../features/signaturePizza/SignaturePizzasHea
 import { useSearchParams } from "react-router-dom";
 import SignaturePizaaOperations from "../features/signaturePizza/SignaturePizaaOperations";
 
-const StyledSignaturePizzas = styled(motion.div)`
+const StyledSignaturePizzas = styled.div`
   display: grid;
   grid-template-columns: 26rem 1fr;
   gap: 1rem;
-  padding: 0 1rem;
-  padding-top: 4rem;
 `;
 
-const StyledPizzaList = styled(motion.div)`
+const StyledPizzaList = styled.div`
   padding: 4rem 6rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -41,22 +38,26 @@ function SignaturePizzas() {
   if (filterValue === "all") filteredPizzas = signaturePizzas;
   if (filterValue === "beef")
     filteredPizzas = signaturePizzas?.filter((pizza) => pizza.type === "beef");
-  if (filterValue === "non-veggie")
-    filteredPizzas = signaturePizzas?.filter((pizza) => !pizza.Veggie);
+  if (filterValue === "chicken")
+    filteredPizzas = signaturePizzas?.filter(
+      (pizza) => pizza.type === "chicken"
+    );
+  if (filterValue === "veggie")
+    filteredPizzas = signaturePizzas?.filter(
+      (pizza) => pizza.type === "veggie"
+    );
+  if (filterValue === "mixed")
+    filteredPizzas = signaturePizzas?.filter((pizza) => pizza.type === "mixed");
 
   if (isLoading) return <Spinner />;
 
   return (
-    <StyledSignaturePizzas
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-    >
+    <StyledSignaturePizzas>
       <SignaturePizzasHeader />
       <SignaturePizaaOperations />
-      <StyledPizzaList initial="initial" animate="working">
-        {filteredPizzas.map((pizza, i) => (
-          <SignaturePizzaItem pizza={pizza} key={pizza.id} index={i} />
+      <StyledPizzaList>
+        {filteredPizzas.map((pizza) => (
+          <SignaturePizzaItem pizza={pizza} key={pizza.id} />
         ))}
       </StyledPizzaList>
     </StyledSignaturePizzas>

@@ -1,27 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 import styled from "styled-components";
-import { keyframes } from "styled-components";
+import { Button } from "../../ui/Button";
+import { useOrder } from "../../context/OrderContext";
+import toast from "react-hot-toast";
 
-const imageRotateAnimation = keyframes`
-	0% {transform:rotate(0deg)}
-	50% {transform: rotate(90deg)}
-	100% {transform: rotate(0deg)}
-`;
-const Img = styled.img`
-  /* transition: all 0.3s; */
-
-  &:hover {
-    animation-name: ${imageRotateAnimation};
-    animation-duration: 1s;
-  }
-`;
-const StyledSignaturePizzaItem = styled(motion.div)`
+const Img = styled.img``;
+const StyledSignaturePizzaItem = styled.div`
   position: relative;
   padding: 2rem;
-  cursor: pointer;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -76,7 +64,9 @@ const ToppingTitle = styled.div`
   font-weight: 600;
 `;
 
-function SignaturePizzaItem({ pizza, index }) {
+function SignaturePizzaItem({ pizza }) {
+  const { addToOrder } = useOrder();
+
   const navigate = useNavigate();
   const {
     name,
@@ -91,13 +81,23 @@ function SignaturePizzaItem({ pizza, index }) {
     calorie,
   } = pizza;
 
+  function handleQuickAdd() {
+    addToOrder({
+      title: pizza.name,
+      quantity: 1,
+      isSignaturePizza: true,
+      isCustomPizza: false,
+      selectedSize: "small",
+      toppings,
+      id: Date.now(),
+      picture: pizza.picture,
+      price: pizza.price,
+    });
+
+    toast.success(`${pizza.name} was added to the card successfully`);
+  }
   return (
-    <StyledSignaturePizzaItem
-      onClick={() => navigate(`/signature-pizzas/${id}`)}
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.2 }}
-    >
+    <StyledSignaturePizzaItem>
       <ImgContainer>
         <Img src={picture} />
       </ImgContainer>
@@ -112,6 +112,10 @@ function SignaturePizzaItem({ pizza, index }) {
           </ToppingItem>
         ))}
       </ToppingsList>
+      <Button onClick={() => navigate(`/signature-pizzas/${id}`)}>
+        CUSTOMIZE
+      </Button>
+      <Button onClick={handleQuickAdd}>QUICK ADD</Button>
     </StyledSignaturePizzaItem>
   );
 }

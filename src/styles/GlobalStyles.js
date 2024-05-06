@@ -5,8 +5,10 @@ const GlobalStyles = createGlobalStyle`
   &, &.light-mode {
   /* Grey */
 
-  --color-primary:#f7781d;
+  /* --color-primary:#f7781d; */
+  --color-primary:#FF8779;
   --color-secondary:#8e8e8e;
+  --color-yellow:#FFE495;
   --color-text:#1C1C1C;
 
   --color-grey-0: #fff;

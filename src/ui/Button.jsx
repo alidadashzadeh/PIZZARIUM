@@ -22,37 +22,37 @@ const sizes = {
 const variations = {
   primary: css`
     color: var(--color-grey-700);
-    background-color: var(--color-yellow-700);
+    background-color: var(--color-primary);
 
-    &:hover {
-      color: var(--color-grey-50);
+    /* &:hover {
+      color: var(--color-grey-100);
       scale: 1.05;
-    }
+    } */
   `,
   secondary: css`
     color: var(--color-grey-700);
     background: transparent;
-    border: 2px solid var(--color-yellow-700);
+    border: 2px solid var(--color-primary);
 
-    &:hover {
-      background-color: var(--color-yellow-700);
+    /* &:hover {
+      background-color: var(--color-primary);
       scale: 1.05;
-    }
+    } */
   `,
   danger: css`
     color: var(--color-red-100);
     background-color: var(--color-red-700);
 
-    &:hover {
+    /* &:hover {
       background-color: var(--color-red-800);
-    }
+    } */
   `,
 };
 
 // export const Button = styled.button`
 export const Button = styled.button`
   border: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: 50px;
   box-shadow: var(--shadow-sm);
   transition: all 0.2s;
   cursor: pointer;

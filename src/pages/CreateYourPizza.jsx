@@ -11,24 +11,28 @@ import CustomPizzaSummary from "../features/createPizza/CustomPizzaSummary";
 import styled from "styled-components";
 
 const StyledCreatePizza = styled.div`
-	position: relative;
-	min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 26rem 2fr 1fr;
+  /* grid-template-rows: 26rem 1fr; */
+  gap: 1rem;
 `;
 function CreateYourPizza() {
-	const [selected, setSelected] = useState("dough");
-	return (
-		<StyledCreatePizza>
-			<CreatePizzaHeader />
-			<CustomPizzaSummary />
-			<CreatePizzaNav selected={selected} setSelected={setSelected} />
-			{selected === "dough" && <DoughList />}
-			{selected === "crust" && <CrustList />}
-			{selected === "sauce" && <SauceList />}
-			{selected === "cheese" && <CheeseList />}
-			{selected === "toppings" && <ToppingList />}
-			{selected === "size&cook" && <SizeCook />}
-		</StyledCreatePizza>
-	);
+  const [selected, setSelected] = useState("dough");
+  return (
+    <StyledCreatePizza>
+      {/* <CreatePizzaHeader /> */}
+      <CreatePizzaNav selected={selected} setSelected={setSelected} />
+      {selected === "dough" && <DoughList />}
+      {selected === "crust" && <CrustList />}
+      {selected === "sauce" && <SauceList />}
+      {selected === "cheese" && <CheeseList />}
+      {selected === "toppings" && <ToppingList />}
+      {selected === "size&cook" && <SizeCook />}
+      <CustomPizzaSummary />
+    </StyledCreatePizza>
+  );
 }
 
 export default CreateYourPizza;

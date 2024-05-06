@@ -21,13 +21,20 @@ const Category = styled.li`
   border-radius: 50px;
   transition: all 0.4s;
   background-color: ${(props) => props.selected && "#ddd"};
-  margin-left: ${(props) => props.selected && "2rem"};
+  margin-left: ${(props) => props.selected && "1rem"};
 
   &:hover {
     background-color: var(--color-yellow-300);
   }
 `;
 
+const categories = [
+  { label: "ALL", value: "all" },
+  { label: "BEEF", value: "beef" },
+  { label: "CHICKEN", value: "chicken" },
+  { label: "MIXED BEEF & CHICKEN", value: "mixed" },
+  { label: "VEGGIE", value: "veggie" },
+];
 function SignaturePizaaOperations() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentCategory = searchParams.get("category") || "all";
@@ -42,54 +49,15 @@ function SignaturePizaaOperations() {
       <H2>Categories</H2>
 
       <CategoryList>
-        <Category
-          selected={currentCategory === "all"}
-          onClick={() => handleClick("all")}
-        >
-          All
-        </Category>
-        <Category
-          selected={currentCategory === "beef"}
-          onClick={() => handleClick("beef")}
-        >
-          Beef
-        </Category>
-        <Category
-          selected={currentCategory === "chicken"}
-          onClick={() => handleClick("chicken")}
-        >
-          Chicken
-        </Category>
-        <Category
-          selected={currentCategory === "mixed"}
-          onClick={() => handleClick("mixed")}
-        >
-          Mixed Beef & Chicken
-        </Category>
-        <Category
-          selected={currentCategory === "veggie"}
-          onClick={() => handleClick("veggie")}
-        >
-          Vegie
-        </Category>
-        <Category
-          selected={currentCategory === "neapolitan"}
-          onClick={() => handleClick("neapolitan")}
-        >
-          Neapolitan{" "}
-        </Category>
-        <Category
-          selected={currentCategory === "margherita"}
-          onClick={() => handleClick("margherita")}
-        >
-          Margherita
-        </Category>
-        <Category
-          selected={currentCategory === "california"}
-          onClick={() => handleClick("california")}
-        >
-          California
-        </Category>
+        {categories.map((category) => (
+          <Category
+            key={category.value}
+            selected={currentCategory === category.value}
+            onClick={() => handleClick(category.value)}
+          >
+            {category.label}
+          </Category>
+        ))}
       </CategoryList>
     </StyledSignaturePizzaOperations>
   );
