@@ -3,11 +3,12 @@ import { useOrder } from "../../context/OrderContext";
 
 const StyledPizzaDemo = styled.div`
   position: relative;
-  /* width: 50%; */
   aspect-ratio: 1;
+  width: 75%;
+  margin: 0 auto;
 `;
 const ImgContainer = styled.div`
-  width: 65%;
+  width: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ const ImgContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
 export default function PizzaDemo() {
   const { customPizza } = useOrder();
   console.log(customPizza);

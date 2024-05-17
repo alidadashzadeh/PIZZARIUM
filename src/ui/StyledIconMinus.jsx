@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { CiCircleMinus } from "react-icons/ci";
+import { FaCircleMinus } from "react-icons/fa6";
 
-export const StyledIconMinus = styled(CiCircleMinus)`
-	font-size: 24px;
-	cursor: pointer;
+export const StyledIconMinus = styled(FaCircleMinus)`
+  font-size: 36px;
+  cursor: pointer;
+  color: var(--color-primary);
 `;

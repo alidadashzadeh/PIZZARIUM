@@ -3,24 +3,28 @@ import SignaturePizzaItem from "../features/signaturePizza/SignaturePizzaItem";
 import { useQuery } from "@tanstack/react-query";
 import { getPizzas } from "../services/apiSignatures";
 import Spinner from "../ui/Spinner";
+import Footer from "../ui/Footer";
 import SignaturePizzasHeader from "../features/signaturePizza/SignaturePizzasHeader";
 import { useSearchParams } from "react-router-dom";
 import SignaturePizaaOperations from "../features/signaturePizza/SignaturePizaaOperations";
 
 const StyledSignaturePizzas = styled.div`
   display: grid;
-  grid-template-columns: 26rem 1fr;
+  grid-template-columns: 20rem 1fr;
   gap: 1rem;
 `;
 
 const StyledPizzaList = styled.div`
-  padding: 4rem 6rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  /* display: grid;
+  grid-template-columns: 1fr; */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 1rem;
+  /* overflow-y: auto; */
 
-  @media (min-width: 1800px) {
-    grid-template-columns: 1fr 1fr 1fr;
+  &::-webkit-scrollbar {
+    width: 0;
   }
 `;
 
@@ -53,7 +57,7 @@ function SignaturePizzas() {
 
   return (
     <StyledSignaturePizzas>
-      <SignaturePizzasHeader />
+      {/* <SignaturePizzasHeader /> */}
       <SignaturePizaaOperations />
       <StyledPizzaList>
         {filteredPizzas.map((pizza) => (

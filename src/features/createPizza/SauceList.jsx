@@ -5,18 +5,10 @@ import SauceItem from "./SauceItem";
 import styled from "styled-components";
 
 const StyledSauceList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: first baseline;
-  gap: 1rem;
-  margin: 0 1rem;
-  margin-top: 2rem;
-  height: 600px;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  align-self: flex-start;
 `;
 
 function SauceList() {
@@ -28,11 +20,14 @@ function SauceList() {
   if (isLoading) return <Spinner />;
 
   return (
-    <StyledSauceList>
-      {sauces.map((sauce) => (
-        <SauceItem sauce={sauce} key={sauce.id} />
-      ))}
-    </StyledSauceList>
+    <div>
+      <h3>Sauces</h3>
+      <StyledSauceList>
+        {sauces.map((sauce) => (
+          <SauceItem sauce={sauce} key={sauce.id} />
+        ))}
+      </StyledSauceList>
+    </div>
   );
 }
 

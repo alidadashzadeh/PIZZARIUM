@@ -1,22 +1,22 @@
 import styled from "styled-components";
-import LoginForm from "../features/auth/LoginForm";
 import LoginHeader from "../ui/LoginHeader";
+import LoginComponent from "../features/auth/LoginComponent";
 
 const StyledLoginForm = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 function Login() {
-	return (
-		<StyledLoginForm>
-			<LoginHeader />
-			<LoginForm />
-		</StyledLoginForm>
-	);
+  return (
+    <StyledLoginForm>
+      <LoginHeader />
+      <LoginComponent />
+    </StyledLoginForm>
+  );
 }
 
 export default Login;

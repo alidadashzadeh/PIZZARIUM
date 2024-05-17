@@ -6,28 +6,25 @@ import Process from "../features/order/Process";
 const StyledPayment = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8rem;
+  /* gap: 8rem; */
 `;
-const OrderDetails = styled.div`
+const StyledAd = styled.div`
+  padding: 4rem;
   display: flex;
-  justify-content: center;
-  gap: 4rem;
-  font-size: 20px;
-  padding: 2rem;
-  border-bottom: 1px solid #000;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 export default function Payment() {
   return (
     <>
       <Process step="payment" />
-      <OrderDetails>
-        <div>Order # 1234</div>
-        <div>Date:{new Date().toISOString().substring(0, 10)}</div>
-      </OrderDetails>
       <StyledPayment>
-        <OrderSummary />
         <PaymentForm />
+        <StyledAd>
+          <h2>Discover our best seller Pizzas, You will never have enough.</h2>
+          <img src="hero.jpeg" />
+        </StyledAd>
       </StyledPayment>
     </>
   );

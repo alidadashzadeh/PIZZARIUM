@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const StyledCreatePizzaNav = styled.div`
+const StyledNav = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 1rem;
-  border-right: 1px solid var(--color-grey-300);
+  gap: 2rem;
+  padding: 2rem 1rem;
 `;
-
 const NavigationList = styled.ul`
   list-style: none;
   display: flex;
@@ -16,22 +14,22 @@ const NavigationList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  padding: 1rem 2rem;
   cursor: pointer;
+  padding: 1rem 2rem;
   transition: all 0.4s;
-  border-radius: 50px;
+  color: ${(props) => props.selected && "var(--color-primary)"};
+  margin-left: ${(props) => props.selected && "8px"};
+`;
 
-  background-color: ${(props) => props.selected && "#ddd"};
-  margin-left: ${(props) => props.selected && "1rem"};
-
-  &:hover {
-    background-color: var(--color-yellow-300);
-  }
+const H2 = styled.h2`
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 function CreatePizzaNav({ selected, setSelected }) {
   return (
-    <StyledCreatePizzaNav>
+    <StyledNav>
+      <H2>Steps</H2>
       <NavigationList>
         <NavItem
           selected={selected === "dough"}
@@ -70,7 +68,7 @@ function CreatePizzaNav({ selected, setSelected }) {
           Cook
         </NavItem>
       </NavigationList>
-    </StyledCreatePizzaNav>
+    </StyledNav>
   );
 }
 

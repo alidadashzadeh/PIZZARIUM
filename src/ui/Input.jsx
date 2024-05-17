@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-  border: 1px solid var(--color-grey-300);
+  border: 1px solid var(--color-grey-700);
   outline: none;
-  border-radius: 5px;
-  padding: 6px 1rem;
+  border-radius: var(--border-radius-small);
+  height: 38px;
   padding-left: 2rem;
-
-  box-shadow: 0 1px 5px hsl(0deg 0% 0% / 0.075),
-    0 2px 2px hsl(0deg 0% 0% / 0.075);
+  padding-right: 128px;
 
   &:focus {
     border: 1px solid var(--color-primary);

@@ -6,26 +6,26 @@ import DrinkItem from "./DrinkItem";
 import styled from "styled-components";
 
 const StyledDrinks = styled.ul`
-	display: flex;
-	gap: 1rem;
-	flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
 `;
 function DrinksContent() {
-	const {
-		isLoading,
-		data: drinks,
-		error,
-	} = useQuery({ queryKey: ["drinks"], queryFn: getDrinks });
+  const {
+    isLoading,
+    data: drinks,
+    error,
+  } = useQuery({ queryKey: ["drinks"], queryFn: getDrinks });
 
-	if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
-	return (
-		<StyledDrinks>
-			{drinks.map((drink) => (
-				<DrinkItem drink={drink} key={drink.name} />
-			))}
-		</StyledDrinks>
-	);
+  return (
+    <StyledDrinks>
+      {drinks.map((drink) => (
+        <DrinkItem drink={drink} key={drink.name} />
+      ))}
+    </StyledDrinks>
+  );
 }
 
 export default DrinksContent;

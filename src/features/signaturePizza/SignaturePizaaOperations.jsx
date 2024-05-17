@@ -8,7 +8,8 @@ const StyledSignaturePizzaOperations = styled.div`
   padding: 2rem 1rem;
 `;
 const H2 = styled.h2`
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 const CategoryList = styled.ul`
@@ -18,14 +19,9 @@ const CategoryList = styled.ul`
 const Category = styled.li`
   cursor: pointer;
   padding: 1rem 2rem;
-  border-radius: 50px;
   transition: all 0.4s;
-  background-color: ${(props) => props.selected && "#ddd"};
-  margin-left: ${(props) => props.selected && "1rem"};
-
-  &:hover {
-    background-color: var(--color-yellow-300);
-  }
+  color: ${(props) => props.selected && "var(--color-primary)"};
+  margin-left: ${(props) => props.selected && "8px"};
 `;
 
 const categories = [

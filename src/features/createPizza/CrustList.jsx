@@ -5,12 +5,9 @@ import CrustItem from "./CrustItem";
 import styled from "styled-components";
 
 const StyledCrustList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 0 1rem;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
   align-self: flex-start;
 `;
 function CrustList() {
@@ -21,11 +18,14 @@ function CrustList() {
 
   if (isLoading) return <Spinner />;
   return (
-    <StyledCrustList>
-      {crusts.map((crust) => (
-        <CrustItem crust={crust} key={crust.id} />
-      ))}
-    </StyledCrustList>
+    <div>
+      <h3>Crusts</h3>
+      <StyledCrustList>
+        {crusts.map((crust) => (
+          <CrustItem crust={crust} key={crust.id} />
+        ))}
+      </StyledCrustList>
+    </div>
   );
 }
 

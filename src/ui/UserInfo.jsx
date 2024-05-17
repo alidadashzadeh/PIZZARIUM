@@ -3,15 +3,16 @@ import { useUser } from "../features/auth/useUser";
 import Avatar from "./Avatar";
 import { UserIcon } from "./UserIcon";
 import { useNavigate } from "react-router-dom";
-import LogoutButton from "./LogoutButton";
-import { Row } from "./Row";
-import LoginButton from "./LoginButton";
+import { Button } from "./Button";
+import PopUpWindow from "../features/user/PopUpWindow";
+import { useState } from "react";
 
 const StyledUserInfo = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   cursor: pointer;
+  position: relative;
 `;
 
 const FlexItem = styled.div`
@@ -21,29 +22,34 @@ const FlexItem = styled.div`
 `;
 
 const UserNameText = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 `;
 const UserEmailText = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  color: var(--color-secondary);
 `;
 
 function UserInfo() {
-  const { user } = useUser();
+  const { currentUserData } = useUser();
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
-  const currentUserInfo = user?.user.user_metadata;
+  if (!currentUserData)
+    return (
+      <Button size="small" onClick={() => navigate("/login")}>
+        Sign In
+      </Button>
+    );
+
+  const currentUserInfo = currentUserData;
   return (
-    <Row>
+    <>
       <StyledUserInfo
-        onClick={() => {
-          if (!user) return;
-          navigate("/userprofile");
-        }}
+        onMouseEnter={() => setShowPopup(true)}
+        onMouseLeave={() => setShowPopup(false)}
       >
-        {currentUserInfo?.avatar ? <Avatar /> : <UserIcon size={32} />}
+        {currentUserInfo?.avatar ? <Avatar /> : <UserIcon size={64} />}
         <FlexItem>
           <UserNameText size={20}>
             {currentUserInfo?.fullName || "UserName"}
@@ -52,9 +58,9 @@ function UserInfo() {
             {currentUserInfo?.email || "example@user.com"}
           </UserEmailText>
         </FlexItem>
+        {showPopup && <PopUpWindow />}
       </StyledUserInfo>
-      {!user ? <LoginButton /> : <LogoutButton />}
-    </Row>
+    </>
   );
 }
 

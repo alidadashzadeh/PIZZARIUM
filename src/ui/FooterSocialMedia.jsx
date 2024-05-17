@@ -13,7 +13,7 @@ const FlexItemRow = styled.div`
 export default function FooterSocialMedia() {
   return (
     <>
-      <span>Follow us </span>
+      <h3>Follow us </h3>
       <FlexItemRow>
         <SlSocialFacebook />
         <span>Facebook</span>

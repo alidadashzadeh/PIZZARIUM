@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { useOrder } from "../../context/OrderContext";
-import ExtraPriceSign from "../../ui/ExtraPriceSign";
+import { StyledIconPlus } from "../../ui/StyledIconPlus";
+import { StyledIconMinus } from "../../ui/StyledIconMinus";
 
 const StyledDoughItem = styled.div`
-  /* border: 2px solid var(--color-yellow-300); */
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  flex: 1;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.25);
 
   &:hover {
     cursor: pointer;
@@ -20,8 +18,6 @@ const StyledDoughItem = styled.div`
   ${(props) =>
     props.selected &&
     css`
-      background-color: var(--color-yellow-700);
-
       &::after {
         content: "✔";
         display: block;
@@ -34,11 +30,15 @@ const StyledDoughItem = styled.div`
       }
     `}
 `;
-const DoughDetails = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 2rem;
+
+const Img = styled.img`
+  width: 175px;
+  aspect-ratio: 1;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
+`;
+
+const Price = styled.span`
+  color: var(--color-primary);
 `;
 
 function DoughItem({ dough }) {
@@ -50,11 +50,14 @@ function DoughItem({ dough }) {
         selectCustomDough({ name: dough.name, extraPrice: dough.extraPrice })
       }
     >
-      <img src={dough.picture} />
-      <DoughDetails>
-        <span>{dough.name}</span>
-        {dough.extraPrice ? <ExtraPriceSign price={dough.extraPrice} /> : null}
-      </DoughDetails>
+      <Img src={dough?.picture} />
+      <Price>{dough?.extraPrice ? dough?.extraPrice : "Free"}</Price>
+      <span>{dough?.name}</span>
+      {customPizza.dough.name === dough.name ? (
+        <StyledIconMinus />
+      ) : (
+        <StyledIconPlus />
+      )}
     </StyledDoughItem>
   );
 }

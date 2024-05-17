@@ -1,18 +1,15 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { useOrder } from "../../context/OrderContext";
-import ExtraPriceSign from "../../ui/ExtraPriceSign";
+import { StyledIconPlus } from "../../ui/StyledIconPlus";
+import { StyledIconMinus } from "../../ui/StyledIconMinus";
 
 const StyledToppingItem = styled.div`
-  /* border: 2px solid var(--color-yellow-300); */
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  flex-basis: 148px;
-  flex-grow: 1;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.25);
 
   &:hover {
     cursor: pointer;
@@ -21,8 +18,6 @@ const StyledToppingItem = styled.div`
   ${(props) =>
     props.selected &&
     css`
-      background-color: var(--color-yellow-700);
-
       &::after {
         content: "✔";
         display: block;
@@ -35,15 +30,14 @@ const StyledToppingItem = styled.div`
       }
     `}
 `;
-const ToppingDetails = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 1rem;
+const Img = styled.img`
+  width: 175px;
+  aspect-ratio: 1;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
 `;
 
-const Img = styled.img`
-  /* border-radius: 500px; */
+const Price = styled.span`
+  color: var(--color-primary);
 `;
 
 function ToppingItem({ topping }) {
@@ -60,12 +54,14 @@ function ToppingItem({ topping }) {
       }
     >
       <Img src={topping.picture} />
-      <ToppingDetails>
-        {topping.name}
-        {topping.extraPrice ? (
-          <ExtraPriceSign price={topping.extraPrice} />
-        ) : null}
-      </ToppingDetails>
+
+      <Price>{topping?.extraPrice ? topping?.extraPrice : "Free"}</Price>
+      {topping.name}
+      {customPizza.topping.map((el) => el.name).includes(topping.name) ? (
+        <StyledIconMinus />
+      ) : (
+        <StyledIconPlus />
+      )}
     </StyledToppingItem>
   );
 }

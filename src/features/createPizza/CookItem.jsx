@@ -4,7 +4,7 @@ import { useOrder } from "../../context/OrderContext";
 import { StyledIconPlus } from "../../ui/StyledIconPlus";
 import { StyledIconMinus } from "../../ui/StyledIconMinus";
 
-const StyledSauceItem = styled.div`
+const StyledCookItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +30,7 @@ const StyledSauceItem = styled.div`
       }
     `}
 `;
+
 const Img = styled.img`
   width: 175px;
   aspect-ratio: 1;
@@ -39,26 +40,24 @@ const Img = styled.img`
 const Price = styled.span`
   color: var(--color-primary);
 `;
-function SauceItem({ sauce }) {
-  const { customPizza, selectCustomSauce } = useOrder();
 
+function CookItem({ cook }) {
+  const { customPizza, selectCookType } = useOrder();
   return (
-    <StyledSauceItem
-      selected={customPizza.sauce.name === sauce.name}
-      onClick={() =>
-        selectCustomSauce({ name: sauce.name, extraPrice: sauce.extraPrice })
-      }
+    <StyledCookItem
+      selected={customPizza.cook === cook.name}
+      onClick={() => selectCookType(cook?.name)}
     >
-      <Img src={sauce.picture} />
-      <Price>{sauce?.extraPrice ? sauce?.extraPrice : "Free"}</Price>
-      {sauce.name}
-      {customPizza.sauce.name === sauce.name ? (
+      <Img src={cook?.picture} />
+      <Price>{cook?.extraPrice ? cook?.extraPrice : "Free"}</Price>
+      <span>{cook?.name}</span>
+      {customPizza.cook.name === cook.name ? (
         <StyledIconMinus />
       ) : (
         <StyledIconPlus />
       )}
-    </StyledSauceItem>
+    </StyledCookItem>
   );
 }
 
-export default SauceItem;
+export default CookItem;

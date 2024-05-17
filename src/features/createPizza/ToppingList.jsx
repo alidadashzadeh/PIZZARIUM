@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import Spinner from "../../ui/Spinner";
 
 const StyledContainer = styled.div`
-  height: 650px;
   overflow-y: auto;
   padding-bottom: 100px;
 
@@ -15,35 +14,47 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledToppingList = styled.div`
+const StyledToppingsHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 0 1rem;
-  margin-top: 2rem;
+  justify-content: space-between;
+`;
+const StyledToppingList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  align-self: flex-start;
 `;
 
 const TypeList = styled.ul`
-  width: 20%;
   display: flex;
   justify-content: center;
-  margin: 0 auto;
-  margin-top: 1rem;
-  border: 2px solid var(--color-yellow-700);
-  border-radius: 10px;
-  overflow: hidden;
 `;
 const Type = styled.li`
   cursor: pointer;
   flex-grow: 1;
   padding: 1rem;
   text-align: center;
+  position: relative;
 
   ${(props) =>
     props.selected &&
     css`
-      background-color: var(--color-yellow-700);
-      color: var(--color-grey-700);
+      color: var(--color-primary);
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: var(--color-primary);
+        border-radius: 90px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all 0.3s ease;
+      }
+      /* color: var(--color-grey-700); */
     `}
 `;
 
@@ -72,14 +83,17 @@ function ToppingList() {
 
   return (
     <StyledContainer>
-      <TypeList>
-        <Type selected={type === "veggie"} onClick={() => setType("veggie")}>
-          Veggie
-        </Type>
-        <Type selected={type === "meat"} onClick={() => setType("meat")}>
-          Meat
-        </Type>
-      </TypeList>
+      <StyledToppingsHeader>
+        <h3>Toppings</h3>
+        <TypeList>
+          <Type selected={type === "veggie"} onClick={() => setType("veggie")}>
+            Veggie
+          </Type>
+          <Type selected={type === "meat"} onClick={() => setType("meat")}>
+            Meat & Chicken
+          </Type>
+        </TypeList>
+      </StyledToppingsHeader>
       <StyledToppingList>
         {toppings?.map((topping) => (
           <ToppingItem topping={topping} key={topping.id} />

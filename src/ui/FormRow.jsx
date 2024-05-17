@@ -6,7 +6,7 @@ const StyledFormRow = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   gap: 0.5rem;
 
   height: ${(props) => props.fixedHeight && "100px"};

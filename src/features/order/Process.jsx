@@ -6,19 +6,19 @@ import { MdPayment } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const StyledIconCart = styled(SlBasket)`
-  font-size: 20px;
+  font-size: 22px;
 `;
 const StyledIconDelivery = styled(MdOutlineDeliveryDining)`
-  font-size: 24px;
+  font-size: 22px;
 `;
 const StyledIconPayment = styled(MdPayment)`
-  font-size: 20px;
+  font-size: 22px;
 `;
 
 const StyledProcess = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   position: relative;
 
@@ -26,7 +26,7 @@ const StyledProcess = styled.div`
     display: block;
     content: "";
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: var(--color-grey-200);
     position: absolute;
     z-index: -10;
@@ -48,9 +48,13 @@ const Items = styled.div`
 `;
 
 const Number = styled.div`
-  padding: 0.8rem 1.5rem;
-  box-shadow: 1px 1px 4px 0px #000;
-  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-text-grey);
+  border-radius: 8px;
 `;
 
 const Details = styled.div`

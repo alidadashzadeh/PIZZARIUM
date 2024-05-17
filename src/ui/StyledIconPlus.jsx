@@ -1,7 +1,8 @@
-import { CiCirclePlus } from "react-icons/ci";
+import { FaPlusCircle } from "react-icons/fa";
 import styled from "styled-components";
 
-export const StyledIconPlus = styled(CiCirclePlus)`
-	font-size: 24px;
-	cursor: pointer;
+export const StyledIconPlus = styled(FaPlusCircle)`
+  font-size: 36px;
+  color: var(--color-primary);
+  cursor: pointer;
 `;

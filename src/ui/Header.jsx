@@ -11,13 +11,22 @@ const StyledHeader = styled.div`
   align-items: center;
 `;
 
+const FlexItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+`;
+
 function Header() {
   return (
     <StyledHeader>
       <Logo />
       <Navbar />
-      <OrderToggle />
-      <UserInfo />
+      <FlexItem>
+        <OrderToggle />
+        <UserInfo />
+      </FlexItem>
     </StyledHeader>
   );
 }

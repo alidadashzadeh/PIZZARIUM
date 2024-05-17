@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { useOrder } from "../../context/OrderContext";
-import ExtraPriceSign from "../../ui/ExtraPriceSign";
+import { StyledIconPlus } from "../../ui/StyledIconPlus";
+import { StyledIconMinus } from "../../ui/StyledIconMinus";
 
 const StyledCheeseItem = styled.div`
-  /* border: 2px solid var(--color-yellow-300); */
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  flex: 1;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.25);
 
   &:hover {
     cursor: pointer;
@@ -20,8 +18,6 @@ const StyledCheeseItem = styled.div`
   ${(props) =>
     props.selected &&
     css`
-      background-color: var(--color-yellow-700);
-
       &::after {
         content: "✔";
         display: block;
@@ -34,13 +30,15 @@ const StyledCheeseItem = styled.div`
       }
     `}
 `;
-const CheeseDetails = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 2rem;
+const Img = styled.img`
+  width: 175px;
+  aspect-ratio: 1;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
 `;
 
+const Price = styled.span`
+  color: var(--color-primary);
+`;
 function CheeseItem({ cheese }) {
   const { customPizza, selectCustomCheese } = useOrder();
   return (
@@ -53,13 +51,14 @@ function CheeseItem({ cheese }) {
         })
       }
     >
-      <img src={cheese.picture} />
-      <CheeseDetails>
-        {cheese.name}{" "}
-        {cheese.extraPrice ? (
-          <ExtraPriceSign price={cheese.extraPrice} />
-        ) : null}
-      </CheeseDetails>
+      <Img src={cheese.picture} />
+      <Price>{cheese?.extraPrice ? cheese?.extraPrice : "Free"}</Price>
+      <span>{cheese?.name}</span>
+      {customPizza.cheese.name === cheese.name ? (
+        <StyledIconMinus />
+      ) : (
+        <StyledIconPlus />
+      )}
     </StyledCheeseItem>
   );
 }

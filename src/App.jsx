@@ -10,12 +10,11 @@ import CreateYourPizza from "./pages/CreateYourPizza";
 import Drinks from "./pages/Drinks";
 import { OrderProvider } from "./context/OrderContext";
 import { Toaster } from "react-hot-toast";
-import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 import Home from "./pages/Home";
-import Order from "./features/order/Order";
+import Order from "./pages/Order";
 import Deliveryinfo from "./pages/Deliveryinfo";
 import Payment from "./pages/Payment";
 
@@ -46,7 +45,6 @@ function App() {
               <Route path="deliveryInfo" element={<Deliveryinfo />} />
               <Route path="Payment" element={<Payment />} />
             </Route>
-            {/* <Route path="/Checkout" element={<Checkout />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/userprofile" element={<UserProfile />}></Route>

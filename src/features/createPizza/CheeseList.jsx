@@ -5,12 +5,10 @@ import CheeseItem from "./CheeseItem";
 import styled from "styled-components";
 
 const StyledCheeseList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
   align-self: flex-start;
-  gap: 1rem;
-  margin: 0 1rem;
-  margin-top: 2rem;
 `;
 
 function CheeseList() {
@@ -21,11 +19,14 @@ function CheeseList() {
 
   if (isLoading) return <Spinner />;
   return (
-    <StyledCheeseList>
-      {cheeses.map((cheese) => (
-        <CheeseItem cheese={cheese} key={cheese.id} />
-      ))}
-    </StyledCheeseList>
+    <div>
+      <h3>Cheese</h3>
+      <StyledCheeseList>
+        {cheeses.map((cheese) => (
+          <CheeseItem cheese={cheese} key={cheese.id} />
+        ))}
+      </StyledCheeseList>
+    </div>
   );
 }
 

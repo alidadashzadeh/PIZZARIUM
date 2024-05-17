@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import styled from "styled-components";
@@ -10,20 +11,22 @@ import SizeSelect from "../../ui/SizeSelect";
 
 const StyledSignaturePizzaItem = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
+  padding-right: 4rem;
 `;
 
 const ImgContainer = styled.div`
   display: flex;
   align-items: center;
-  overflow: hidden;
   width: 250px;
   aspect-ratio: 1;
 `;
 
-const Img = styled.img``;
+const Img = styled.img`
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+`;
 
 const Details = styled.div`
   display: flex;
@@ -50,12 +53,6 @@ const FlexItemVertical = styled.div`
   justify-content: center;
   align-items: center;
   gap: 32px;
-`;
-
-const Description = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-text-main);
 `;
 
 const Price = styled.div`
@@ -94,46 +91,15 @@ const ToppingHeader = styled.span`
   color: var(--color-text-grey);
 `;
 
-function SignaturePizzaItem({ pizza }) {
-  const { addToOrder } = useOrder();
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState("small");
-
-  const {
-    name,
-    details,
-    Veggie,
-    picture,
-    price,
-    id,
-    toppings,
-    weight,
-    type,
-    calorie,
-  } = pizza;
-
-  function handleQuickAdd() {
-    addToOrder({
-      title: pizza.name,
-      quantity,
-      isSignaturePizza: true,
-      isCustomPizza: false,
-      selectedSize: size,
-      toppings,
-      id: Date.now(),
-      picture: pizza.picture,
-      price: pizza.price,
-    });
-
-    toast.success(`${pizza.name} was added to the card successfully`);
-  }
+function SignaturePizzaOrderItem({ item }) {
+  const { removeItemFromOrder } = useOrder();
   return (
     <StyledSignaturePizzaItem>
       <ImgContainer>
-        <Img src={picture} />
+        <Img src={item.picture} />
       </ImgContainer>
       <Details>
-        <Title>{name}</Title>
+        <Title>{item.title}</Title>
         <FlexItem>
           <span>110 Calories</span>
           <Devider />
@@ -143,31 +109,26 @@ function SignaturePizzaItem({ pizza }) {
         </FlexItem>
         <ToppingHeader>TOPPINGS</ToppingHeader>
         <ToppingsList>
-          {toppings.map((topping) => (
+          {item.toppings.map((topping) => (
             <ToppingItem key={topping.color} color={topping.color}>
               <div>{topping.image}</div>
               <ToppingTitle>{topping.title}</ToppingTitle>
             </ToppingItem>
           ))}
         </ToppingsList>
-        <Description>{details}</Description>
         <FlexItem>
-          <Count
-            quantity={quantity}
-            onPlusClick={() => setQuantity((s) => s + 1)}
-            onMinusClick={() => setQuantity((s) => (s > 1 ? s - 1 : s))}
-          />
-          <SizeSelect item={pizza} size={size} setSize={setSize} />
+          <Count item={item} />
+          <SizeSelect item={item} size={item.size} />
         </FlexItem>
       </Details>
       <FlexItemVertical>
-        <Price> $ {price[size]}</Price>
-        <Button onClick={handleQuickAdd} size="small">
-          ADD TO CART
+        <Price> $ {item.price[item.selectedSize]}</Price>
+        <Button size="small" onClick={() => removeItemFromOrder(item.id)}>
+          Remove
         </Button>
       </FlexItemVertical>
     </StyledSignaturePizzaItem>
   );
 }
 
-export default SignaturePizzaItem;
+export default SignaturePizzaOrderItem;

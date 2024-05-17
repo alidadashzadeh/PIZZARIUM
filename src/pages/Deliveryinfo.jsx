@@ -3,23 +3,27 @@ import Process from "../features/order/Process";
 import { useUser } from "../features/auth/useUser";
 import OrderSummary from "../features/order/OrderSummary";
 import Select from "../ui/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserAddressForm from "../features/user/UserAddressForm";
 import { Button } from "../ui/Button";
 import { useOrder } from "../context/OrderContext";
+import EmptyDelivery from "../features/order/EmptyDelivery";
 
 const StyledDeliveryInfo = styled.div`
-  padding: 4rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+`;
+const H2 = styled.h2`
+  font-size: 20;
+  font-weight: 700;
+  padding: 1rem 2rem;
 `;
 
 const AddressInfo = styled.div`
-  flex: 2;
-
-  & h2 {
-    padding: 2rem 0;
-  }
-
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   & span {
     display: block;
     padding: 1rem 0;
@@ -34,29 +38,47 @@ export default function Deliveryinfo() {
     return { label: address?.address, value: address?.address };
   });
 
+  useEffect(
+    function () {
+      if (addressOptions?.length === 1)
+        setSelectedAddress(addressOptions[0].value);
+    },
+    [addressOptions, setSelectedAddress]
+  );
+
   function handleSelect(e) {
     setSelectedAddress(e.target.value);
   }
 
-  if (!currentUserData) return <div>There is no user, Please login</div>;
+  if (!currentUserData) return <EmptyDelivery />;
   return (
     <>
       <Process step="delivery" />
+      <H2>Delivery Details</H2>
       <StyledDeliveryInfo>
         <AddressInfo>
-          <h2>Delivery Information</h2>
-
-          <span>Choose Address from list below or add new address </span>
-          <Select options={addressOptions} onChange={handleSelect} />
           <span>
-            selected ddress: <strong>{selectedAddress}</strong>
+            Selected Address:{" "}
+            <strong>
+              {addressOptions.length !== 0
+                ? selectedAddress
+                : "No Address Selected Yet"}
+            </strong>
           </span>
-          {!showForm && (
-            <Button onClick={() => setShowForm(true)}>Add New Address</Button>
-          )}
+          <h3>Address List</h3>
+          <div>
+            <Select options={addressOptions} onChange={handleSelect} />
+          </div>
+          <div>
+            {!showForm && (
+              <Button onClick={() => setShowForm(true)}>Add New Address</Button>
+            )}
+          </div>
           {showForm && <UserAddressForm setShowForm={setShowForm} />}
         </AddressInfo>
-        <OrderSummary step="delivery" />
+        <div>
+          <OrderSummary step="delivery" />
+        </div>
       </StyledDeliveryInfo>
     </>
   );

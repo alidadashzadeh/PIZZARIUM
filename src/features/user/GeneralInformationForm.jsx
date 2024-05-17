@@ -10,26 +10,44 @@ import ButtonGroup from "../../ui/ButtonGroup";
 import Spinner from "../../ui/Spinner";
 
 const Form = styled.form`
-  width: 50%;
   margin: 0 auto;
-  border: 2px solid var(--color-yellow-700);
-  border-radius: 15px;
-  padding: 2rem 4rem;
-  position: relative;
+  border-bottom: 2px solid var(--color-text-grey);
+  padding: 2rem;
+  margin-right: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 const FormTitle = styled.div`
-  position: absolute;
-  padding: 0 1rem;
-  top: 0;
-  left: 2rem;
-  transform: translateY(-50%);
-  background-color: var(--color-grey-0);
   font-size: 20px;
+  font-weight: 700;
 `;
 const FlexItem = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid var(--color-grey-700);
+  outline: none;
+  border-radius: var(--border-radius-small);
+  height: 38px;
+  padding-left: 2rem;
+  padding-right: 128px;
+
+  &:focus {
+    border: 1px solid var(--color-primary);
+  }
+
+  &::placeholder {
+    color: var(--color-grey-300);
+  }
+`;
+
+const StyledButtonGroup = styled(ButtonGroup)`
+  align-self: flex-end;
 `;
 
 function GeneralInformationForm() {
@@ -39,6 +57,7 @@ function GeneralInformationForm() {
   const { updateUser, isUpdatingUser } = useUpdateUser();
 
   const currentUser = user?.user?.user_metadata;
+  console.log(user);
   function onSubmit(data) {
     const updatedUserData = {
       data: {
@@ -59,29 +78,41 @@ function GeneralInformationForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormTitle>General Information</FormTitle>
-      <FormRow label="Full Name *" error={errors?.fullName?.message}>
-        <Input
-          type="text"
-          id="fullName"
-          placeholder="Full Name"
-          defaultValue={currentUser?.fullName}
-          {...register("fullName", {
-            required: "This field is required",
-          })}
-        />
-      </FormRow>
+      <FlexItem>
+        <FormRow label="Name" error={errors?.fullName?.message}>
+          <Input
+            type="text"
+            id="fullName"
+            placeholder="Full Name"
+            defaultValue={currentUser?.fullName}
+            {...register("fullName", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
 
-      <FormRow label="Phone">
-        <Input
-          type="tel"
-          id="phone"
-          placeholder="(888) 888-8888"
-          defaultValue={currentUser?.phone}
-          {...register("phone")}
-        />
-      </FormRow>
+        <FormRow label="Email" error={errors?.email?.message}>
+          <Input
+            type="text"
+            id="email"
+            disabled
+            placeholder="Enter Your Email"
+            Value={currentUser?.email}
+          />
+        </FormRow>
 
-      <ButtonGroup>
+        <FormRow label="Phone">
+          <Input
+            type="tel"
+            id="phone"
+            placeholder="(888) 888-8888"
+            defaultValue={currentUser?.phone}
+            {...register("phone")}
+          />
+        </FormRow>
+      </FlexItem>
+
+      <StyledButtonGroup>
         <Button
           variation="secondary"
           disabled={isUpdatingUser}
@@ -92,7 +123,7 @@ function GeneralInformationForm() {
         <Button type="submit" disabled={isUpdatingUser}>
           Save changes
         </Button>
-      </ButtonGroup>
+      </StyledButtonGroup>
     </Form>
   );
 }

@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { useOrder } from "../../context/OrderContext";
-import ExtraPriceSign from "../../ui/ExtraPriceSign";
+import { StyledIconPlus } from "../../ui/StyledIconPlus";
+import { StyledIconMinus } from "../../ui/StyledIconMinus";
 
-const StyledDoughItem = styled.div`
-  /* border: 2px solid var(--color-yellow-300); */
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 500;
+const StyledCrustItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  flex: 1;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.25);
 
   &:hover {
     cursor: pointer;
@@ -20,8 +18,6 @@ const StyledDoughItem = styled.div`
   ${(props) =>
     props.selected &&
     css`
-      background-color: var(--color-yellow-700);
-
       &::after {
         content: "✔";
         display: block;
@@ -34,29 +30,35 @@ const StyledDoughItem = styled.div`
       }
     `}
 `;
-const CrustDetails = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 2rem;
+const Img = styled.img`
+  width: 175px;
+  aspect-ratio: 1;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
+`;
+
+const Price = styled.span`
+  color: var(--color-primary);
 `;
 
 function CrustItem({ crust }) {
   const { customPizza, selectCustomCrust } = useOrder();
 
   return (
-    <StyledDoughItem
+    <StyledCrustItem
       selected={customPizza.crust.name === crust.name}
       onClick={() =>
         selectCustomCrust({ name: crust.name, extraPrice: crust.extraPrice })
       }
     >
-      <img src={crust.picture} />
-      <CrustDetails>
-        {crust.name}
-        {crust.extraPrice ? <ExtraPriceSign price={crust.extraPrice} /> : null}
-      </CrustDetails>
-    </StyledDoughItem>
+      <Img src={crust.picture} />
+      <Price>{crust?.extraPrice ? crust?.extraPrice : "Free"}</Price>
+      {crust.name}
+      {customPizza.crust.name === crust.name ? (
+        <StyledIconMinus />
+      ) : (
+        <StyledIconPlus />
+      )}
+    </StyledCrustItem>
   );
 }
 

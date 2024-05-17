@@ -8,92 +8,86 @@ import { useChangePassword } from "./useChangePassword";
 import { useUser } from "../auth/useUser";
 
 const Form = styled.form`
-	width: 50%;
-	margin: 0 auto;
-	margin-top: 5rem;
-	border: 2px solid var(--color-yellow-700);
-	border-radius: 15px;
-	padding: 2rem 4.6rem;
+  border-bottom: 2px solid var(--color-text-grey);
+  padding: 1rem 2rem;
+  margin-right: 4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+`;
+
+const StyledButtonGroup = styled(ButtonGroup)`
+  align-self: flex-end;
 `;
 function UserPasswordSettingsForm() {
-	const { register, handleSubmit, formState, reset, getValues } = useForm();
-	const { errors } = formState;
+  const { register, handleSubmit, formState, reset, getValues } = useForm();
+  const { errors } = formState;
 
-	const { currentUserData } = useUser();
+  const { currentUserData } = useUser();
 
-	const { changePassword, isChangingPassword } = useChangePassword();
+  const { changePassword, isChangingPassword } = useChangePassword();
 
-	function onSubmit(data) {
-		console.log(currentUserData);
-		changePassword(data.newPassword);
-	}
+  function onSubmit(data) {
+    console.log(currentUserData);
+    changePassword(data.newPassword);
+  }
 
-	function onError() {
-		// reset();
-	}
+  function onError() {
+    // reset();
+  }
 
-	function handleCancel() {
-		reset();
-	}
+  function handleCancel() {
+    reset();
+  }
 
-	return (
-		<Form onSubmit={handleSubmit(onSubmit, onError)}>
-			{/* <FormRow
-				label="Current Password"
-				error={errors?.currentPassword?.message}
-			>
-				<Input
-					type="password"
-					id="currentPassword"
-					{...register("currentPassword", {
-						required: "this field is required",
-					})}
-				/>
-			</FormRow> */}
+  return (
+    <div>
+      <h2>Password</h2>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <FormRow label="New Password" error={errors?.newPassword?.message}>
+          <Input
+            type="password"
+            id="newPassword"
+            {...register("newPassword", {
+              required: "this field is required",
+              minLength: {
+                value: 8,
+                message: "password should be minimum 8 character",
+              },
+            })}
+          />
+        </FormRow>
 
-			<FormRow label="New Password" error={errors?.newPassword?.message}>
-				<Input
-					type="password"
-					id="newPassword"
-					{...register("newPassword", {
-						required: "this field is required",
-						minLength: {
-							value: 8,
-							message: "password should be minimum 8 character",
-						},
-					})}
-				/>
-			</FormRow>
+        <FormRow
+          label="Re-enter New Password"
+          error={errors?.confirmNewPassword?.message}
+        >
+          <Input
+            type="password"
+            id="confirmNewPassword"
+            {...register("confirmNewPassword", {
+              required: "This field is required",
+              validate: (value) =>
+                value === getValues().newPassword || "password need to match",
+            })}
+          />
+        </FormRow>
 
-			<FormRow
-				label="Re-enter New Password"
-				error={errors?.confirmNewPassword?.message}
-			>
-				<Input
-					type="password"
-					id="confirmNewPassword"
-					{...register("confirmNewPassword", {
-						required: "This field is required",
-						validate: (value) =>
-							value === getValues().newPassword || "password need to match",
-					})}
-				/>
-			</FormRow>
-
-			<ButtonGroup>
-				<Button
-					variation="secondary"
-					onClick={handleCancel}
-					disabled={isChangingPassword}
-				>
-					Cancel
-				</Button>
-				<Button type="submit" disabled={isChangingPassword}>
-					Change Password
-				</Button>
-			</ButtonGroup>
-		</Form>
-	);
+        <StyledButtonGroup>
+          <Button
+            variation="secondary"
+            onClick={handleCancel}
+            disabled={isChangingPassword}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={isChangingPassword}>
+            Save Change
+          </Button>
+        </StyledButtonGroup>
+      </Form>
+    </div>
+  );
 }
 
 export default UserPasswordSettingsForm;

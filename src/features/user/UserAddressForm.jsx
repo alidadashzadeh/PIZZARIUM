@@ -8,25 +8,26 @@ import { useAddNewAddress } from "./useAddNewAddress";
 import { useUser } from "../auth/useUser";
 
 const Form = styled.form`
-  width: 100%;
   margin: 0 auto;
-  background-color: var(--color-grey-100);
   border-radius: 15px;
   padding: 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 const FlexItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-gap: 2rem;
+  gap: 2rem;
 `;
 
 function UserAddressForm({ setShowForm }) {
-  const { user } = useUser();
+  const { currentUserData } = useUser();
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const { addNewAddress, isAddingNewAddress } = useAddNewAddress();
-  const currentUser = user?.user?.user_metadata;
+  const currentUser = currentUserData;
 
   function onSubmit(data) {
     const userAddress = [

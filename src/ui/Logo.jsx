@@ -1,18 +1,14 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 const StyledLogo = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  height: 100%;
-  cursor: pointer;
+  gap: 16px;
 `;
 
 const StyledImg = styled.img`
-  border-radius: 50%;
-  box-shadow: 10px 10px 20px 5px rgba(48, 40, 34, 0.2);
-  width: 80px;
+  width: 64px;
+  aspect-ratio: 1;
 `;
 
 const FlexItem = styled.div`
@@ -21,23 +17,21 @@ const FlexItem = styled.div`
 `;
 
 const LogoText = styled.div`
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--color-primary);
 `;
 
 const LogoNote = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--color-secondary);
+  color: var(--color-text-grey);
 `;
 
 function Logo() {
-  const navigate = useNavigate();
-
   return (
-    <StyledLogo onClick={() => navigate("/home")}>
-      <StyledImg src="logo.jpg" />
+    <StyledLogo>
+      <StyledImg src="logo.png" />
       <FlexItem>
         <LogoText>PIZZARIUM</LogoText>
         <LogoNote>a tasty one</LogoNote>

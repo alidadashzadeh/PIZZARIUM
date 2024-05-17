@@ -1,20 +1,38 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useOrder } from "../context/OrderContext";
 
-import { Button } from "./Button";
-import { SlBasket } from "react-icons/sl";
+const StyledToggle = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
 
-const StyledIcon = styled(SlBasket)`
-  font-size: 20px;
+const Text = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+`;
+
+const Count = styled.span`
+  position: absolute;
+  top: -16px;
+  right: -20px;
+  background-color: var(--color-primary);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 90px;
+  color: var(--color-text-white);
 `;
 function OrderToggle() {
   const navigate = useNavigate();
+  const { order } = useOrder();
   return (
-    <div onClick={() => navigate("/order")}>
-      <Button>
-        <StyledIcon />
-      </Button>
-    </div>
+    <StyledToggle onClick={() => navigate("/order")}>
+      <Text>Cart</Text>
+      <Count>{order.length}</Count>
+    </StyledToggle>
   );
 }
 

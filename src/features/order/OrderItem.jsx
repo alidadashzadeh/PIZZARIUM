@@ -30,36 +30,44 @@ const OrderImage = styled.div`
 `;
 
 const Details = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const Title = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
 `;
 
 const Button = styled.button`
   position: absolute;
   top: 10%;
-  right: 10%;
+  right: 0;
   width: 20px;
   height: 20px;
   border-radius: 100px;
   transition: all 0.2s;
+  background-color: transparent;
 
   &:hover {
     transform: scale(1.1);
-    background-color: var(--color-yellow-700);
   }
 `;
 
 const Count = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin: 0.5rem 0;
+  gap: 0.5rem;
+`;
+
+const Price = styled.div`
+  padding-left: 4rem;
 `;
 
 const StyledIcon = styled(CiCircleRemove)`
-  font-size: 20px;
+  font-size: 24px;
 `;
 const StyledIconPizza = styled(GiFullPizza)`
   font-size: 124px;
@@ -78,8 +86,12 @@ function OrderItem({ item }) {
             <img src={item.picture} />
           )}
         </OrderImage>
+
         <Details>
-          {item.title}
+          <Title>
+            {item.isCustomPizza ? <div>YOUR</div> : <div>Our Signature </div>}
+            {item.title}
+          </Title>
 
           {!item.isDrink && <SizeSelect item={item} />}
 
@@ -90,6 +102,7 @@ function OrderItem({ item }) {
             <CountInput value={item.quantity} />
             <StyledIconPlus onClick={() => increaseQuantity(item.id)} />
           </Count>
+          <Price>{item.price[item.selectedSize] * item.quantity} $</Price>
           <Button
             variations="secondary"
             onClick={() => removeItemFromOrder(item.id)}

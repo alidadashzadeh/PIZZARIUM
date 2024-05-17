@@ -2,27 +2,56 @@
 import styled from "styled-components";
 import { useOrder } from "../context/OrderContext";
 
-const Select = styled.select`
-  border: none;
-  outline: none;
-  background-color: var(--color-primary);
-  border-radius: 50px;
-  padding: 1rem 2rem;
+const SizeFlex = styled.div`
+  display: flex;
+  gap: 16px;
 `;
 
-function SizeSelect({ item }) {
+const SizeItem = styled.div`
+  padding: 8px 32px;
+  align-self: center;
+  cursor: pointer;
+  border-radius: 50px;
+  border: 2px solid
+    ${(props) => (!props.identified ? "var(--color-secondary)" : "#fff")};
+  background-color: ${(props) =>
+    props.identified ? "var(--color-primary)" : "#fff"};
+
+  & span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+`;
+
+function SizeSelect({ item, size, setSize }) {
   const { ChangeSize } = useOrder();
   return (
-    <Select
-      name="SelectedSize"
-      id="size"
-      defaultValue={item.selectedSize}
-      onChange={(e) => ChangeSize(item.id, e.target.value)}
-    >
-      <option value="small">Sm: ${item.price.small}</option>
-      <option value="medium">Md: ${item.price.medium}</option>
-      <option value="large">Lg: ${item.price.large}</option>
-    </Select>
+    <SizeFlex>
+      <SizeItem
+        identified={item.selectedSize === "small" || size === "small"}
+        onClick={() =>
+          setSize ? setSize("small") : ChangeSize(item.id, "small")
+        }
+      >
+        <span>Small</span>
+      </SizeItem>
+      <SizeItem
+        identified={item.selectedSize === "medium" || size === "medium"}
+        onClick={() =>
+          setSize ? setSize("medium") : ChangeSize(item.id, "medium")
+        }
+      >
+        <span>Medium</span>
+      </SizeItem>
+      <SizeItem
+        identified={item.selectedSize === "large" || size === "large"}
+        onClick={() =>
+          setSize ? setSize("large") : ChangeSize(item.id, "large")
+        }
+      >
+        <span>Large</span>
+      </SizeItem>
+    </SizeFlex>
   );
 }
 
