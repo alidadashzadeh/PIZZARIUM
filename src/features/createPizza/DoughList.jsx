@@ -3,7 +3,8 @@ import Spinner from "../../ui/Spinner";
 import { useQuery } from "@tanstack/react-query";
 
 import styled from "styled-components";
-import DoughItem from "./DoughItem";
+import CreatePizzaItem from "./CreatePizzaItem";
+import { useOrder } from "../../context/OrderContext";
 
 const StyledDoughList = styled.div`
   display: grid;
@@ -21,6 +22,7 @@ function DoughList() {
     queryKey: ["doughs"],
     queryFn: getDoughs,
   });
+  const { selectCustomDough } = useOrder();
 
   if (isLoading) return <Spinner />;
 
@@ -31,7 +33,12 @@ function DoughList() {
       </StyledDoughsHeader>
       <StyledDoughList>
         {doughs.map((dough) => (
-          <DoughItem dough={dough} key={dough.id} />
+          <CreatePizzaItem
+            label="dough"
+            item={dough}
+            handleClick={selectCustomDough}
+            key={dough.id}
+          />
         ))}
       </StyledDoughList>
     </div>
@@ -39,3 +46,5 @@ function DoughList() {
 }
 
 export default DoughList;
+
+// <DoughItem dough={dough} key={dough.id} />

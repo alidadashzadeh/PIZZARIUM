@@ -99,18 +99,7 @@ function SignaturePizzaItem({ pizza }) {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("small");
 
-  const {
-    name,
-    details,
-    Veggie,
-    picture,
-    price,
-    id,
-    toppings,
-    weight,
-    type,
-    calorie,
-  } = pizza;
+  const { name, details, picture, price, toppings, weight, calorie } = pizza;
 
   function handleQuickAdd() {
     addToOrder({
@@ -135,9 +124,9 @@ function SignaturePizzaItem({ pizza }) {
       <Details>
         <Title>{name}</Title>
         <FlexItem>
-          <span>110 Calories</span>
+          <span>{calorie[size]}</span>
           <Devider />
-          <span>Weight:600 gr</span>
+          <span>Weight:{weight[size]}</span>
           <Devider />
           <span>Prepared in 15 Min</span>
         </FlexItem>

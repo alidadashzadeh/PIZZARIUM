@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCheeses } from "../../services/apiCreatePizza";
 import Spinner from "../../ui/Spinner";
-import CheeseItem from "./CheeseItem";
 import styled from "styled-components";
+import CreatePizzaItem from "./CreatePizzaItem";
+import { useOrder } from "../../context/OrderContext";
 
 const StyledCheeseList = styled.div`
   display: grid;
@@ -16,6 +17,7 @@ function CheeseList() {
     queryKey: ["cheese"],
     queryFn: getCheeses,
   });
+  const { selectCustomCheese } = useOrder();
 
   if (isLoading) return <Spinner />;
   return (
@@ -23,7 +25,12 @@ function CheeseList() {
       <h3>Cheese</h3>
       <StyledCheeseList>
         {cheeses.map((cheese) => (
-          <CheeseItem cheese={cheese} key={cheese.id} />
+          <CreatePizzaItem
+            label="cheese"
+            item={cheese}
+            handleClick={selectCustomCheese}
+            key={cheese.id}
+          />
         ))}
       </StyledCheeseList>
     </div>
@@ -31,3 +38,5 @@ function CheeseList() {
 }
 
 export default CheeseList;
+
+// <CheeseItem cheese={cheese} key={cheese.id} />

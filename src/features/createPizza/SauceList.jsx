@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getSauces } from "../../services/apiCreatePizza";
 import Spinner from "../../ui/Spinner";
-import SauceItem from "./SauceItem";
 import styled from "styled-components";
+import { useOrder } from "../../context/OrderContext";
+import CreatePizzaItem from "./CreatePizzaItem";
 
 const StyledSauceList = styled.div`
   display: grid;
@@ -16,6 +17,7 @@ function SauceList() {
     queryKey: ["sauce"],
     queryFn: getSauces,
   });
+  const { selectCustomSauce } = useOrder();
 
   if (isLoading) return <Spinner />;
 
@@ -24,7 +26,12 @@ function SauceList() {
       <h3>Sauces</h3>
       <StyledSauceList>
         {sauces.map((sauce) => (
-          <SauceItem sauce={sauce} key={sauce.id} />
+          <CreatePizzaItem
+            label="sauce"
+            item={sauce}
+            handleClick={selectCustomSauce}
+            key={sauce.id}
+          />
         ))}
       </StyledSauceList>
     </div>

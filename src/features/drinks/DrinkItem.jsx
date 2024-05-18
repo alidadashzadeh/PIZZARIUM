@@ -5,33 +5,33 @@ import styled, { css } from "styled-components";
 import Count from "../../ui/Count";
 import { useState } from "react";
 import { useOrder } from "../../context/OrderContext";
+import { StyledItem } from "../../ui/StyledItem";
+// const StyledDrinkItem = styled.li`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
 
-const StyledDrinkItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  &:hover {
-    cursor: pointer;
-    transition: all 0.5s;
-  }
-  ${(props) =>
-    props.selected &&
-    css`
-      &::after {
-        content: "✔";
-        display: block;
-        background-color: var(--color-yellow-700);
-        padding: 0.5rem 1rem;
-        border-radius: 55px;
-        position: absolute;
-        right: 5%;
-        top: 5%;
-      }
-    `}
-`;
+//   &:hover {
+//     cursor: pointer;
+//     transition: all 0.5s;
+//   }
+//   ${(props) =>
+//     props.selected &&
+//     css`
+//       &::after {
+//         content: "✔";
+//         display: block;
+//         background-color: var(--color-yellow-700);
+//         padding: 0.5rem 1rem;
+//         border-radius: 55px;
+//         position: absolute;
+//         right: 5%;
+//         top: 5%;
+//       }
+//     `}
+// `;
 
 const Img = styled.img`
   width: 175px;
@@ -91,16 +91,16 @@ function DrinkItem({ drink }) {
     addOrderDrink(newDrink);
   }
   return (
-    <StyledDrinkItem>
+    <StyledItem>
       <Img src={drink.picture} />
       <DrinkDetails>
+        <Price>$ {drink.price}</Price>
         <span>{drink.name}</span>
         <span>Calorie: {drink.calorie}</span>
         <span>
           Size: {drink.size}
           {drink.unit}
         </span>
-        <Price>$ {drink.price}</Price>
         <Count
           onPlusClick={handePlusQuantity}
           onMinusClick={handeMinusQuantity}
@@ -108,7 +108,7 @@ function DrinkItem({ drink }) {
         />
         <Button onClick={handleAddDrink}>Add</Button>
       </DrinkDetails>
-    </StyledDrinkItem>
+    </StyledItem>
   );
 }
 

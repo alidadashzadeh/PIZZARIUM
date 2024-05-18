@@ -19,10 +19,12 @@ const StyledInfo = styled.div`
 `;
 
 const Message = styled.div`
+  width: 55%;
+  border-radius: 5px;
   border: 2px solid red;
   line-height: 1.3rem;
   margin: 0 auto;
-  margin: 1rem;
+  margin: 0 2rem;
   padding: 1rem 2rem;
 `;
 const SummaryContainer = styled.div``;
@@ -34,11 +36,14 @@ export default function EmptyDelivery() {
       <H2>Delivery Details</H2>
       <StyledEmptyDelivery>
         <StyledInfo>
-          <Message>
-            You have not signed in. Please sign in using your email and password
-            <br /> OR <br />
-            Register as new customer by filling out the form below
-          </Message>
+          <div>
+            <Message>
+              You have not signed in. Please sign in using your email and
+              password
+              <br /> OR <br />
+              Register as new customer by filling out the form below
+            </Message>
+          </div>
           <SignupForm />
         </StyledInfo>
         <SummaryContainer>

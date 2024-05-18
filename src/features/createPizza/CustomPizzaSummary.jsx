@@ -37,7 +37,6 @@ const Price = styled.span`
 
 function CustomPizzaSummary() {
   const { customPizza, AddOrderCustom, selectSize } = useOrder();
-  console.log(customPizza);
   return (
     <StyledSummary>
       <PizzaDemo />

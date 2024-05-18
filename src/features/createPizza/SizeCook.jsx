@@ -20,7 +20,6 @@ function SizeCook() {
 
   if (isLoading) return <Spinner />;
 
-  console.log(cooks);
   return (
     <div>
       <h3>Cook Styles</h3>

@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 const StyledFooter = styled.div`
   display: grid;
   padding: 2rem 4rem;
+  margin-top: 4rem;
   grid-template-columns: 2fr 1fr 1fr;
   border-bottom: 1px solid #000;
   align-items: center;

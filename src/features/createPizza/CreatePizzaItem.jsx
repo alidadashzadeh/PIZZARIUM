@@ -6,25 +6,22 @@ import { StyledItem } from "../../ui/StyledItem";
 import { StyledImgItem } from "../../ui/StyledImgItem";
 import { StyledPriceItem } from "../../ui/StyledPriceItem";
 
-function ToppingItem({ topping }) {
-  const { customPizza, selectCustomTopping } = useOrder();
+function CreatePizzaItem({ label, item, handleClick }) {
+  const { customPizza } = useOrder();
   return (
     <StyledItem
-      selected={customPizza.topping.some((ss) => ss.name === topping.name)}
+      selected={customPizza[label].name === item.name}
       onClick={() =>
-        selectCustomTopping({
-          name: topping.name,
-          extraPrice: topping.extraPrice,
-          onPizzaImg: topping.onPizzaImg,
-        })
+        handleClick({ name: item.name, extraPrice: item.extraPrice })
       }
     >
-      <StyledImgItem src={topping.picture} />
+      <StyledImgItem src={item?.picture} />
       <StyledPriceItem>
-        {topping?.extraPrice ? topping?.extraPrice : "Free"}
+        {item?.extraPrice ? item?.extraPrice : "Free"}
       </StyledPriceItem>
-      {topping.name}
-      {customPizza.topping.map((el) => el.name).includes(topping.name) ? (
+      <span>{item?.name}</span>
+
+      {customPizza[label].name === item.name ? (
         <StyledIconMinus />
       ) : (
         <StyledIconPlus />
@@ -33,4 +30,4 @@ function ToppingItem({ topping }) {
   );
 }
 
-export default ToppingItem;
+export default CreatePizzaItem;

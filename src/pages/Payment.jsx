@@ -1,12 +1,13 @@
 import { styled } from "styled-components";
-import OrderSummary from "../features/order/OrderSummary";
+import { useNavigate } from "react-router-dom";
 import PaymentForm from "../ui/PaymentForm";
 import Process from "../features/order/Process";
+import { useOrder } from "../context/OrderContext";
+import { useEffect } from "react";
 
 const StyledPayment = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* gap: 8rem; */
 `;
 const StyledAd = styled.div`
   padding: 4rem;
@@ -16,6 +17,16 @@ const StyledAd = styled.div`
 `;
 
 export default function Payment() {
+  const { selectedAddress } = useOrder();
+  const navigate = useNavigate();
+
+  useEffect(
+    function () {
+      if (!selectedAddress) navigate("/deliveryInfo");
+    },
+    [selectedAddress, navigate]
+  );
+
   return (
     <>
       <Process step="payment" />

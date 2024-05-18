@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCrusts } from "../../services/apiCreatePizza";
 import Spinner from "../../ui/Spinner";
-import CrustItem from "./CrustItem";
 import styled from "styled-components";
+import CreatePizzaItem from "./CreatePizzaItem";
+import { useOrder } from "../../context/OrderContext";
 
 const StyledCrustList = styled.div`
   display: grid;
@@ -15,6 +16,7 @@ function CrustList() {
     queryKey: ["crust"],
     queryFn: getCrusts,
   });
+  const { selectCustomCrust } = useOrder();
 
   if (isLoading) return <Spinner />;
   return (
@@ -22,7 +24,12 @@ function CrustList() {
       <h3>Crusts</h3>
       <StyledCrustList>
         {crusts.map((crust) => (
-          <CrustItem crust={crust} key={crust.id} />
+          <CreatePizzaItem
+            label="crust"
+            item={crust}
+            handleClick={selectCustomCrust}
+            key={crust.id}
+          />
         ))}
       </StyledCrustList>
     </div>

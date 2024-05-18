@@ -20,7 +20,6 @@ const ImgContainer = styled.div`
 
 export default function PizzaDemo() {
   const { customPizza } = useOrder();
-  console.log(customPizza);
   return (
     <StyledPizzaDemo>
       <ImgContainer>

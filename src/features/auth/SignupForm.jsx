@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Input } from "../../ui/Input";
 import { useForm } from "react-hook-form";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import FormRow from "../../ui/FormRow";
 import { useCreateUser } from "./useCreateUser";
 import { CiUser } from "react-icons/ci";
@@ -79,7 +79,7 @@ const Container = styled.div`
   gap: 0.5rem;
 `;
 
-function SignupForm({ location, vertical }) {
+function SignupForm({ vertical }) {
   const [ShowPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
@@ -151,10 +151,10 @@ function SignupForm({ location, vertical }) {
       </FlexItem>
 
       <Container>
-        <Button variation="secondary" onClick={handleCancel}>
+        <Button size="small" variation="secondary" onClick={handleCancel}>
           Clear
         </Button>
-        <Button size="large" type="submit" disabled={isCreatingUser}>
+        <Button size="medium" type="submit" disabled={isCreatingUser}>
           Register
         </Button>
       </Container>

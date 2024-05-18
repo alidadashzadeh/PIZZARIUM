@@ -18,7 +18,7 @@ function OrderProvider({ children }) {
   const [customPizza, setCustomPizza] = useState({
     title: "Custom Pizza",
     dough: { extraPrice: 0, name: "Regular Dough" },
-    crust: { extraPrice: 0.99, name: "Regular" },
+    crust: { extraPrice: 0.99, name: "Regular Crust" },
     sauce: { extraPrice: 0, name: "No-Sauce" },
     cheese: { extraPrice: 1.99, name: "Diary Free Cheese" },
     topping: [],

@@ -25,11 +25,11 @@ const Category = styled.li`
 `;
 
 const categories = [
-  { label: "ALL", value: "all" },
-  { label: "BEEF", value: "beef" },
-  { label: "CHICKEN", value: "chicken" },
-  { label: "MIXED BEEF & CHICKEN", value: "mixed" },
-  { label: "VEGGIE", value: "veggie" },
+  { label: "All", value: "all" },
+  { label: "Beef", value: "beef" },
+  { label: "Chicken", value: "chicken" },
+  { label: "Mixed Beef & Chicken", value: "mixed" },
+  { label: "Veggie", value: "veggie" },
 ];
 function SignaturePizaaOperations() {
   const [searchParams, setSearchParams] = useSearchParams();
