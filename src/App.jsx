@@ -6,7 +6,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./pages/AppLayout";
 import SignaturePizzas from "./pages/SignaturePizzas";
 import SignaturePizza from "./pages/SignaturePizza";
-import CreateYourPizza from "./pages/CreateYourPizza";
+import CreatePizza from "./pages/CreatePizza";
 import Drinks from "./pages/Drinks";
 import { OrderProvider } from "./context/OrderContext";
 import { Toaster } from "react-hot-toast";
@@ -39,15 +39,15 @@ function App() {
                 path="signature-pizzas/:pizzaId"
                 element={<SignaturePizza />}
               />
-              <Route path="create-your-pizza" element={<CreateYourPizza />} />
+              <Route path="create-your-pizza" element={<CreatePizza />} />
               <Route path="drinks" element={<Drinks />} />
               <Route path="order" element={<Order />} />
               <Route path="deliveryInfo" element={<Deliveryinfo />} />
               <Route path="Payment" element={<Payment />} />
+              <Route path="/userprofile" element={<UserProfile />}></Route>
             </Route>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/userprofile" element={<UserProfile />}></Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

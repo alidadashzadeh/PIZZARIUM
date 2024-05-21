@@ -14,15 +14,6 @@ const StyledSummary = styled.div`
   margin-bottom: 1rem;
 `;
 
-const StyledButton = styled(Button)`
-  &:hover {
-    color: white;
-  }
-  &:disabled {
-    opacity: 0.5;
-  }
-`;
-
 const Container = styled.div`
   margin: 0 auto;
 `;
@@ -53,23 +44,18 @@ function CustomPizzaSummary() {
       <Price>$ {SizePrice(customPizza)[customPizza.selectedSize]}</Price>
 
       <Container>
-        <StyledButton
-          variation={"primary"}
-          size="large"
+        <Button
           onClick={() => {
             if (customPizza.topping.length < 3) {
-              toast.error(
-                "not enough toppings selected, pizza is going to look weired"
-              );
+              toast.error("Please select at least 3 toppings.");
               return;
             }
             AddOrderCustom();
+            toast.success(`Your pizza was added successfully`);
           }}
         >
-          {customPizza.topping.length < 3
-            ? "Minimum 3 Toppings"
-            : "Add to order"}
-        </StyledButton>
+          Add to Cart
+        </Button>
       </Container>
     </StyledSummary>
   );

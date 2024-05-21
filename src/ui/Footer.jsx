@@ -14,7 +14,7 @@ const StyledFooter = styled.div`
   border-bottom: 1px solid #000;
   align-items: center;
   grid-column: 1/-1;
-  background-color: var(--color-secondary);
+  background-color: var(--color-grey-200);
 `;
 
 const FlexItemColumn = styled.div`
@@ -30,11 +30,9 @@ const FlexItemRow = styled.div`
 const NavText = styled.div`
   font-size: 16px;
   font-weight: 500;
-  color: #1c1c1c;
 `;
 
 const Rights = styled.div`
-  background-color: var(--color-secondary);
   display: flex;
   gap: 2rem;
   align-items: center;

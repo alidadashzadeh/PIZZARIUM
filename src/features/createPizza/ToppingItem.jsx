@@ -4,7 +4,7 @@ import { StyledIconPlus } from "../../ui/StyledIconPlus";
 import { StyledIconMinus } from "../../ui/StyledIconMinus";
 import { StyledItem } from "../../ui/StyledItem";
 import { StyledImgItem } from "../../ui/StyledImgItem";
-import { StyledPriceItem } from "../../ui/StyledPriceItem";
+import StyledPriceItem from "../../ui/StyledPriceItem";
 
 function ToppingItem({ topping }) {
   const { customPizza, selectCustomTopping } = useOrder();
@@ -20,9 +20,8 @@ function ToppingItem({ topping }) {
       }
     >
       <StyledImgItem src={topping.picture} />
-      <StyledPriceItem>
-        {topping?.extraPrice ? topping?.extraPrice : "Free"}
-      </StyledPriceItem>
+      <StyledPriceItem extraPrice={topping.extraPrice} />
+
       {topping.name}
       {customPizza.topping.map((el) => el.name).includes(topping.name) ? (
         <StyledIconMinus />

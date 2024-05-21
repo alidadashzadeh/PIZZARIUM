@@ -4,10 +4,13 @@ import { StyledIconPlus } from "../../ui/StyledIconPlus";
 import { StyledIconMinus } from "../../ui/StyledIconMinus";
 import { StyledItem } from "../../ui/StyledItem";
 import { StyledImgItem } from "../../ui/StyledImgItem";
-import { StyledPriceItem } from "../../ui/StyledPriceItem";
+import StyledPriceItem from "../../ui/StyledPriceItem";
 
 function CreatePizzaItem({ label, item, handleClick }) {
   const { customPizza } = useOrder();
+
+  console.log(customPizza);
+  console.log(item);
   return (
     <StyledItem
       selected={customPizza[label].name === item.name}
@@ -16,9 +19,8 @@ function CreatePizzaItem({ label, item, handleClick }) {
       }
     >
       <StyledImgItem src={item?.picture} />
-      <StyledPriceItem>
-        {item?.extraPrice ? item?.extraPrice : "Free"}
-      </StyledPriceItem>
+      <StyledPriceItem extraPrice={item.extraPrice} />
+
       <span>{item?.name}</span>
 
       {customPizza[label].name === item.name ? (

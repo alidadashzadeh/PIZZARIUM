@@ -30,9 +30,17 @@ const AddressInfo = styled.div`
   }
 `;
 
+const StyledSelectedAddress = styled.div`
+  padding: 1rem 2rem;
+  border: 1px solid ${(props) => props.color};
+  border-left: 5px solid ${(props) => props.color};
+  border-radius: 5px;
+  transition: all 0.3s ease;
+`;
+
 export default function Deliveryinfo() {
   const { currentUserData } = useUser();
-  const { selectedAddress, setSelectedAddress } = useOrder();
+  const { selectedAddress, setSelectedAddress } = useOrder("");
   const [showForm, setShowForm] = useState(false);
   const addressOptions = currentUserData?.address?.map((address) => {
     return { label: address?.address, value: address?.address };
@@ -57,14 +65,14 @@ export default function Deliveryinfo() {
       <H2>Delivery Details</H2>
       <StyledDeliveryInfo>
         <AddressInfo>
-          <span>
+          <StyledSelectedAddress color={!selectedAddress ? "red" : "green"}>
             Selected Address:{" "}
             <strong>
               {addressOptions.length !== 0
                 ? selectedAddress
                 : "No Address Selected Yet"}
             </strong>
-          </span>
+          </StyledSelectedAddress>
           <h3>Address List</h3>
           <div>
             <Select options={addressOptions} onChange={handleSelect} />

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import FormRow from "../../ui/FormRow";
 import Avatar from "../../ui/Avatar";
 import FileInput from "../../ui/FileInput";
 import { useForm } from "react-hook-form";
@@ -7,7 +6,7 @@ import { useUpdateUser } from "./useUpdateUser";
 import ButtonGroup from "../../ui/ButtonGroup";
 import { Button } from "../../ui/Button";
 
-const StyledAvatarForm = styled.form`
+const Form = styled.form`
   border-bottom: 2px solid var(--color-text-grey);
   padding: 1rem 2rem;
   margin-right: 4rem;
@@ -24,6 +23,7 @@ const FormTitle = styled.div`
 const FlexItem = styled.div`
   display: flex;
   gap: 2rem;
+  align-items: center;
 `;
 const StyledButtonGroup = styled(ButtonGroup)`
   align-self: flex-end;
@@ -49,28 +49,27 @@ function AvatarForm() {
   }
 
   return (
-    <StyledAvatarForm onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormTitle>Avatar </FormTitle>
-      <FormRow>
-        <FlexItem>
-          <Avatar />
-          <FileInput id="avatar" accept="image/*" {...register("image")} />
-        </FlexItem>
-      </FormRow>
+      <FlexItem>
+        <Avatar size={84} />
+        <FileInput id="avatar" accept="image/*" {...register("image")} />
+      </FlexItem>
 
       <StyledButtonGroup>
         <Button
           variation="secondary"
           disabled={isUpdatingUser}
           onClick={handleCancel}
+          size="small"
         >
           Cancel
         </Button>
-        <Button type="submit" disabled={isUpdatingUser}>
+        <Button size="small" type="submit" disabled={isUpdatingUser}>
           Save changes
         </Button>
       </StyledButtonGroup>
-    </StyledAvatarForm>
+    </Form>
   );
 }
 

@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 const FileInput = styled.input.attrs({ type: "file" })`
-  font-size: 1.4rem;
-
+  font-size: 16px;
   &::file-selector-button {
-    font: inherit;
-    font-weight: 500;
     padding: 0.8rem 1.2rem;
     margin-right: 1.2rem;
     border-radius: 50px;

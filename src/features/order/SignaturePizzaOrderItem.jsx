@@ -8,9 +8,13 @@ import toast from "react-hot-toast";
 import Count from "../../ui/Count";
 import { useState } from "react";
 import SizeSelect from "../../ui/SizeSelect";
+import { FaTrash } from "react-icons/fa6";
+import RemoveButton from "../user/RemoveButton";
 
 const StyledSignaturePizzaItem = styled.div`
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 250px 2fr 96px;
   gap: 2rem;
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
@@ -90,6 +94,12 @@ const ToppingHeader = styled.span`
   font-size: 16px;
   color: var(--color-text-grey);
 `;
+const ButtonFlex = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+`;
 
 function SignaturePizzaOrderItem({ item }) {
   const { removeItemFromOrder } = useOrder();
@@ -123,9 +133,7 @@ function SignaturePizzaOrderItem({ item }) {
       </Details>
       <FlexItemVertical>
         <Price> $ {item.price[item.selectedSize]}</Price>
-        <Button size="small" onClick={() => removeItemFromOrder(item.id)}>
-          Remove
-        </Button>
+        <RemoveButton item={item} />
       </FlexItemVertical>
     </StyledSignaturePizzaItem>
   );

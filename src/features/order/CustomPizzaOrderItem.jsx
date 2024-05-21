@@ -4,9 +4,13 @@ import { Button } from "../../ui/Button";
 import { useOrder } from "../../context/OrderContext";
 import Count from "../../ui/Count";
 import SizeSelect from "../../ui/SizeSelect";
+import { FaTrash } from "react-icons/fa6";
+import RemoveButton from "../user/RemoveButton";
 
 const StyledSignaturePizzaItem = styled.div`
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 250px 2fr 96px;
   gap: 2rem;
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
@@ -72,7 +76,13 @@ const ToppingHeader = styled.span`
   color: var(--color-text-grey);
 `;
 
-export default function CreatePizzaOrderItem({ item }) {
+const ButtonFlex = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+`;
+export default function CustomPizzaOrderItem({ item }) {
   const { removeItemFromOrder } = useOrder();
   return (
     <StyledSignaturePizzaItem>
@@ -100,9 +110,7 @@ export default function CreatePizzaOrderItem({ item }) {
       </Details>
       <FlexItemVertical>
         <Price> $ {item.price[item.selectedSize]}</Price>
-        <Button size="small" onClick={() => removeItemFromOrder(item.id)}>
-          Remove
-        </Button>
+        <RemoveButton item={item} />
       </FlexItemVertical>
     </StyledSignaturePizzaItem>
   );

@@ -7,6 +7,7 @@ const StyledAppLayout = styled.div`
   display: grid;
   max-width: 100vw;
   grid-template-rows: 120px 1fr;
+  background-color: var(--color-background);
 `;
 
 const Main = styled.main``;

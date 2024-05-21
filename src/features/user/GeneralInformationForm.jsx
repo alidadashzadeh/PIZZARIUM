@@ -10,9 +10,8 @@ import ButtonGroup from "../../ui/ButtonGroup";
 import Spinner from "../../ui/Spinner";
 
 const Form = styled.form`
-  margin: 0 auto;
   border-bottom: 2px solid var(--color-text-grey);
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin-right: 4rem;
   display: flex;
   flex-direction: column;
@@ -29,23 +28,6 @@ const FlexItem = styled.div`
   gap: 2rem;
 `;
 
-const StyledInput = styled.input`
-  border: 1px solid var(--color-grey-700);
-  outline: none;
-  border-radius: var(--border-radius-small);
-  height: 38px;
-  padding-left: 2rem;
-  padding-right: 128px;
-
-  &:focus {
-    border: 1px solid var(--color-primary);
-  }
-
-  &::placeholder {
-    color: var(--color-grey-300);
-  }
-`;
-
 const StyledButtonGroup = styled(ButtonGroup)`
   align-self: flex-end;
 `;
@@ -57,7 +39,6 @@ function GeneralInformationForm() {
   const { updateUser, isUpdatingUser } = useUpdateUser();
 
   const currentUser = user?.user?.user_metadata;
-  console.log(user);
   function onSubmit(data) {
     const updatedUserData = {
       data: {
@@ -114,13 +95,14 @@ function GeneralInformationForm() {
 
       <StyledButtonGroup>
         <Button
+          size="small"
           variation="secondary"
           disabled={isUpdatingUser}
           onClick={handleCancel}
         >
           Cancel
         </Button>
-        <Button type="submit" disabled={isUpdatingUser}>
+        <Button size="small" type="submit" disabled={isUpdatingUser}>
           Save changes
         </Button>
       </StyledButtonGroup>

@@ -6,6 +6,7 @@ import { Button } from "../../ui/Button";
 import { totalOrderCost } from "../../utils/orderCalculations";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../auth/useUser";
+import toast from "react-hot-toast";
 
 const StyledOrderSummary = styled.div`
   display: flex;
@@ -40,6 +41,12 @@ function OrderSummary({ step }) {
   function handleClick() {
     if (step === "cart") navigate("/deliveryInfo");
     if (step === "delivery" && user && selectedAddress) navigate("/payment");
+    if (step === "delivery" && user && !selectedAddress) {
+      toast.error("Please select An Address to proceed");
+    }
+    if (step === "delivery" && !user) {
+      toast.error("Please Login");
+    }
   }
 
   return (
@@ -69,15 +76,11 @@ function OrderSummary({ step }) {
           </span>
         )}
         {/* go to payment only if there is a user logged in and an address selected */}
-        {step === "delivery" && user && selectedAddress && (
+        {step === "delivery" && (
           <span>
             Next (<Strong>Payment</Strong>)
           </span>
         )}
-        {step === "delivery" && user && !selectedAddress && (
-          <span>Select An Address</span>
-        )}
-        {step === "delivery" && !user && <span>Login</span>}
       </Button>
     </StyledOrderSummary>
   );

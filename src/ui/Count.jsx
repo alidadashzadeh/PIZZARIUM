@@ -13,7 +13,7 @@ const Counter = styled.div`
 `;
 
 // if there is item it means it has been called from orderItem
-// if there is no item it means it has been called from signaturePizza or createPizza
+// if there is no item it means it has been called from signaturePizza or createPizza or drink
 function Count({ onPlusClick, onMinusClick, quantity, item }) {
   const { increaseQuantity, decreaseQuantity } = useOrder();
 

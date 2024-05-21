@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { useOrder } from "../context/OrderContext";
+import { Button } from "./Button";
 
 const SizeFlex = styled.div`
   display: flex;
@@ -13,13 +14,13 @@ const SizeItem = styled.div`
   cursor: pointer;
   border-radius: 50px;
   border: 2px solid
-    ${(props) => (!props.identified ? "var(--color-secondary)" : "#fff")};
-  background-color: ${(props) =>
-    props.identified ? "var(--color-primary)" : "#fff"};
+    ${(props) =>
+      !props.identified ? "var(--color-secondary)" : "var(--color-primary)"};
+  color: ${(props) =>
+    props.identified ? "var(--color-text-main)" : "var(--color-text-grey)"};
 
   & span {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
   }
 `;
 

@@ -15,21 +15,6 @@ const StyledUserInfo = styled.div`
   position: relative;
 `;
 
-const FlexItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const UserNameText = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-`;
-const UserEmailText = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-`;
-
 function UserInfo() {
   const { currentUserData } = useUser();
   const [showPopup, setShowPopup] = useState(false);
@@ -44,23 +29,14 @@ function UserInfo() {
 
   const currentUserInfo = currentUserData;
   return (
-    <>
-      <StyledUserInfo
-        onMouseEnter={() => setShowPopup(true)}
-        onMouseLeave={() => setShowPopup(false)}
-      >
-        {currentUserInfo?.avatar ? <Avatar /> : <UserIcon size={64} />}
-        <FlexItem>
-          <UserNameText size={20}>
-            {currentUserInfo?.fullName || "UserName"}
-          </UserNameText>
-          <UserEmailText size={12}>
-            {currentUserInfo?.email || "example@user.com"}
-          </UserEmailText>
-        </FlexItem>
-        {showPopup && <PopUpWindow />}
-      </StyledUserInfo>
-    </>
+    <StyledUserInfo
+      onMouseEnter={() => setShowPopup(true)}
+      onMouseLeave={() => setShowPopup(false)}
+    >
+      {currentUserInfo?.avatar ? <Avatar size="48" /> : <UserIcon size={42} />}
+
+      {showPopup && <PopUpWindow currentUserInfo={currentUserInfo} />}
+    </StyledUserInfo>
   );
 }
 

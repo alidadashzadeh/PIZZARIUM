@@ -22,8 +22,8 @@ function Recipe({ customPizza }) {
       <Title>Your recipe:</Title>
       <div>
         {customPizza.dough.name}, {customPizza.crust.name},
-        {customPizza.sauce.name}, {customPizza.cheese.name},{customPizza.cook}{" "}
-        cook
+        {customPizza.sauce.name}, {customPizza.cheese.name},
+        {customPizza.cook.name}
       </div>
 
       <Title>Toppings:</Title>

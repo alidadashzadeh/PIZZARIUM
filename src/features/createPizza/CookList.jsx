@@ -2,34 +2,35 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { getCooks } from "../../services/apiCreatePizza";
-import CookItem from "./CookItem";
 import Spinner from "../../ui/Spinner";
+import CreatePizzaItem from "./CreatePizzaItem";
+import { useOrder } from "../../context/OrderContext";
+import { CustomPizzaList } from "../../ui/CustomPizzaList";
 
-const StyledCookList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  align-self: flex-start;
-`;
-
-function SizeCook() {
+function CookList() {
   const { isLoading, data: cooks } = useQuery({
     queryKey: ["cooks"],
     queryFn: getCooks,
   });
+  const { selectCookType } = useOrder();
 
   if (isLoading) return <Spinner />;
 
   return (
     <div>
       <h3>Cook Styles</h3>
-      <StyledCookList>
+      <CustomPizzaList>
         {cooks?.map((cook) => (
-          <CookItem cook={cook} key={cook.id} />
+          <CreatePizzaItem
+            label="cook"
+            item={cook}
+            handleClick={selectCookType}
+            key={cook.id}
+          />
         ))}
-      </StyledCookList>
+      </CustomPizzaList>
     </div>
   );
 }
 
-export default SizeCook;
+export default CookList;

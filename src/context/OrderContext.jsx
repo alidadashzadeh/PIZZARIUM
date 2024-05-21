@@ -14,6 +14,7 @@ function OrderProvider({ children }) {
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [customPizza, setCustomPizza] = useState({
     title: "Custom Pizza",
@@ -22,7 +23,7 @@ function OrderProvider({ children }) {
     sauce: { extraPrice: 0, name: "No-Sauce" },
     cheese: { extraPrice: 1.99, name: "Diary Free Cheese" },
     topping: [],
-    cook: "Regular",
+    cook: { name: "Regular", extraPrice: 0 },
     selectedSize: "small",
     specialInstruction: "",
     quantity: 1,
@@ -41,6 +42,19 @@ function OrderProvider({ children }) {
       localStorage.setItem("order", JSON.stringify(order));
     },
     [order]
+  );
+
+  useEffect(
+    function () {
+      if (isDarkMode) {
+        document.documentElement.classList.add("dark-mode");
+        document.documentElement.classList.remove("light-mode");
+      } else {
+        document.documentElement.classList.add("light-mode");
+        document.documentElement.classList.remove("dark-mode");
+      }
+    },
+    [isDarkMode]
   );
 
   function addToOrder(newItem) {
@@ -140,7 +154,10 @@ function OrderProvider({ children }) {
   }
 
   function selectCookType(selectedCookType) {
-    setCustomPizza({ ...customPizza, cook: selectedCookType });
+    setCustomPizza({
+      ...customPizza,
+      cook: selectedCookType,
+    });
   }
   function selectSize(selectedSize) {
     setCustomPizza({ ...customPizza, selectedSize: selectedSize });
@@ -169,11 +186,11 @@ function OrderProvider({ children }) {
     setCustomPizza({
       title: "Custom Pizza",
       dough: { extraPrice: 0, name: "Regular Dough" },
-      crust: { extraPrice: 0.99, name: "Regular" },
+      crust: { extraPrice: 0.99, name: "Regular Crust" },
       sauce: { extraPrice: 0, name: "No-Sauce" },
       cheese: { extraPrice: 1.99, name: "Diary Free Cheese" },
       topping: [],
-      cook: "Regular",
+      cook: { extraPrice: 0, name: "Regular" },
       selectedSize: "small",
       specialInstruction: "",
       quantity: 1,
@@ -228,6 +245,9 @@ function OrderProvider({ children }) {
         addOrderDrink,
         selectedAddress,
         setSelectedAddress,
+        resetCustomPizza,
+        isDarkMode,
+        setIsDarkMode,
       }}
     >
       {children}

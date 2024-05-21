@@ -4,6 +4,7 @@ import ToppingItem from "./ToppingItem";
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import Spinner from "../../ui/Spinner";
+import { CustomPizzaList } from "../../ui/CustomPizzaList";
 
 const StyledContainer = styled.div`
   overflow-y: auto;
@@ -17,12 +18,6 @@ const StyledContainer = styled.div`
 const StyledToppingsHeader = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-const StyledToppingList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  align-self: flex-start;
 `;
 
 const TypeList = styled.ul`
@@ -94,11 +89,11 @@ function ToppingList() {
           </Type>
         </TypeList>
       </StyledToppingsHeader>
-      <StyledToppingList>
+      <CustomPizzaList>
         {toppings?.map((topping) => (
           <ToppingItem topping={topping} key={topping.id} />
         ))}
-      </StyledToppingList>
+      </CustomPizzaList>
     </StyledContainer>
   );
 }

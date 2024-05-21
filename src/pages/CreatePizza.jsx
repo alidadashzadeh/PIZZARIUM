@@ -1,34 +1,49 @@
 import { useState } from "react";
 import CrustList from "../features/createPizza/CrustList";
 import DoughList from "../features/createPizza/DoughList";
-import CreatePizzaNav from "../features/createPizza/CreatePizzaNav";
 import SauceList from "../features/createPizza/SauceList";
 import ToppingList from "../features/createPizza/ToppingList";
 import CheeseList from "../features/createPizza/CheeseList";
-import SizeCook from "../features/createPizza/SizeCook";
 import CustomPizzaSummary from "../features/createPizza/CustomPizzaSummary";
 import styled from "styled-components";
+import CookList from "../features/createPizza/CookList";
+import NavigationList from "../ui/NavigationList";
 
 const StyledCreatePizza = styled.div`
-  position: relative;
   display: grid;
-  grid-template-columns: 14rem 3fr 2fr;
-  gap: 1rem;
+  grid-template-columns: 14rem 3fr 1fr;
+  padding: 1rem 2rem;
 `;
-function CreateYourPizza() {
-  const [selected, setSelected] = useState("dough");
+
+const options = [
+  { label: "Dough", value: "dough" },
+  { label: "Crust", value: "crust" },
+  { label: "Sauce", value: "sauce" },
+  { label: "Cheese", value: "cheese" },
+  { label: "Toppings", value: "toppings" },
+  { label: "Cook", value: "cook" },
+];
+function CreatePizza() {
+  const [selected, setSelected] = useState("toppings");
   return (
     <StyledCreatePizza>
-      <CreatePizzaNav selected={selected} setSelected={setSelected} />
+      <NavigationList
+        options={options}
+        label="Steps"
+        selected={selected}
+        setSelected={setSelected}
+      />
+      {/* <CreatePizzaNav selected={selected} setSelected={setSelected} /> */}
+
       {selected === "dough" && <DoughList />}
       {selected === "crust" && <CrustList />}
       {selected === "sauce" && <SauceList />}
       {selected === "cheese" && <CheeseList />}
       {selected === "toppings" && <ToppingList />}
-      {selected === "size&cook" && <SizeCook />}
+      {selected === "cook" && <CookList />}
       <CustomPizzaSummary />
     </StyledCreatePizza>
   );
 }
 
-export default CreateYourPizza;
+export default CreatePizza;

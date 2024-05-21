@@ -9,6 +9,11 @@ const StyledPayment = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
+const H2 = styled.h2`
+  font-size: 20;
+  font-weight: 700;
+  padding: 1rem 2rem;
+`;
 const StyledAd = styled.div`
   padding: 4rem;
   display: flex;
@@ -30,6 +35,7 @@ export default function Payment() {
   return (
     <>
       <Process step="payment" />
+      <H2>Payment Details</H2>
       <StyledPayment>
         <PaymentForm />
         <StyledAd>

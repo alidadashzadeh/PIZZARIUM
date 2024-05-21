@@ -6,6 +6,7 @@ export const StyledItem = styled.li`
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 4px;
 
   &:hover {
     cursor: pointer;
@@ -16,13 +17,14 @@ export const StyledItem = styled.li`
     css`
       &::after {
         content: "✔";
+        color: var(--color-primary);
         display: block;
-        background-color: var(--color-yellow-700);
         padding: 0.5rem 1rem;
         border-radius: 55px;
         position: absolute;
-        right: 5%;
+        right: 0;
         top: 5%;
+        font-size: 28px;
       }
     `}
 `;

@@ -12,8 +12,7 @@ export async function createUser({ email, password, fullName }) {
         fullName,
         phone: "",
         address: [],
-        avatar:
-          "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSYWVMx6h59vKIGkku5l3hPkBbqsErDsCB7-QZ9zaKuhTN8edvL",
+        avatar: "",
       },
     },
   });

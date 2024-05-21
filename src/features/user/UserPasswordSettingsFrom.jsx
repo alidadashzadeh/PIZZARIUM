@@ -12,12 +12,21 @@ const Form = styled.form`
   padding: 1rem 2rem;
   margin-right: 4rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 1rem;
 `;
 
 const StyledButtonGroup = styled(ButtonGroup)`
   align-self: flex-end;
+`;
+const FormTitle = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+`;
+const FlexItem = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
 `;
 function UserPasswordSettingsForm() {
   const { register, handleSubmit, formState, reset, getValues } = useForm();
@@ -32,18 +41,15 @@ function UserPasswordSettingsForm() {
     changePassword(data.newPassword);
   }
 
-  function onError() {
-    // reset();
-  }
-
-  function handleCancel() {
+  function handleCancel(e) {
+    e.preventDefault();
     reset();
   }
 
   return (
-    <div>
-      <h2>Password</h2>
-      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormTitle>Password</FormTitle>
+      <FlexItem>
         <FormRow label="New Password" error={errors?.newPassword?.message}>
           <Input
             type="password"
@@ -72,21 +78,22 @@ function UserPasswordSettingsForm() {
             })}
           />
         </FormRow>
+      </FlexItem>
 
-        <StyledButtonGroup>
-          <Button
-            variation="secondary"
-            onClick={handleCancel}
-            disabled={isChangingPassword}
-          >
-            Cancel
-          </Button>
-          <Button type="submit" disabled={isChangingPassword}>
-            Save Change
-          </Button>
-        </StyledButtonGroup>
-      </Form>
-    </div>
+      <StyledButtonGroup>
+        <Button
+          variation="secondary"
+          onClick={handleCancel}
+          disabled={isChangingPassword}
+          size="small"
+        >
+          Cancel
+        </Button>
+        <Button size="small" type="submit" disabled={isChangingPassword}>
+          Save Change
+        </Button>
+      </StyledButtonGroup>
+    </Form>
   );
 }
 

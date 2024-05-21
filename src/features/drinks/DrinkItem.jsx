@@ -1,37 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-
-import styled, { css } from "styled-components";
+import toast from "react-hot-toast";
+import styled from "styled-components";
 import Count from "../../ui/Count";
 import { useState } from "react";
 import { useOrder } from "../../context/OrderContext";
 import { StyledItem } from "../../ui/StyledItem";
-// const StyledDrinkItem = styled.li`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-
-//   &:hover {
-//     cursor: pointer;
-//     transition: all 0.5s;
-//   }
-//   ${(props) =>
-//     props.selected &&
-//     css`
-//       &::after {
-//         content: "✔";
-//         display: block;
-//         background-color: var(--color-yellow-700);
-//         padding: 0.5rem 1rem;
-//         border-radius: 55px;
-//         position: absolute;
-//         right: 5%;
-//         top: 5%;
-//       }
-//     `}
-// `;
+import { Button } from "../../ui/Button";
 
 const Img = styled.img`
   width: 175px;
@@ -43,27 +18,15 @@ const Img = styled.img`
 const Price = styled.span`
   color: var(--color-primary);
 `;
-const DrinkDetails = styled.div`
+const FlexItem = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-`;
-
-const Row = styled.div`
-  display: flex;
   gap: 1rem;
-  margin: 0.2rem 0;
+  color: var(--color-text-grey);
 `;
 
-const Button = styled.button`
-  border: 1px solid var(--color-yellow-700);
-  border-radius: 5px;
-  padding: 0 2rem;
-  background-color: transparent;
-
-  &:hover {
-    background-color: var(--color-yellow-700);
-  }
+const Title = styled.div`
+  font-size: 18px;
 `;
 
 function DrinkItem({ drink }) {
@@ -89,25 +52,28 @@ function DrinkItem({ drink }) {
     };
 
     addOrderDrink(newDrink);
+    toast.success(`${newDrink.title} was added successfully`);
   }
   return (
     <StyledItem>
       <Img src={drink.picture} />
-      <DrinkDetails>
-        <Price>$ {drink.price}</Price>
-        <span>{drink.name}</span>
+      <Price>$ {drink.price}</Price>
+      <Title>{drink.name}</Title>
+      <FlexItem>
         <span>Calorie: {drink.calorie}</span>
         <span>
           Size: {drink.size}
           {drink.unit}
         </span>
-        <Count
-          onPlusClick={handePlusQuantity}
-          onMinusClick={handeMinusQuantity}
-          quantity={quantity}
-        />
-        <Button onClick={handleAddDrink}>Add</Button>
-      </DrinkDetails>
+      </FlexItem>
+      <Count
+        onPlusClick={handePlusQuantity}
+        onMinusClick={handeMinusQuantity}
+        quantity={quantity}
+      />
+      <Button size="small" onClick={handleAddDrink}>
+        Add to Cart
+      </Button>
     </StyledItem>
   );
 }

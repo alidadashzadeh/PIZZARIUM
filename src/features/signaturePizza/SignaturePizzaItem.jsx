@@ -9,9 +9,10 @@ import { useState } from "react";
 import SizeSelect from "../../ui/SizeSelect";
 
 const StyledSignaturePizzaItem = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 250px 2fr 1fr;
   gap: 1rem;
-  border: 2px solid var(--color-secondary);
+  border: 1px solid var(--color-primary);
   border-radius: 500px;
 `;
 
@@ -81,6 +82,7 @@ const ToppingItem = styled.div`
 const ToppingTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
+  color: #1c1c1c;
 `;
 
 const Devider = styled.span`
@@ -114,7 +116,7 @@ function SignaturePizzaItem({ pizza }) {
       price: pizza.price,
     });
 
-    toast.success(`${pizza.name} was added to the card successfully`);
+    toast.success(`${pizza.name} was added successfully`);
   }
   return (
     <StyledSignaturePizzaItem>
@@ -151,9 +153,7 @@ function SignaturePizzaItem({ pizza }) {
       </Details>
       <FlexItemVertical>
         <Price> $ {price[size]}</Price>
-        <Button onClick={handleQuickAdd} size="small">
-          ADD TO CART
-        </Button>
+        <Button onClick={handleQuickAdd}>Add to Cart</Button>
       </FlexItemVertical>
     </StyledSignaturePizzaItem>
   );

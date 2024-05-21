@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Count from "../../ui/Count";
-import { useOrder } from "../../context/OrderContext";
-import { Button } from "../../ui/Button";
+
+import RemoveButton from "../user/RemoveButton";
+
 const StyledDrinkItem = styled.div`
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 250px 2fr 96px;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
   padding-right: 4rem;
@@ -57,25 +60,25 @@ const Price = styled.div`
   font-size: 20px;
   font-weight: 700;
 `;
+
 function DrinkOrderItem({ item }) {
-  const { removeItemFromOrder } = useOrder();
   return (
     <StyledDrinkItem>
       <ImgContainer>
         <Img src={item.picture} />
       </ImgContainer>
-      <Title>{item.title}</Title>{" "}
       <FlexItem>
-        <span>110 Calories</span>
-        <Devider />
-        <span>size: 300 ml</span>
+        <Title>{item.title}</Title>{" "}
+        <FlexItem>
+          <span>110 Calories</span>
+          <Devider />
+          <span>size: 300 ml</span>
+        </FlexItem>
+        <Count item={item} />
       </FlexItem>
-      <Count item={item} />
       <FlexItemVertical>
         <Price> $ {item.price}</Price>
-        <Button size="small" onClick={() => removeItemFromOrder(item.id)}>
-          Remove
-        </Button>
+        <RemoveButton item={item} />
       </FlexItemVertical>
     </StyledDrinkItem>
   );

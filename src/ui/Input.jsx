@@ -5,14 +5,14 @@ export const Input = styled.input`
   outline: none;
   border-radius: var(--border-radius-small);
   height: 38px;
-  padding-left: 2rem;
-  padding-right: 128px;
+  padding: 0 1rem;
+  color: #1c1c1c;
 
   &:focus {
     border: 1px solid var(--color-primary);
   }
 
   &::placeholder {
-    color: var(--color-grey-300);
+    color: var(--color-text-grey);
   }
 `;

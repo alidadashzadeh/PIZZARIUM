@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { useOrder } from "../context/OrderContext";
-import OrderItem from "../features/order/OrderItem";
 import OrderSummary from "../features/order/OrderSummary";
 import Process from "../features/order/Process";
 import EmptyOrderList from "../features/order/EmptyOrderList";
 import SignaturePizzaOrderItem from "../features/order/SignaturePizzaOrderItem";
-import CreatePizzaOrderItem from "../features/order/CreatePizzaOrderItem";
+import CustomPizzaOrderItem from "../features/order/CustomPizzaOrderItem";
 import DrinkOrderItem from "../features/order/DrinkOrderItem";
 
 const StyledOrder = styled.div`
@@ -14,7 +13,9 @@ const StyledOrder = styled.div`
 `;
 
 const H2 = styled.h2`
-  padding: 2rem;
+  font-size: 20;
+  font-weight: 700;
+  padding: 1rem 2rem;
 `;
 
 const OrderItemsList = styled.div`
@@ -43,7 +44,7 @@ function Order() {
           {currentOrder
             ?.filter?.((item) => item.isCustomPizza)
             ?.map((el) => {
-              return <CreatePizzaOrderItem key={el.id} item={el} />;
+              return <CustomPizzaOrderItem key={el.id} item={el} />;
             })}
           {currentOrder
             ?.filter?.((item) => item.isDrink)

@@ -40,11 +40,10 @@ const Items = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #fff;
   color: var(--color-grey-400);
   cursor: pointer;
 
-  color: ${(props) => props.active && "#1c1c1c"};
+  color: ${(props) => props.active && "var(--color-text-main)"};
 `;
 
 const Number = styled.div`

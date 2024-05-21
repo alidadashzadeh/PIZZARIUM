@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
 import UserInfo from "./UserInfo";
-import OrderToggle from "../ui/OrderToggle";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 const StyledHeader = styled.div`
   padding: 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 const FlexItem = styled.div`
@@ -24,7 +25,7 @@ function Header() {
       <Logo />
       <Navbar />
       <FlexItem>
-        <OrderToggle />
+        <ShoppingCartButton />
         <UserInfo />
       </FlexItem>
     </StyledHeader>

@@ -4,7 +4,7 @@ import { useOrder } from "../../context/OrderContext";
 const StyledPizzaDemo = styled.div`
   position: relative;
   aspect-ratio: 1;
-  width: 75%;
+  width: 60%;
   margin: 0 auto;
 `;
 const ImgContainer = styled.div`

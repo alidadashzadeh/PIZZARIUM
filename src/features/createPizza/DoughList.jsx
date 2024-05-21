@@ -5,13 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import CreatePizzaItem from "./CreatePizzaItem";
 import { useOrder } from "../../context/OrderContext";
-
-const StyledDoughList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  align-self: flex-start;
-`;
+import { CustomPizzaList } from "../../ui/CustomPizzaList";
 
 const StyledDoughsHeader = styled.div`
   display: flex;
@@ -31,7 +25,7 @@ function DoughList() {
       <StyledDoughsHeader>
         <h3>Doughs</h3>
       </StyledDoughsHeader>
-      <StyledDoughList>
+      <CustomPizzaList>
         {doughs.map((dough) => (
           <CreatePizzaItem
             label="dough"
@@ -40,7 +34,7 @@ function DoughList() {
             key={dough.id}
           />
         ))}
-      </StyledDoughList>
+      </CustomPizzaList>
     </div>
   );
 }

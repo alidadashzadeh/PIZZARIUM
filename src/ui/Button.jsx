@@ -33,10 +33,10 @@ const variations = {
     background: transparent;
     border: 2px solid var(--color-primary);
 
-    /* &:hover {
+    &:hover {
       background-color: var(--color-primary);
       scale: 1.05;
-    } */
+    }
   `,
   danger: css`
     color: var(--color-red-100);

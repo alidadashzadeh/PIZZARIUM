@@ -1,14 +1,26 @@
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 import FormRow from "./FormRow";
 import { Input } from "./Input";
 import { useForm } from "react-hook-form";
 import { Button } from "./Button";
 import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useOrder } from "../context/OrderContext";
+import { totalOrderCost } from "../utils/orderCalculations";
+// import { useCreateOrder } from "../features/order/useCreateOrder";
+// import { useUser } from "../features/auth/useUser";
 
 const StyledPayment = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 4rem;
+  gap: 2rem;
+  padding: 0 2rem;
+`;
+
+const StyledCoupon = styled.form`
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  align-items: flex-end;
   gap: 2rem;
 `;
 
@@ -16,39 +28,17 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 2px solid var(--color-text-main);
+  border: 1px solid var(--color-text-grey);
   padding: 1rem 2rem;
   border-radius: 20px;
 `;
 
-const StyledCoupon = styled.form`
-  display: flex;
-  align-items: flex-end;
-  gap: 2rem;
-`;
-
 const GridItem = styled.div`
   display: grid;
-  grid-template-columns: 320px 148px 96px;
-  gap: 8px;
+  grid-template-columns: 1fr 120px 60px;
+  gap: 4px;
 `;
-const StyledInput = styled.input`
-  border: 1px solid var(--color-grey-700);
-  outline: none;
-  border-radius: var(--border-radius-small);
-  height: 38px;
-  padding: 1rem;
-  letter-spacing: 2px;
-  &:focus {
-    border: 1px solid var(--color-primary);
-  }
 
-  &::placeholder {
-    letter-spacing: 2px;
-    text-align: center;
-    color: var(--color-grey-300);
-  }
-`;
 const FlexAlign = styled.div`
   display: flex;
   align-items: center;
@@ -58,67 +48,105 @@ const FlexAlign = styled.div`
 export default function PaymentForm() {
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
+  const navigate = useNavigate();
+  const { order: currentOrder } = useOrder();
+  const totalPrice = totalOrderCost(currentOrder);
+  // const { createOrder, isLoading } = useCreateOrder();
+  // const { user } = useUser();
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit() {
+    reset();
+    // createOrder({ currentOrder, user, selectedAddress });
   }
   return (
     <StyledPayment>
       <div>
-        <Button variation="secondary">
+        <Button
+          size="small"
+          variation="secondary"
+          onClick={() => navigate("/order")}
+        >
           <FlexAlign>
             <FaArrowLeft />
             <span>Go Back to Cart</span>
           </FlexAlign>
         </Button>
       </div>
-      <div>
-        <StyledCoupon>
-          <FormRow label="Redeem Coupon">
-            <Input type="text" placeholder="Coupon #" {...register("Coupon")} />
-          </FormRow>
-          <div>
-            <Button>Apply</Button>
-          </div>
-        </StyledCoupon>
-      </div>
-      <h3>Payment</h3>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+
+      <StyledCoupon>
+        <FormRow label="Redeem Coupon">
+          <Input type="text" placeholder="Coupon #" />
+        </FormRow>
         <div>
-          <h4>Card Information</h4>
-          <GridItem>
-            <StyledInput
-              flex={2}
+          <Button variation="secondary" size="small">
+            Apply
+          </Button>
+        </div>
+      </StyledCoupon>
+
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <GridItem>
+          <FormRow
+            fixedHeight={true}
+            label="Card Number"
+            error={errors?.cardNumber?.message}
+          >
+            <Input
               type="text"
               placeholder="1234 5678 9012 3456"
               {...register("cardNumber", {
                 required: "This field is required",
+                // minLength: {
+                //   value: 16,
+                //   message: "Card Number Not correct",
+                // },
+                // maxLength: {
+                //   value: 16,
+                //   message: "Card Number Not correct",
+                // },
               })}
             />
-            <StyledInput
-              flex={1}
+          </FormRow>
+          <FormRow
+            error={errors?.expiryDate?.message}
+            fixedHeight={true}
+            label="Expiry Date"
+          >
+            <Input
               type="text"
               placeholder="MM / YYYY"
               {...register("expiryDate", {
                 required: "This field is required",
               })}
             />
-            <StyledInput
+          </FormRow>
+          <FormRow error={errors?.CVV?.message} fixedHeight={true} label="CVV">
+            <Input
               type="text"
-              placeholder="CVV"
+              placeholder="888"
               {...register("CVV", {
                 required: "This field is required",
               })}
             />
-          </GridItem>
-        </div>
+          </FormRow>
+          <FormRow
+            error={errors?.name?.message}
+            label="Card Holder Name"
+            fixedHeight={true}
+          >
+            <Input
+              type="text"
+              placeholder="888"
+              {...register("name", {
+                required: "This field is required",
+              })}
+            />
+          </FormRow>
+        </GridItem>
+
         <div>
-          <h4>Card Holder Name</h4>
-          <StyledInput type="text" />
-        </div>
-        <div>
-          <Button size="large" type="submit">
-            Make Payment
+          <Button type="submit">
+            Make Payment ($ {(totalPrice * 1.13).toFixed(2)})
           </Button>
         </div>
       </StyledForm>

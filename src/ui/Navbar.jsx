@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const StyledNav = styled.nav``;
 
@@ -11,6 +12,7 @@ const NavList = styled.ul`
 `;
 
 const StyledNavlink = styled(NavLink)`
+  position: relative;
   &:link,
   &:visited {
     color: var(--color-text-main);
@@ -27,31 +29,41 @@ const NavText = styled.div`
   font-size: 16px;
   font-weight: 500;
 `;
+const Dot = styled.div`
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  aspect-ratio: 1;
+  background-color: var(--color-primary);
+  border-radius: 5px;
+`;
+const navOptions = [
+  { label: "HOME", path: "/home" },
+  { label: "SIGNATURE PIZZA", path: "/signature-pizzas" },
+  { label: "CREATE PIZZA", path: "/create-your-pizza" },
+  { label: "DRINKS", path: "/drinks" },
+];
 
 function Navbar() {
+  const location = useLocation();
+
+  console.log(location.pathname.slice(1));
+
   return (
     <StyledNav>
       <NavList className="nav__list">
-        <li>
-          <StyledNavlink to="/home">
-            <NavText>HOME</NavText>
-          </StyledNavlink>
-        </li>
-        <li>
-          <StyledNavlink to="/signature-pizzas">
-            <NavText>SIGNATURE PIZZA</NavText>
-          </StyledNavlink>
-        </li>
-        <li>
-          <StyledNavlink to="/create-your-pizza">
-            <NavText>CREATE PIZZA</NavText>
-          </StyledNavlink>
-        </li>
-        <li>
-          <StyledNavlink to="/drinks">
-            <NavText>DRINKS</NavText>
-          </StyledNavlink>
-        </li>
+        {navOptions.map((el) => (
+          <li key={el.label}>
+            <StyledNavlink to={el.path}>
+              <NavText>{el.label}</NavText>
+              {location.pathname === el.path && (
+                <Dot as={motion.div} layoutId="navdot" />
+              )}
+            </StyledNavlink>
+          </li>
+        ))}
       </NavList>
     </StyledNav>
   );

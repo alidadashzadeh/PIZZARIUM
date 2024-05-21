@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useOrder } from "../context/OrderContext";
+import { FaCartShopping } from "react-icons/fa6";
 
 const StyledToggle = styled.div`
   position: relative;
@@ -25,15 +26,17 @@ const Count = styled.span`
   border-radius: 90px;
   color: var(--color-text-white);
 `;
-function OrderToggle() {
+function ShoppingCartButton() {
   const navigate = useNavigate();
   const { order } = useOrder();
   return (
     <StyledToggle onClick={() => navigate("/order")}>
-      <Text>Cart</Text>
+      <Text>
+        <FaCartShopping />
+      </Text>
       <Count>{order.length}</Count>
     </StyledToggle>
   );
 }
 
-export default OrderToggle;
+export default ShoppingCartButton;

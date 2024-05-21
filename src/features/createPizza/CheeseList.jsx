@@ -1,16 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCheeses } from "../../services/apiCreatePizza";
 import Spinner from "../../ui/Spinner";
-import styled from "styled-components";
 import CreatePizzaItem from "./CreatePizzaItem";
 import { useOrder } from "../../context/OrderContext";
-
-const StyledCheeseList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  align-self: flex-start;
-`;
+import { CustomPizzaList } from "../../ui/CustomPizzaList";
 
 function CheeseList() {
   const { isLoading, data: cheeses } = useQuery({
@@ -23,7 +16,7 @@ function CheeseList() {
   return (
     <div>
       <h3>Cheese</h3>
-      <StyledCheeseList>
+      <CustomPizzaList>
         {cheeses.map((cheese) => (
           <CreatePizzaItem
             label="cheese"
@@ -32,7 +25,7 @@ function CheeseList() {
             key={cheese.id}
           />
         ))}
-      </StyledCheeseList>
+      </CustomPizzaList>
     </div>
   );
 }
