@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Dot } from "./Dot";
 
 const StyledNavigationList = styled.ul`
   list-style: none;
@@ -25,15 +26,6 @@ const H2 = styled.h2`
   border-bottom: 1px solid var(--color-grey-300);
 `;
 
-const Dot = styled.div`
-  position: absolute;
-  top: 45%;
-  left: 0;
-  width: 6px;
-  aspect-ratio: 1;
-  background-color: var(--color-primary);
-  border-radius: 5px;
-`;
 export default function NavigationList({
   options,
   label,
@@ -50,7 +42,9 @@ export default function NavigationList({
           key={el.value}
         >
           {el.label}
-          {selected === el.value && <Dot as={motion.div} layoutId={label} />}
+          {selected === el.value && (
+            <Dot vertical={true} as={motion.div} layoutId={label} />
+          )}
         </NavItem>
       ))}
     </StyledNavigationList>

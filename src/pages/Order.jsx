@@ -6,6 +6,7 @@ import EmptyOrderList from "../features/order/EmptyOrderList";
 import SignaturePizzaOrderItem from "../features/order/SignaturePizzaOrderItem";
 import CustomPizzaOrderItem from "../features/order/CustomPizzaOrderItem";
 import DrinkOrderItem from "../features/order/DrinkOrderItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 const StyledOrder = styled.div`
   display: grid;
@@ -35,22 +36,24 @@ function Order() {
       <Process step="cart" />
       <H2>Shopping Cart</H2>
       <StyledOrder>
-        <OrderItemsList>
-          {currentOrder
-            ?.filter?.((item) => item.isSignaturePizza)
-            ?.map((el) => {
-              return <SignaturePizzaOrderItem key={el.id} item={el} />;
-            })}
-          {currentOrder
-            ?.filter?.((item) => item.isCustomPizza)
-            ?.map((el) => {
-              return <CustomPizzaOrderItem key={el.id} item={el} />;
-            })}
-          {currentOrder
-            ?.filter?.((item) => item.isDrink)
-            ?.map((el) => {
-              return <DrinkOrderItem key={el.id} item={el} />;
-            })}
+        <OrderItemsList as={motion.div} layout>
+          <AnimatePresence>
+            {currentOrder
+              ?.filter?.((item) => item.isSignaturePizza)
+              ?.map((el) => {
+                return <SignaturePizzaOrderItem key={el.id} item={el} />;
+              })}
+            {currentOrder
+              ?.filter?.((item) => item.isCustomPizza)
+              ?.map((el) => {
+                return <CustomPizzaOrderItem key={el.id} item={el} />;
+              })}
+            {currentOrder
+              ?.filter?.((item) => item.isDrink)
+              ?.map((el) => {
+                return <DrinkOrderItem key={el.id} item={el} />;
+              })}
+          </AnimatePresence>
         </OrderItemsList>
         <div>
           <OrderSummary step="cart" />

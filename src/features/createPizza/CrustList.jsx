@@ -17,12 +17,13 @@ function CrustList() {
     <div>
       <h3>Crusts</h3>
       <CustomPizzaList>
-        {crusts.map((crust) => (
+        {crusts.map((crust, i) => (
           <CreatePizzaItem
             label="crust"
             item={crust}
             handleClick={selectCustomCrust}
             key={crust.id}
+            index={i}
           />
         ))}
       </CustomPizzaList>

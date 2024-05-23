@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useOrder } from "../../context/OrderContext";
 import { StyledItem } from "../../ui/StyledItem";
 import { Button } from "../../ui/Button";
+import { motion } from "framer-motion";
 
 const Img = styled.img`
   width: 175px;
@@ -29,7 +30,7 @@ const Title = styled.div`
   font-size: 18px;
 `;
 
-function DrinkItem({ drink }) {
+function DrinkItem({ drink, index }) {
   const [quantity, setQuantity] = useState(1);
   const { addOrderDrink } = useOrder();
 
@@ -55,7 +56,11 @@ function DrinkItem({ drink }) {
     toast.success(`${newDrink.title} was added successfully`);
   }
   return (
-    <StyledItem>
+    <StyledItem
+      as={motion.div}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0, transition: { delay: index * 0.05 } }}
+    >
       <Img src={drink.picture} />
       <Price>$ {drink.price}</Price>
       <Title>{drink.name}</Title>

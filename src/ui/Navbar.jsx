@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { Dot } from "./Dot";
 
 const StyledNav = styled.nav``;
 
@@ -29,16 +30,7 @@ const NavText = styled.div`
   font-size: 16px;
   font-weight: 500;
 `;
-const Dot = styled.div`
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  aspect-ratio: 1;
-  background-color: var(--color-primary);
-  border-radius: 5px;
-`;
+
 const navOptions = [
   { label: "HOME", path: "/home" },
   { label: "SIGNATURE PIZZA", path: "/signature-pizzas" },

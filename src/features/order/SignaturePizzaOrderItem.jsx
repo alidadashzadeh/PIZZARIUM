@@ -1,18 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-
+import { motion } from "framer-motion";
 import styled from "styled-components";
-import { Button } from "../../ui/Button";
 import { useOrder } from "../../context/OrderContext";
-import toast from "react-hot-toast";
 import Count from "../../ui/Count";
-import { useState } from "react";
 import SizeSelect from "../../ui/SizeSelect";
-import { FaTrash } from "react-icons/fa6";
 import RemoveButton from "../user/RemoveButton";
 
 const StyledSignaturePizzaItem = styled.div`
-  /* display: flex; */
   display: grid;
   grid-template-columns: 250px 2fr 96px;
   gap: 2rem;
@@ -104,7 +99,16 @@ const ButtonFlex = styled.div`
 function SignaturePizzaOrderItem({ item }) {
   const { removeItemFromOrder } = useOrder();
   return (
-    <StyledSignaturePizzaItem>
+    <StyledSignaturePizzaItem
+      as={motion.div}
+      layout
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      exit={{
+        opacity: 0,
+        y: 50,
+      }}
+    >
       <ImgContainer>
         <Img src={item.picture} />
       </ImgContainer>

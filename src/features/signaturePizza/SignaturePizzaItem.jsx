@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { Button } from "../../ui/Button";
 import { useOrder } from "../../context/OrderContext";
@@ -119,7 +119,13 @@ function SignaturePizzaItem({ pizza }) {
     toast.success(`${pizza.name} was added successfully`);
   }
   return (
-    <StyledSignaturePizzaItem>
+    <StyledSignaturePizzaItem
+      as={motion.div}
+      layout
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+    >
       <ImgContainer>
         <Img src={picture} />
       </ImgContainer>

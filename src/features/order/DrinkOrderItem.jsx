@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Count from "../../ui/Count";
-
+import { motion } from "framer-motion";
 import RemoveButton from "../user/RemoveButton";
 
 const StyledDrinkItem = styled.div`
-  /* display: flex; */
   display: grid;
   grid-template-columns: 250px 2fr 96px;
   align-items: center;
@@ -63,12 +62,21 @@ const Price = styled.div`
 
 function DrinkOrderItem({ item }) {
   return (
-    <StyledDrinkItem>
+    <StyledDrinkItem
+      as={motion.div}
+      layout
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      exit={{
+        opacity: 0,
+        y: 50,
+      }}
+    >
       <ImgContainer>
         <Img src={item.picture} />
       </ImgContainer>
       <FlexItem>
-        <Title>{item.title}</Title>{" "}
+        <Title>{item.title}</Title>
         <FlexItem>
           <span>110 Calories</span>
           <Devider />

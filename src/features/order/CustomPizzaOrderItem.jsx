@@ -1,14 +1,11 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { Button } from "../../ui/Button";
-import { useOrder } from "../../context/OrderContext";
+import { motion } from "framer-motion";
 import Count from "../../ui/Count";
 import SizeSelect from "../../ui/SizeSelect";
-import { FaTrash } from "react-icons/fa6";
 import RemoveButton from "../user/RemoveButton";
 
 const StyledSignaturePizzaItem = styled.div`
-  /* display: flex; */
   display: grid;
   grid-template-columns: 250px 2fr 96px;
   gap: 2rem;
@@ -76,16 +73,18 @@ const ToppingHeader = styled.span`
   color: var(--color-text-grey);
 `;
 
-const ButtonFlex = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  align-items: center;
-`;
 export default function CustomPizzaOrderItem({ item }) {
-  const { removeItemFromOrder } = useOrder();
   return (
-    <StyledSignaturePizzaItem>
+    <StyledSignaturePizzaItem
+      as={motion.div}
+      layout
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50 }}
+      exit={{
+        opacity: 0,
+        y: 50,
+      }}
+    >
       <ImgContainer>
         <Img src="./custom pizza.png" />
       </ImgContainer>

@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import Spinner from "../../ui/Spinner";
 import { CustomPizzaList } from "../../ui/CustomPizzaList";
+import { motion } from "framer-motion";
 
 const StyledContainer = styled.div`
   overflow-y: auto;
@@ -35,23 +36,23 @@ const Type = styled.li`
     props.selected &&
     css`
       color: var(--color-primary);
-
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background-color: var(--color-primary);
-        border-radius: 90px;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: all 0.3s ease;
-      }
-      /* color: var(--color-grey-700); */
     `}
 `;
+
+const Dot = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  aspect-ratio: 1;
+  background-color: var(--color-primary);
+  border-radius: 5px;
+`;
+
+const options = [
+  { label: "Veggie", value: "veggie" },
+  { label: "Meat & Chicken", value: "meat" },
+];
 
 function ToppingList() {
   const { isLoading, data } = useQuery({
@@ -81,17 +82,23 @@ function ToppingList() {
       <StyledToppingsHeader>
         <h3>Toppings</h3>
         <TypeList>
-          <Type selected={type === "veggie"} onClick={() => setType("veggie")}>
-            Veggie
-          </Type>
-          <Type selected={type === "meat"} onClick={() => setType("meat")}>
-            Meat & Chicken
-          </Type>
+          {options.map((el) => (
+            <Type
+              selected={type === el.value}
+              onClick={() => setType(el.value)}
+              key={el.value}
+            >
+              <span>{el.label}</span>
+              {type === el.value && (
+                <Dot as={motion.div} layoutId="toppingDot" />
+              )}
+            </Type>
+          ))}
         </TypeList>
       </StyledToppingsHeader>
       <CustomPizzaList>
-        {toppings?.map((topping) => (
-          <ToppingItem topping={topping} key={topping.id} />
+        {toppings?.map((topping, i) => (
+          <ToppingItem index={i} topping={topping} key={topping.id} />
         ))}
       </CustomPizzaList>
     </StyledContainer>

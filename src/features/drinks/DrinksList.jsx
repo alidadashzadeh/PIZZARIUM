@@ -21,8 +21,8 @@ function DrinksContent() {
 
   return (
     <StyledDrinks>
-      {drinks.map((drink) => (
-        <DrinkItem drink={drink} key={drink.name} />
+      {drinks.map((drink, i) => (
+        <DrinkItem index={i} drink={drink} key={drink.name} />
       ))}
     </StyledDrinks>
   );

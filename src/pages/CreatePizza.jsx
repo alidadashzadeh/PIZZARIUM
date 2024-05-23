@@ -14,7 +14,9 @@ const StyledCreatePizza = styled.div`
   grid-template-columns: 14rem 3fr 1fr;
   padding: 1rem 2rem;
 `;
-
+const H2 = styled.h2`
+  padding: 0 3rem;
+`;
 const options = [
   { label: "Dough", value: "dough" },
   { label: "Crust", value: "crust" },
@@ -26,23 +28,25 @@ const options = [
 function CreatePizza() {
   const [selected, setSelected] = useState("toppings");
   return (
-    <StyledCreatePizza>
-      <NavigationList
-        options={options}
-        label="Steps"
-        selected={selected}
-        setSelected={setSelected}
-      />
-      {/* <CreatePizzaNav selected={selected} setSelected={setSelected} /> */}
+    <>
+      <H2>Cretae Your Own Pizza</H2>
+      <StyledCreatePizza>
+        <NavigationList
+          options={options}
+          label="Steps"
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-      {selected === "dough" && <DoughList />}
-      {selected === "crust" && <CrustList />}
-      {selected === "sauce" && <SauceList />}
-      {selected === "cheese" && <CheeseList />}
-      {selected === "toppings" && <ToppingList />}
-      {selected === "cook" && <CookList />}
-      <CustomPizzaSummary />
-    </StyledCreatePizza>
+        {selected === "dough" && <DoughList />}
+        {selected === "crust" && <CrustList />}
+        {selected === "sauce" && <SauceList />}
+        {selected === "cheese" && <CheeseList />}
+        {selected === "toppings" && <ToppingList />}
+        {selected === "cook" && <CookList />}
+        <CustomPizzaSummary />
+      </StyledCreatePizza>
+    </>
   );
 }
 

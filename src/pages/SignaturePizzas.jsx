@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import SignaturePizzaItem from "../features/signaturePizza/SignaturePizzaItem";
-import { useQuery } from "@tanstack/react-query";
-import { getPizzas } from "../services/apiSignatures";
 import Spinner from "../ui/Spinner";
 import { useState } from "react";
 import NavigationList from "../ui/NavigationList";
-
+import { useSignaturePizzas } from "../features/signaturePizza/useSignaturePizzas";
+import { motion, AnimatePresence } from "framer-motion";
 const StyledSignaturePizzas = styled.div`
   display: grid;
   grid-template-columns: 14rem 1fr;
@@ -17,10 +16,9 @@ const StyledPizzaList = styled.div`
   min-height: 100vh;
   flex-direction: column;
   gap: 1rem;
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
+`;
+const H2 = styled.h2`
+  padding: 0 3rem;
 `;
 
 const options = [
@@ -34,44 +32,29 @@ const options = [
 function SignaturePizzas() {
   const [selected, setSelected] = useState("all");
 
-  const { isLoading, data: signaturePizzas } = useQuery({
-    queryKey: ["signaturePizzas"],
-    queryFn: getPizzas,
-  });
-
-  let filteredPizzas;
-
-  if (selected === "all") filteredPizzas = signaturePizzas;
-  if (selected === "beef")
-    filteredPizzas = signaturePizzas?.filter((pizza) => pizza.type === "beef");
-  if (selected === "chicken")
-    filteredPizzas = signaturePizzas?.filter(
-      (pizza) => pizza.type === "chicken"
-    );
-  if (selected === "veggie")
-    filteredPizzas = signaturePizzas?.filter(
-      (pizza) => pizza.type === "veggie"
-    );
-  if (selected === "mixed")
-    filteredPizzas = signaturePizzas?.filter((pizza) => pizza.type === "mixed");
+  const { filteredPizzas, isLoading } = useSignaturePizzas(selected);
 
   if (isLoading) return <Spinner />;
 
   return (
-    <StyledSignaturePizzas>
-      <NavigationList
-        options={options}
-        selected={selected}
-        setSelected={setSelected}
-        label="Categories"
-      />
-      {/* <SignaturePizzaNav /> */}
-      <StyledPizzaList>
-        {filteredPizzas.map((pizza) => (
-          <SignaturePizzaItem pizza={pizza} key={pizza.id} />
-        ))}
-      </StyledPizzaList>
-    </StyledSignaturePizzas>
+    <>
+      <H2>Signature Pizza</H2>
+      <StyledSignaturePizzas>
+        <NavigationList
+          options={options}
+          selected={selected}
+          setSelected={setSelected}
+          label="Categories"
+        />
+        <StyledPizzaList as={motion.div} layout>
+          <AnimatePresence mode="wait">
+            {filteredPizzas.map((pizza) => (
+              <SignaturePizzaItem pizza={pizza} key={pizza.id} />
+            ))}
+          </AnimatePresence>
+        </StyledPizzaList>
+      </StyledSignaturePizzas>
+    </>
   );
 }
 

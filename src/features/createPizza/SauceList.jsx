@@ -18,12 +18,13 @@ function SauceList() {
     <div>
       <h3>Sauces</h3>
       <CustomPizzaList>
-        {sauces.map((sauce) => (
+        {sauces.map((sauce, i) => (
           <CreatePizzaItem
             label="sauce"
             item={sauce}
             handleClick={selectCustomSauce}
             key={sauce.id}
+            index={i}
           />
         ))}
       </CustomPizzaList>

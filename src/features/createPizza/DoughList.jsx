@@ -26,12 +26,13 @@ function DoughList() {
         <h3>Doughs</h3>
       </StyledDoughsHeader>
       <CustomPizzaList>
-        {doughs.map((dough) => (
+        {doughs.map((dough, i) => (
           <CreatePizzaItem
             label="dough"
             item={dough}
             handleClick={selectCustomDough}
             key={dough.id}
+            index={i}
           />
         ))}
       </CustomPizzaList>

@@ -20,12 +20,13 @@ function CookList() {
     <div>
       <h3>Cook Styles</h3>
       <CustomPizzaList>
-        {cooks?.map((cook) => (
+        {cooks?.map((cook, i) => (
           <CreatePizzaItem
             label="cook"
             item={cook}
             handleClick={selectCookType}
             key={cook.id}
+            index={i}
           />
         ))}
       </CustomPizzaList>

@@ -1,14 +1,16 @@
-import DrinksHeader from "../features/drinks/DrinksHeader";
 import DrinksList from "../features/drinks/DrinksList";
 import styled from "styled-components";
 
 const StyledDrinks = styled.div`
   min-height: 100vh;
 `;
+const H2 = styled.h2`
+  padding: 0 3rem;
+`;
 function Drinks() {
   return (
     <StyledDrinks>
-      <DrinksHeader />
+      <H2>Drinks</H2>
       <DrinksList />
     </StyledDrinks>
   );
