@@ -8,7 +8,7 @@ const StyledFormRow = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 
-  height: ${(props) => props.fixedHeight && "100px"};
+  height: ${(props) => props.fixedheight && "100px"};
 `;
 
 const Label = styled.label`

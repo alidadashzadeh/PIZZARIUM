@@ -5,6 +5,8 @@ import { useState } from "react";
 import NavigationList from "../ui/NavigationList";
 import { useSignaturePizzas } from "../features/signaturePizza/useSignaturePizzas";
 import { motion, AnimatePresence } from "framer-motion";
+import PageTransition from "../ui/PageTransition";
+
 const StyledSignaturePizzas = styled.div`
   display: grid;
   grid-template-columns: 14rem 1fr;
@@ -37,7 +39,7 @@ function SignaturePizzas() {
   if (isLoading) return <Spinner />;
 
   return (
-    <>
+    <PageTransition>
       <H2>Signature Pizza</H2>
       <StyledSignaturePizzas>
         <NavigationList
@@ -54,7 +56,7 @@ function SignaturePizzas() {
           </AnimatePresence>
         </StyledPizzaList>
       </StyledSignaturePizzas>
-    </>
+    </PageTransition>
   );
 }
 

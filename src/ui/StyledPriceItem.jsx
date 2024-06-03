@@ -6,5 +6,7 @@ const StyledPrice = styled.span`
 `;
 
 export default function StyledPriceItem({ extraPrice }) {
-  return <StyledPrice>{extraPrice !== 0 ? extraPrice : "Free"}</StyledPrice>;
+  return (
+    <StyledPrice>{extraPrice !== 0 ? `$ ${extraPrice}` : "Free"}</StyledPrice>
+  );
 }

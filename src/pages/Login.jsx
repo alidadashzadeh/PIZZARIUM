@@ -8,6 +8,7 @@ const StyledLoginForm = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding: 4rem 6rem;
 `;
 
 function Login() {

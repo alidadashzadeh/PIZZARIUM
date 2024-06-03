@@ -8,6 +8,7 @@ import { useState } from "react";
 import UserCustomPizzaSettings from "../features/user/UserCustomPizzaSettings";
 import UserOrderSettings from "../features/user/UserOrderSettings";
 import NavigationList from "../ui/NavigationList";
+import PageTransition from "../ui/PageTransition";
 
 const StyledSettings = styled.div`
   display: grid;
@@ -29,26 +30,28 @@ const options = [
 function UserProfile() {
   const [selected, setSelected] = useState("userProfile");
   return (
-    <StyledSettings>
-      <NavigationList
-        options={options}
-        label="Settings"
-        selected={selected}
-        setSelected={setSelected}
-      />
-      <StyledForms>
-        {selected === "userProfile" && (
-          <>
-            <GeneralInformationForm />
-            <AvatarForm />
-            <UserPasswordForm />
-          </>
-        )}
-        {selected === "addresses" && <UserAddresInformationForm />}
-        {selected === "customPizzas" && <UserCustomPizzaSettings />}
-        {selected === "orders" && <UserOrderSettings />}
-      </StyledForms>
-    </StyledSettings>
+    <PageTransition>
+      <StyledSettings>
+        <NavigationList
+          options={options}
+          label="Settings"
+          selected={selected}
+          setSelected={setSelected}
+        />
+        <StyledForms>
+          {selected === "userProfile" && (
+            <>
+              <GeneralInformationForm />
+              <AvatarForm />
+              <UserPasswordForm />
+            </>
+          )}
+          {selected === "addresses" && <UserAddresInformationForm />}
+          {selected === "customPizzas" && <UserCustomPizzaSettings />}
+          {selected === "orders" && <UserOrderSettings />}
+        </StyledForms>
+      </StyledSettings>
+    </PageTransition>
   );
 }
 

@@ -23,10 +23,9 @@ const variations = {
     color: var(--color-text-white);
     background-color: var(--color-primary);
 
-    /* &:hover {
-      color: var(--color-grey-100);
+    &:hover {
       scale: 1.05;
-    } */
+    }
   `,
   secondary: css`
     color: var(--color-text-main);
@@ -34,26 +33,21 @@ const variations = {
     border: 2px solid var(--color-primary);
 
     &:hover {
-      background-color: var(--color-primary);
+      color: var(--color-primary);
       scale: 1.05;
     }
   `,
   danger: css`
     color: var(--color-red-100);
     background-color: var(--color-red-700);
-
-    /* &:hover {
-      background-color: var(--color-red-800);
-    } */
   `,
 };
 
-// export const Button = styled.button`
 export const Button = styled.button`
   border: none;
   border-radius: 50px;
-  transition: all 0.2s;
   cursor: pointer;
+  transition: all 0.1s;
 
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}

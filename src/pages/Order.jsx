@@ -7,6 +7,7 @@ import SignaturePizzaOrderItem from "../features/order/SignaturePizzaOrderItem";
 import CustomPizzaOrderItem from "../features/order/CustomPizzaOrderItem";
 import DrinkOrderItem from "../features/order/DrinkOrderItem";
 import { motion, AnimatePresence } from "framer-motion";
+import PageTransition from "../ui/PageTransition";
 
 const StyledOrder = styled.div`
   display: grid;
@@ -32,7 +33,7 @@ function Order() {
   if (currentOrder.length === 0) return <EmptyOrderList />;
 
   return (
-    <>
+    <PageTransition>
       <Process step="cart" />
       <H2>Shopping Cart</H2>
       <StyledOrder>
@@ -59,7 +60,7 @@ function Order() {
           <OrderSummary step="cart" />
         </div>
       </StyledOrder>
-    </>
+    </PageTransition>
   );
 }
 

@@ -22,16 +22,16 @@ const StyledProcess = styled.div`
   margin: 0 auto;
   position: relative;
 
-  &::after {
+  /* &::after {
     display: block;
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--color-grey-200);
+    background-color: red;
     position: absolute;
     z-index: -10;
     top: 25%;
-  }
+  } */
 `;
 
 const Items = styled.div`

@@ -32,16 +32,14 @@ const NavText = styled.div`
 `;
 
 const navOptions = [
-  { label: "HOME", path: "/home" },
-  { label: "SIGNATURE PIZZA", path: "/signature-pizzas" },
-  { label: "CREATE PIZZA", path: "/create-your-pizza" },
-  { label: "DRINKS", path: "/drinks" },
+  { label: "Home", path: "/home" },
+  { label: "Signature Pizza", path: "/signature-pizzas" },
+  { label: "Create Pizza", path: "/create-your-pizza" },
+  { label: "Drinks", path: "/drinks" },
 ];
 
 function Navbar() {
   const location = useLocation();
-
-  console.log(location.pathname.slice(1));
 
   return (
     <StyledNav>
@@ -51,7 +49,7 @@ function Navbar() {
             <StyledNavlink to={el.path}>
               <NavText>{el.label}</NavText>
               {location.pathname === el.path && (
-                <Dot as={motion.div} layoutId="navdot" />
+                <Dot as={motion.div} layoutId="navdott" />
               )}
             </StyledNavlink>
           </li>

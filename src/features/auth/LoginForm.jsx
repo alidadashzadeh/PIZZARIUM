@@ -1,50 +1,32 @@
-import { Input } from "../../ui/Input";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import FormRow from "../../ui/FormRow";
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
 import { useLogin } from "./useLogin";
+import { Button } from "../../ui/Button";
+import { StyledInput } from "../../ui/StyledInput";
+import InputLeftIcon from "../../ui/InputLeftIcon";
 
+const Container = styled.div`
+  width: 25%;
+`;
 const Form = styled.form`
-  width: 100%;
   margin: 0 auto;
-  padding: 4.6rem 2.4rem;
-  /* border: 1px solid var(--color-yellow-700); */
-  /* border-radius: 20px; */
 `;
 
 const StyledEmailIcon = styled(CiMail)`
-  position: absolute;
-  color: grey;
-  font-size: 22px;
-  top: 36%;
-  left: 10px;
+  font-size: 20px;
 `;
 
 const StyledPasswordIcon = styled(CiLock)`
-  position: absolute;
-  color: grey;
-  font-size: 22px;
-  top: 36%;
-  left: 10px;
+  font-size: 20px;
 `;
 
-const StyledButton = styled.button`
-  border: none;
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s;
-  color: var(--color-grey-700);
-  background-color: var(--color-yellow-700);
-  font-size: 1.6rem;
-  padding: 1.2rem 2.4rem;
-  font-weight: 500;
-  width: 100%;
-
-  &:hover {
-    color: #fff;
-  }
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 `;
 
 function LoginForm({ location }) {
@@ -61,38 +43,51 @@ function LoginForm({ location }) {
     console.log(error);
   }
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormRow label="Email Address *" error={errors?.email?.message}>
-        <Input
-          type="text"
-          id="email"
-          placeholder="jsonmose87@gmail.com"
-          defaultValue="alidadashzadeh94@gmail.com"
-          {...register("email", {
-            required: "this field is required",
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: "Please provide a valid email address",
-            },
-          })}
-        />
-        <StyledEmailIcon />
-      </FormRow>
-      <FormRow label="Password *" error={errors?.password?.message}>
-        <Input
-          type="password"
-          id="password"
-          placeholder="Password"
-          defaultValue="1111111111"
-          {...register("password", { required: "this field is required" })}
-        />
-        <StyledPasswordIcon />
-      </FormRow>
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <FormRow
+          label="Email Address *"
+          error={errors?.email?.message}
+          fixedheight={true}
+        >
+          <StyledInput
+            type="text"
+            id="email"
+            placeholder="jsonmose87@gmail.com"
+            defaultValue="alidadashzadeh94@gmail.com"
+            {...register("email", {
+              required: "this field is required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Please provide a valid email address",
+              },
+            })}
+          />
+          <InputLeftIcon>
+            <StyledEmailIcon />
+          </InputLeftIcon>
+        </FormRow>
 
-      <StyledButton type="submit" disabled={isLogingin}>
-        Sign in
-      </StyledButton>
-    </Form>
+        <FormRow label="Password *" error={errors?.password?.message}>
+          <StyledInput
+            type="password"
+            id="password"
+            placeholder="Password"
+            defaultValue="1111111111"
+            {...register("password", { required: "this field is required" })}
+          />
+          <InputLeftIcon>
+            <StyledPasswordIcon />
+          </InputLeftIcon>
+        </FormRow>
+
+        <StyledDiv>
+          <Button size="small" type="submit" disabled={isLogingin}>
+            Sign in
+          </Button>
+        </StyledDiv>
+      </Form>
+    </Container>
   );
 }
 

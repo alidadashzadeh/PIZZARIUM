@@ -6,6 +6,11 @@ import ButtonGroup from "../../ui/ButtonGroup";
 import { Button } from "../../ui/Button";
 import { useChangePassword } from "./useChangePassword";
 import { useUser } from "../auth/useUser";
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { CiLock } from "react-icons/ci";
+import { useState } from "react";
+import InputLeftIcon from "../../ui/InputLeftIcon";
 
 const Form = styled.form`
   border-bottom: 2px solid var(--color-text-grey);
@@ -16,6 +21,33 @@ const Form = styled.form`
   gap: 1rem;
 `;
 
+const StyledInput = styled(Input)`
+  padding-left: 2rem;
+`;
+const StyledLock = styled(CiLock)`
+  position: absolute;
+  z-index: 5;
+  font-size: 20px;
+`;
+const StyledEyeIconOpen = styled(IoEyeOutline)`
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  z-index: 5;
+  font-size: 20px;
+  cursor: pointer;
+  color: grey;
+`;
+const StyledEyeIconClose = styled(IoEyeOffOutline)`
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  z-index: 5;
+  font-size: 20px;
+  cursor: pointer;
+  color: grey;
+`;
+
 const StyledButtonGroup = styled(ButtonGroup)`
   align-self: flex-end;
 `;
@@ -23,12 +55,15 @@ const FormTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
 `;
-const FlexItem = styled.div`
+
+const GridItem = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
 `;
+
 function UserPasswordSettingsForm() {
+  const [showPasswrod, setShowPassword] = useState(false);
   const { register, handleSubmit, formState, reset, getValues } = useForm();
   const { errors } = formState;
 
@@ -49,10 +84,17 @@ function UserPasswordSettingsForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormTitle>Password</FormTitle>
-      <FlexItem>
-        <FormRow label="New Password" error={errors?.newPassword?.message}>
-          <Input
-            type="password"
+      <GridItem>
+        <FormRow
+          label="New Password"
+          error={errors?.newPassword?.message}
+          fixedheight={true}
+        >
+          <InputLeftIcon>
+            <StyledLock />
+          </InputLeftIcon>
+          <StyledInput
+            type={showPasswrod ? "text" : "password"}
             id="newPassword"
             {...register("newPassword", {
               required: "this field is required",
@@ -62,14 +104,22 @@ function UserPasswordSettingsForm() {
               },
             })}
           />
+          {showPasswrod ? (
+            <StyledEyeIconClose onClick={() => setShowPassword(false)} />
+          ) : (
+            <StyledEyeIconOpen onClick={() => setShowPassword(true)} />
+          )}
         </FormRow>
 
         <FormRow
           label="Re-enter New Password"
           error={errors?.confirmNewPassword?.message}
         >
-          <Input
-            type="password"
+          <InputLeftIcon>
+            <StyledLock />
+          </InputLeftIcon>
+          <StyledInput
+            type={showPasswrod ? "text" : "password"}
             id="confirmNewPassword"
             {...register("confirmNewPassword", {
               required: "This field is required",
@@ -77,8 +127,13 @@ function UserPasswordSettingsForm() {
                 value === getValues().newPassword || "password need to match",
             })}
           />
+          {showPasswrod ? (
+            <StyledEyeIconClose onClick={() => setShowPassword(false)} />
+          ) : (
+            <StyledEyeIconOpen onClick={() => setShowPassword(true)} />
+          )}
         </FormRow>
-      </FlexItem>
+      </GridItem>
 
       <StyledButtonGroup>
         <Button

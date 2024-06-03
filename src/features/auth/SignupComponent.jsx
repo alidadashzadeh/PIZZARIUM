@@ -2,11 +2,14 @@ import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import SignupForm from "./SignupForm";
 
+const MainContainer = styled.div`
+  width: 25%;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 1rem;
   gap: 0.5rem;
 
   ${(props) =>
@@ -40,8 +43,8 @@ export default function SignupComponent() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <SignupForm />
+    <MainContainer>
+      <SignupForm direction="vertical" />
       <Container direction="vertical">
         <Terms>By clicking Register, You agree to accept PIZZARIUM's</Terms>
         <TermsButton
@@ -55,6 +58,6 @@ export default function SignupComponent() {
       <StyledMessage onClick={() => navigate("/login")}>
         Already has an Account? <StyledStrong>Login</StyledStrong>
       </StyledMessage>
-    </>
+    </MainContainer>
   );
 }

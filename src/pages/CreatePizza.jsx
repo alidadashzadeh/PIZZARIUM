@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import CrustList from "../features/createPizza/CrustList";
 import DoughList from "../features/createPizza/DoughList";
 import SauceList from "../features/createPizza/SauceList";
@@ -8,6 +9,7 @@ import CustomPizzaSummary from "../features/createPizza/CustomPizzaSummary";
 import styled from "styled-components";
 import CookList from "../features/createPizza/CookList";
 import NavigationList from "../ui/NavigationList";
+import PageTransition from "../ui/PageTransition";
 
 const StyledCreatePizza = styled.div`
   display: grid;
@@ -28,7 +30,7 @@ const options = [
 function CreatePizza() {
   const [selected, setSelected] = useState("toppings");
   return (
-    <>
+    <PageTransition>
       <H2>Cretae Your Own Pizza</H2>
       <StyledCreatePizza>
         <NavigationList
@@ -46,7 +48,7 @@ function CreatePizza() {
         {selected === "cook" && <CookList />}
         <CustomPizzaSummary />
       </StyledCreatePizza>
-    </>
+    </PageTransition>
   );
 }
 

@@ -8,13 +8,14 @@ const StyledSignup = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding: 4rem 6rem;
 `;
 
 function Signup() {
   return (
     <StyledSignup>
       <SignupHeader />
-      <SignupComponent />
+      <SignupComponent direction="vertical" />
     </StyledSignup>
   );
 }

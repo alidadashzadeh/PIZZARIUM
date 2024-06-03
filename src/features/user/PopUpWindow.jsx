@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { IoMdSettings } from "react-icons/io";
 import { CiLogout } from "react-icons/ci";
 import { useLogout } from "../auth/useLogout";
@@ -62,7 +63,12 @@ export default function PopUpWindow({ currentUserInfo }) {
 
   console.log(isDarkMode);
   return (
-    <StyledPopup>
+    <StyledPopup
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Center>
         {currentUserInfo?.avatar ? (
           <Avatar size="76" />

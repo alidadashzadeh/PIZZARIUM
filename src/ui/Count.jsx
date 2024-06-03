@@ -8,7 +8,8 @@ import { useOrder } from "../context/OrderContext";
 const Counter = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0.5rem 0;
 `;
 
@@ -29,6 +30,7 @@ function Count({ onPlusClick, onMinusClick, quantity, item }) {
     <Counter>
       <StyledIconMinus onClick={item ? handleMinus : onMinusClick} />
       <CountInput value={item ? item.quantity : quantity} />
+      {/* <Test i={item ? item.quantity : quantity} /> */}
       <StyledIconPlus onClick={item ? handlePlus : onPlusClick} />
     </Counter>
   );

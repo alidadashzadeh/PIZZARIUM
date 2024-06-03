@@ -4,6 +4,7 @@ import PaymentForm from "../ui/PaymentForm";
 import Process from "../features/order/Process";
 import { useOrder } from "../context/OrderContext";
 import { useEffect } from "react";
+import PageTransition from "../ui/PageTransition";
 
 const StyledPayment = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ export default function Payment() {
   );
 
   return (
-    <>
+    <PageTransition>
       <Process step="payment" />
       <H2>Payment Details</H2>
       <StyledPayment>
@@ -43,6 +44,6 @@ export default function Payment() {
           <img src="hero.jpeg" />
         </StyledAd>
       </StyledPayment>
-    </>
+    </PageTransition>
   );
 }

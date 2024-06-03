@@ -12,43 +12,37 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Button } from "../../ui/Button";
+import InputLeftIcon from "../../ui/InputLeftIcon";
+import { StyledInput } from "../../ui/StyledInput";
 
 const Form = styled.form`
   margin: 0 auto;
-  padding: 4.6rem 2.4rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* gap: 1rem; */
+  padding: 1rem;
 `;
 
 const FlexItem = styled.div`
   display: flex;
   gap: 1rem;
-  flex-direction: ${(props) => props.vertical && "column"};
+  flex-direction: ${(props) =>
+    props.direction === "vertical" ? "column" : null};
 `;
 
 const StyledUserIcon = styled(CiUser)`
   position: absolute;
-  color: grey;
-  font-size: 22px;
-  top: 50%;
-  left: 10px;
+  font-size: 20px;
 `;
 
 const StyledEmailIcon = styled(CiMail)`
   position: absolute;
-  color: grey;
-  font-size: 24px;
-  top: 50%;
-  left: 6px;
+  font-size: 20px;
 `;
 
 const StyledPasswordIcon = styled(CiLock)`
   position: absolute;
-  color: grey;
   font-size: 22px;
-  top: 50%;
-  left: 10px;
 `;
 
 const StyledEyeOpenIcon = styled(IoEyeOutline)`
@@ -73,13 +67,14 @@ const StyledEyeCloseIcon = styled(IoEyeOffOutline)`
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${(props) =>
+    props.direction === "vertical" ? "center" : "flex-end"};
   align-items: center;
   padding-top: 1rem;
   gap: 0.5rem;
 `;
 
-function SignupForm({ vertical }) {
+function SignupForm({ direction }) {
   const [ShowPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
@@ -101,9 +96,9 @@ function SignupForm({ vertical }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FlexItem vertical={vertical}>
+      <FlexItem direction={direction}>
         <FormRow label="Full Name *" error={errors?.fullName?.message}>
-          <Input
+          <StyledInput
             type="text"
             id="fullName"
             placeholder="Jason Mose"
@@ -111,10 +106,12 @@ function SignupForm({ vertical }) {
               required: "this field is required",
             })}
           />
-          <StyledUserIcon />
+          <InputLeftIcon>
+            <StyledUserIcon />
+          </InputLeftIcon>
         </FormRow>
         <FormRow label="Email Address *" error={errors?.email?.message}>
-          <Input
+          <StyledInput
             type="text"
             id="email"
             placeholder="jsonmose87@gmail.com"
@@ -126,10 +123,13 @@ function SignupForm({ vertical }) {
               },
             })}
           />
-          <StyledEmailIcon />
+
+          <InputLeftIcon>
+            <StyledEmailIcon />
+          </InputLeftIcon>
         </FormRow>
         <FormRow label="Password *" error={errors?.password?.message}>
-          <Input
+          <StyledInput
             type={ShowPassword ? "text" : "password"}
             id="password"
             placeholder="Password"
@@ -141,7 +141,10 @@ function SignupForm({ vertical }) {
               },
             })}
           />
-          <StyledPasswordIcon />
+
+          <InputLeftIcon>
+            <StyledPasswordIcon />
+          </InputLeftIcon>
           {ShowPassword ? (
             <StyledEyeCloseIcon onClick={handleClickEye} />
           ) : (
@@ -150,7 +153,7 @@ function SignupForm({ vertical }) {
         </FormRow>
       </FlexItem>
 
-      <Container>
+      <Container direction={direction}>
         <Button size="small" variation="secondary" onClick={handleCancel}>
           Clear
         </Button>

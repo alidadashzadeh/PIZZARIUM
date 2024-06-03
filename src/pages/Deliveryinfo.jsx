@@ -8,6 +8,8 @@ import UserAddressForm from "../features/user/UserAddressForm";
 import { Button } from "../ui/Button";
 import { useOrder } from "../context/OrderContext";
 import EmptyDelivery from "../features/order/EmptyDelivery";
+import { motion, AnimatePresence } from "framer-motion";
+import PageTransition from "../ui/PageTransition";
 
 const StyledDeliveryInfo = styled.div`
   display: grid;
@@ -60,7 +62,7 @@ export default function Deliveryinfo() {
 
   if (!currentUserData) return <EmptyDelivery />;
   return (
-    <>
+    <PageTransition>
       <Process step="delivery" />
       <H2>Delivery Details</H2>
       <StyledDeliveryInfo>
@@ -77,17 +79,30 @@ export default function Deliveryinfo() {
           <div>
             <Select options={addressOptions} onChange={handleSelect} />
           </div>
-          <div>
-            {!showForm && (
-              <Button onClick={() => setShowForm(true)}>Add New Address</Button>
+          <AnimatePresence mode="wait" initial={false}>
+            <div>
+              {!showForm && (
+                <Button
+                  as={motion.button}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  onClick={() => setShowForm(true)}
+                  key={showForm}
+                >
+                  Add New Address
+                </Button>
+              )}
+            </div>
+            {showForm && (
+              <UserAddressForm setShowForm={setShowForm} key={showForm} />
             )}
-          </div>
-          {showForm && <UserAddressForm setShowForm={setShowForm} />}
+          </AnimatePresence>
         </AddressInfo>
         <div>
           <OrderSummary step="delivery" />
         </div>
       </StyledDeliveryInfo>
-    </>
+    </PageTransition>
   );
 }

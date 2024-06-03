@@ -6,6 +6,7 @@ import { Button } from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import { useAddNewAddress } from "./useAddNewAddress";
 import { useUser } from "../auth/useUser";
+import { motion } from "framer-motion";
 
 const Form = styled.form`
   margin: 0 auto;
@@ -14,6 +15,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  transform-origin: top;
 `;
 
 const FlexItem = styled.div`
@@ -52,7 +54,13 @@ function UserAddressForm({ setShowForm }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      as={motion.form}
+      initial={{ scaleY: 0 }}
+      animate={{ scaleY: 1 }}
+      exit={{ scaleY: 0 }}
+    >
       <FlexItem>
         <FormRow label="Unit #" error={errors?.unit?.message}>
           <Input

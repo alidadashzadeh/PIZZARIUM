@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import PopUpWindow from "../features/user/PopUpWindow";
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 const StyledUserInfo = styled.div`
   display: flex;
@@ -34,8 +35,9 @@ function UserInfo() {
       onMouseLeave={() => setShowPopup(false)}
     >
       {currentUserInfo?.avatar ? <Avatar size="48" /> : <UserIcon size={42} />}
-
-      {showPopup && <PopUpWindow currentUserInfo={currentUserInfo} />}
+      <AnimatePresence>
+        {showPopup && <PopUpWindow currentUserInfo={currentUserInfo} />}
+      </AnimatePresence>
     </StyledUserInfo>
   );
 }

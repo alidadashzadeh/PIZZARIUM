@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { useOrder } from "../context/OrderContext";
-import { Button } from "./Button";
 
 const SizeFlex = styled.div`
   display: flex;

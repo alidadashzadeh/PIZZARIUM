@@ -1,22 +1,11 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import GlobalStyles from "./styles/GlobalStyles";
-
-import AppLayout from "./pages/AppLayout";
-import SignaturePizzas from "./pages/SignaturePizzas";
-import SignaturePizza from "./pages/SignaturePizza";
-import CreatePizza from "./pages/CreatePizza";
-import Drinks from "./pages/Drinks";
 import { OrderProvider } from "./context/OrderContext";
+import GlobalStyles from "./styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import UserProfile from "./pages/UserProfile";
-import Home from "./pages/Home";
-import Order from "./pages/Order";
-import Deliveryinfo from "./pages/Deliveryinfo";
-import Payment from "./pages/Payment";
+
+import AnimatedRoutes from "./pages/AnimatedRoutes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,25 +19,7 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyles />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<AppLayout />}>
-              <Route index element={<Navigate replace to="home" />} />
-              <Route path="home" element={<Home />} />
-              <Route path="signature-pizzas" element={<SignaturePizzas />} />
-              <Route
-                path="signature-pizzas/:pizzaId"
-                element={<SignaturePizza />}
-              />
-              <Route path="create-your-pizza" element={<CreatePizza />} />
-              <Route path="drinks" element={<Drinks />} />
-              <Route path="order" element={<Order />} />
-              <Route path="deliveryInfo" element={<Deliveryinfo />} />
-              <Route path="Payment" element={<Payment />} />
-              <Route path="/userprofile" element={<UserProfile />}></Route>
-            </Route>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       </QueryClientProvider>
       <Toaster
