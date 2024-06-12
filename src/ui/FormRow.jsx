@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 const StyledFormRow = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
+  flex-basis: 100%;
   height: ${(props) => props.fixedheight && "100px"};
 `;
 
@@ -26,7 +27,18 @@ function FormRow({ label, error, children, ...props }) {
     <StyledFormRow {...props}>
       {label ? <Label htmlFor={children.id}>{label}</Label> : null}
       {children}
-      {error ? <Error>{error}</Error> : null}
+      <AnimatePresence>
+        {error ? (
+          <Error
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {error}
+          </Error>
+        ) : null}
+      </AnimatePresence>
     </StyledFormRow>
   );
 }

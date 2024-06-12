@@ -10,7 +10,9 @@ const StyledAppLayout = styled.div`
   background-color: var(--color-background);
 `;
 
-const Main = styled.main``;
+const Main = styled.main`
+  min-height: 100vh;
+`;
 
 function AppLayout() {
   return (

@@ -13,18 +13,17 @@ const H2 = styled.h2`
   padding: 1rem 2rem;
 `;
 const StyledInfo = styled.div`
+  margin: 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
 const Message = styled.div`
-  width: 55%;
+  width: 60%;
   border-radius: 5px;
   border: 2px solid red;
   line-height: 1.3rem;
-  margin: 0 auto;
-  margin: 0 2rem;
   padding: 1rem 2rem;
 `;
 const SummaryContainer = styled.div``;

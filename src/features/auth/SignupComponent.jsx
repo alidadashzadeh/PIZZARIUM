@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import SignupForm from "./SignupForm";
 
 const MainContainer = styled.div`
-  width: 25%;
+  width: 65%;
 `;
 
 const Container = styled.div`
@@ -20,6 +20,7 @@ const Container = styled.div`
 `;
 const Terms = styled.div`
   font-size: 12px;
+  padding-top: 1rem;
 `;
 
 const TermsButton = styled.div`

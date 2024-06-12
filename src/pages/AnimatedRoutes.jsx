@@ -12,6 +12,7 @@ import Home from "./Home";
 import Order from "./Order";
 import Deliveryinfo from "./Deliveryinfo";
 import Payment from "./Payment";
+import Receipt from "./Receipt";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -31,7 +32,8 @@ export default function AnimatedRoutes() {
           <Route path="order" element={<Order />} />
           <Route path="deliveryInfo" element={<Deliveryinfo />} />
           <Route path="Payment" element={<Payment />} />
-          <Route path="/userprofile" element={<UserProfile />}></Route>
+          <Route path="/userprofile/:userId" element={<UserProfile />}></Route>
+          <Route path="/receipt/:orderId" element={<Receipt />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

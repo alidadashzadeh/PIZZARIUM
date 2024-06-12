@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import { Input } from "../../ui/Input";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import FormRow from "../../ui/FormRow";
@@ -16,11 +15,8 @@ import InputLeftIcon from "../../ui/InputLeftIcon";
 import { StyledInput } from "../../ui/StyledInput";
 
 const Form = styled.form`
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* gap: 1rem; */
-  padding: 1rem;
 `;
 
 const FlexItem = styled.div`
@@ -49,7 +45,7 @@ const StyledEyeOpenIcon = styled(IoEyeOutline)`
   position: absolute;
   color: grey;
   font-size: 24px;
-  top: 50%;
+  top: 35px;
   right: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -59,7 +55,7 @@ const StyledEyeCloseIcon = styled(IoEyeOffOutline)`
   position: absolute;
   color: grey;
   font-size: 24px;
-  top: 50%;
+  top: 35px;
   right: 10px;
   cursor: pointer;
   transition: all 0.2s;

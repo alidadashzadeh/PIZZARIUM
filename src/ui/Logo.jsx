@@ -31,7 +31,7 @@ const LogoNote = styled.div`
 function Logo() {
   return (
     <StyledLogo>
-      <StyledImg src="logo.png" />
+      <StyledImg src="/logo.png" />
       <FlexItem>
         <LogoText>PIZZARIUM</LogoText>
         <LogoNote>a tasty one</LogoNote>

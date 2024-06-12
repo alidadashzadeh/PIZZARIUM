@@ -13,6 +13,7 @@ function OrderProvider({ children }) {
     const storedTodos = localStorage.getItem("order");
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
+  const [currentOrderId, setCurrentOrderId] = useState();
   const [selectedAddress, setSelectedAddress] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -76,6 +77,10 @@ function OrderProvider({ children }) {
     }
 
     setOrder((s) => [...s, newItem]);
+  }
+
+  function resetOrder() {
+    setOrder([]);
   }
 
   function increaseQuantity(id) {
@@ -248,6 +253,9 @@ function OrderProvider({ children }) {
         resetCustomPizza,
         isDarkMode,
         setIsDarkMode,
+        resetOrder,
+        currentOrderId,
+        setCurrentOrderId,
       }}
     >
       {children}

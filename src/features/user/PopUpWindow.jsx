@@ -1,15 +1,24 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { IoMdSettings } from "react-icons/io";
 import { CiLogout } from "react-icons/ci";
 import { useLogout } from "../auth/useLogout";
 import { useNavigate } from "react-router-dom";
 import Avatar from "../../ui/Avatar";
 import { UserIcon } from "../../ui/UserIcon";
-import DarkToggle from "../../ui/DarkToggle";
 import { useOrder } from "../../context/OrderContext";
+import { GoSun } from "react-icons/go";
+import { FaRegMoon } from "react-icons/fa";
+import { useUser } from "../auth/useUser";
 
+const StyledMoon = styled(FaRegMoon)`
+  font-size: 28px;
+`;
+
+const StyledSun = styled(GoSun)`
+  font-size: 28px;
+`;
 const StyledPopup = styled.div`
   position: absolute;
   top: 100%;
@@ -60,8 +69,8 @@ export default function PopUpWindow({ currentUserInfo }) {
   const { logout } = useLogout();
   const navigate = useNavigate();
   const { isDarkMode, setIsDarkMode } = useOrder();
+  const { user } = useUser();
 
-  console.log(isDarkMode);
   return (
     <StyledPopup
       as={motion.div}
@@ -80,7 +89,7 @@ export default function PopUpWindow({ currentUserInfo }) {
         <UserNameText>{currentUserInfo?.fullName}</UserNameText>
         <UserEmailText>@{currentUserInfo?.email.split("@")[0]}</UserEmailText>
       </Center>
-      <FlexItem onClick={() => navigate("/userprofile")}>
+      <FlexItem onClick={() => navigate(`/userprofile/${user?.user?.id}`)}>
         <span>Settings</span>
         <StyledSettingIcon />
       </FlexItem>
@@ -90,7 +99,27 @@ export default function PopUpWindow({ currentUserInfo }) {
         }}
       >
         <span>Dark Mode</span>
-        <DarkToggle />
+        <AnimatePresence mode="wait">
+          {isDarkMode ? (
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.1 } }}
+              exit={{ opacity: 0, y: 100, transition: { duration: 0.1 } }}
+              key="moon"
+            >
+              <StyledMoon />
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.1 } }}
+              exit={{ opacity: 0, y: -100, transition: { duration: 0.1 } }}
+              key="sun"
+            >
+              <StyledSun />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </FlexItem>
       <FlexItem onClick={logout}>
         <span>Logout</span>

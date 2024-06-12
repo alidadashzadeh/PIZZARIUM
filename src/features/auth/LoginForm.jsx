@@ -8,9 +8,7 @@ import { Button } from "../../ui/Button";
 import { StyledInput } from "../../ui/StyledInput";
 import InputLeftIcon from "../../ui/InputLeftIcon";
 
-const Container = styled.div`
-  width: 25%;
-`;
+const Container = styled.div``;
 const Form = styled.form`
   margin: 0 auto;
 `;

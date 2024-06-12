@@ -69,12 +69,13 @@ function OrderSummary({ step }) {
         <span>$ {(totalPrice * 1.13).toFixed(2)}</span>
       </Row>
 
-      <Button onClick={handleClick}>
+      <Button onClick={step !== "empty" ? handleClick : null}>
         {step === "cart" && (
           <span>
             Next (<Strong>Delivery</Strong>)
           </span>
         )}
+        {step === "empty" && <span>No Item Yet</span>}
         {/* go to payment only if there is a user logged in and an address selected */}
         {step === "delivery" && (
           <span>

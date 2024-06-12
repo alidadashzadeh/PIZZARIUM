@@ -10,9 +10,9 @@ function LoginHeader() {
   return (
     <>
       <UserIcon size={84} />
-      <H1>PIZZARIUM</H1>
+      {/* <H1>PIZZARIUM</H1> */}
       {/* <Logo /> */}
-      <span>Login to your account</span>
+      <h2>Login to your account</h2>
     </>
   );
 }

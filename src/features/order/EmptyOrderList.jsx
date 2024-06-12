@@ -15,7 +15,7 @@ export default function EmptyOrderList() {
         Your shopping cart is empty, Try some of our signature pizzas and Enjoy
       </h2>
       <div>
-        <OrderSummary />
+        <OrderSummary step="empty" />
       </div>
     </StyledEmpty>
   );

@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
+const MainContainer = styled.div`
+  width: 65%;
+`;
+
 const StyledMessage = styled.div`
   text-align: center;
   font-size: 14px;
@@ -9,8 +13,10 @@ const StyledMessage = styled.div`
   padding-right: 1rem;
 `;
 
-const StyledSpan = styled.span`
+const StyledSpan = styled.div`
   font-size: 14px;
+  text-align: center;
+  padding-top: 1rem;
 `;
 
 const StyledStrong = styled.span`
@@ -24,7 +30,7 @@ export default function LoginComponent() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <MainContainer>
       <LoginForm />
       <StyledSpan>Forgot your Password?</StyledSpan>
       <StyledMessage>
@@ -33,6 +39,6 @@ export default function LoginComponent() {
           Create An Account
         </StyledStrong>
       </StyledMessage>
-    </>
+    </MainContainer>
   );
 }

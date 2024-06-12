@@ -7,8 +7,8 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useOrder } from "../context/OrderContext";
 import { totalOrderCost } from "../utils/orderCalculations";
-// import { useCreateOrder } from "../features/order/useCreateOrder";
-// import { useUser } from "../features/auth/useUser";
+import { useCreateOrder } from "../features/order/useCreateOrder";
+import { useUser } from "../features/auth/useUser";
 
 const StyledPayment = styled.div`
   display: flex;
@@ -49,14 +49,23 @@ export default function PaymentForm() {
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
-  const { order: currentOrder } = useOrder();
-  const totalPrice = totalOrderCost(currentOrder);
-  // const { createOrder, isLoading } = useCreateOrder();
-  // const { user } = useUser();
+  const { order, selectedAddress, resetOrder } = useOrder();
+  const totalPrice = totalOrderCost(order);
+  const { createOrder, isLoading } = useCreateOrder();
+  const { user } = useUser();
 
-  function onSubmit() {
-    reset();
-    // createOrder({ currentOrder, user, selectedAddress });
+  function onSubmit(data) {
+    createOrder(
+      { order, user, selectedAddress, cardInfo: data },
+      {
+        onSuccess: (data) => {
+          console.log(data);
+          navigate(`/receipt/${data.id}`);
+          resetOrder();
+          reset();
+        },
+      }
+    );
   }
   return (
     <StyledPayment>
@@ -94,16 +103,17 @@ export default function PaymentForm() {
             <Input
               type="text"
               placeholder="1234 5678 9012 3456"
+              defaultValue={"1234567890123456"}
               {...register("cardNumber", {
                 required: "This field is required",
-                // minLength: {
-                //   value: 16,
-                //   message: "Card Number Not correct",
-                // },
-                // maxLength: {
-                //   value: 16,
-                //   message: "Card Number Not correct",
-                // },
+                minLength: {
+                  value: 16,
+                  message: "Card Number Not correct",
+                },
+                maxLength: {
+                  value: 16,
+                  message: "Card Number Not correct",
+                },
               })}
             />
           </FormRow>
@@ -115,6 +125,7 @@ export default function PaymentForm() {
             <Input
               type="text"
               placeholder="MM / YYYY"
+              defaultValue={1124}
               {...register("expiryDate", {
                 required: "This field is required",
               })}
@@ -124,6 +135,7 @@ export default function PaymentForm() {
             <Input
               type="text"
               placeholder="888"
+              defaultValue={333}
               {...register("CVV", {
                 required: "This field is required",
               })}
@@ -137,6 +149,7 @@ export default function PaymentForm() {
             <Input
               type="text"
               placeholder="888"
+              defaultValue={"anna Lucas"}
               {...register("name", {
                 required: "This field is required",
               })}
@@ -145,7 +158,7 @@ export default function PaymentForm() {
         </GridItem>
 
         <div>
-          <Button type="submit">
+          <Button type="submit" disabled={isLoading}>
             Make Payment ($ {(totalPrice * 1.13).toFixed(2)})
           </Button>
         </div>

@@ -16,7 +16,7 @@ const H2 = styled.h2`
   padding: 1rem 2rem;
 `;
 const StyledAd = styled.div`
-  padding: 4rem;
+  padding: 0 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
