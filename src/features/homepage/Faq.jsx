@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
 import FaqItem from "./FaqItem";
 import { Button } from "../../ui/Button";
 
-const MotionFaqItem = motion(FaqItem);
 const StyledFaq = styled.div`
   padding: 6rem 4rem;
   display: flex;
@@ -50,21 +48,18 @@ const Faqs = [
 
 export default function Faq() {
   return (
-    <StyledFaq>
+    <StyledFaq
+      as={motion.div}
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opcaity: 1, y: 0, transition: { duration: 1 } }}
+    >
       <H2>FAQs</H2>
       <P>
         Find answers to common questions about delivery areas, payment methods,
         and customizing your pizza.
       </P>
       {Faqs.map((faq, i) => (
-        <MotionFaqItem
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          question={faq.question}
-          answer={faq.answer}
-          key={i}
-        />
+        <FaqItem question={faq.question} answer={faq.answer} key={i} />
       ))}
       <H2>Still have question?</H2>
       <P>Contact our support team for further assistance.</P>
