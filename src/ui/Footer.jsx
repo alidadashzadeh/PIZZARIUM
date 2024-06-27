@@ -13,9 +13,25 @@ const StyledFooter = styled.div`
   border-bottom: 1px solid #000;
   align-items: center;
   grid-column: 1/-1;
-  background-color: var(--color-grey-200);
+  background-color: var(--color-grey-100);
+  gap: 2rem;
+  margin-top: 1rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
+const FlexItemColumn1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    grid-row: 1;
+    grid-column: 1/-1;
+  }
+`;
 const FlexItemColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,7 +49,8 @@ const NavText = styled.div`
 
 const Rights = styled.div`
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
   align-items: center;
   padding: 4px;
   grid-column: 1/-1;
@@ -46,7 +63,7 @@ const SmallText = styled.span`
 export default function Footer() {
   return (
     <StyledFooter>
-      <FlexItemColumn>
+      <FlexItemColumn1>
         <Logo />
         <span>
           Stay up to date on the latest features and release by joining our
@@ -60,7 +77,7 @@ export default function Footer() {
           By clicking Subscribe button, you confirm that you agree to our Terms
           and conditions.
         </SmallText>
-      </FlexItemColumn>
+      </FlexItemColumn1>
       <FlexItemColumn>
         <h3>Links</h3>
         <NavLink to="/home">
@@ -76,7 +93,6 @@ export default function Footer() {
           <NavText>Drinks</NavText>
         </NavLink>
       </FlexItemColumn>
-
       <FlexItemColumn>
         <FooterSocialMedia />
       </FlexItemColumn>

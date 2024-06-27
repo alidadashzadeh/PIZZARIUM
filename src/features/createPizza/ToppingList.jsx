@@ -14,6 +14,11 @@ const StyledContainer = styled.div`
   &::-webkit-scrollbar {
     width: 0;
   }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    grid-row: 2;
+    grid-column: 1/-1;
+  }
 `;
 
 const StyledToppingsHeader = styled.div`

@@ -7,10 +7,17 @@ import Header from "../ui/Header";
 const StyledLogin = styled.div`
   display: grid;
   grid-template-rows: 120px 1fr;
+  min-height: 100vh;
+  background-color: var(--color-background);
 `;
+
 const StyledLoginForm = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Container = styled.div`
@@ -19,11 +26,29 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   padding: 4rem 6rem;
+
+  @media screen and (max-width: 1280px) {
+    padding: 2rem;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 4rem 6rem;
+  }
+  @media screen and (max-width: 640px) {
+    padding: 0;
+  }
 `;
 const Img = styled.img`
-  height: 100%;
+  min-height: 100vh;
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: bottom center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 function Login() {

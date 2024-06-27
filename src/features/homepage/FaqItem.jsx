@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
@@ -11,8 +12,8 @@ const StyledFaqItem = styled.div`
   gap: 2rem;
   width: 100%;
   margin: 0 auto;
-  border: 1px solid var(--color-primary);
-  border-radius: 5px;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 20px;
   padding: 1rem 2rem;
 `;
 
@@ -22,8 +23,13 @@ const Question = styled.div`
   align-items: center;
 `;
 
+const QuestionText = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 2rem;
+`;
 const Answer = styled.div`
-  font-size: 12px;
+  font-size: 16px;
   margin-left: 2rem;
 `;
 
@@ -47,7 +53,7 @@ export default function FaqItem({ question, answer }) {
   return (
     <StyledFaqItem>
       <Question>
-        <div>{question}</div>
+        <QuestionText>{question}</QuestionText>
         <ExpandIcon size="small" onClick={() => setShow((s) => !s)}>
           {show ? <FaMinus /> : <FaPlus />}
         </ExpandIcon>

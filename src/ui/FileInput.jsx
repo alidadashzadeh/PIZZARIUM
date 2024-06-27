@@ -11,6 +11,9 @@ const FileInput = styled.input.attrs({ type: "file" })`
     background-color: var(--color-primary);
     cursor: pointer;
     transition: color 0.2s, background-color 0.2s;
+
+    @media screen and (max-width: 768px) {
+    }
   }
 `;
 

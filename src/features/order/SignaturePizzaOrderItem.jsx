@@ -14,6 +14,12 @@ const StyledSignaturePizzaItem = styled.div`
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
   padding-right: 4rem;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    border-radius: 50px;
+    padding: 1rem;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -21,6 +27,7 @@ const ImgContainer = styled.div`
   align-items: center;
   width: 250px;
   aspect-ratio: 1;
+  margin: 0 auto;
 `;
 
 const Img = styled.img`
@@ -32,9 +39,13 @@ const Details = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+
+  @media screen and (max-width: 1200px) {
+    align-items: center;
+  }
 `;
 const Title = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 `;
 const FlexItem = styled.div`
@@ -45,6 +56,25 @@ const FlexItem = styled.div`
     font-size: 16px;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const FlexItemDetails = styled.div`
+  display: flex;
+  gap: 16px;
+
+  & span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const FlexItemVertical = styled.div`
   display: flex;
@@ -52,6 +82,10 @@ const FlexItemVertical = styled.div`
   justify-content: center;
   align-items: center;
   gap: 32px;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
 const Price = styled.div`
@@ -64,6 +98,10 @@ const ToppingsList = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 1200px) {
+    justify-content: center;
+  }
 `;
 const ToppingItem = styled.div`
   display: flex;
@@ -89,15 +127,8 @@ const ToppingHeader = styled.span`
   font-size: 16px;
   color: var(--color-text-grey);
 `;
-const ButtonFlex = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  align-items: center;
-`;
 
 function SignaturePizzaOrderItem({ item }) {
-  const { removeItemFromOrder } = useOrder();
   return (
     <StyledSignaturePizzaItem
       as={motion.div}
@@ -114,13 +145,13 @@ function SignaturePizzaOrderItem({ item }) {
       </ImgContainer>
       <Details>
         <Title>{item.title}</Title>
-        <FlexItem>
+        <FlexItemDetails>
           <span>110 Calories</span>
           <Devider />
           <span>Weight:600 gr</span>
           <Devider />
           <span>Prepared in 15 Min</span>
-        </FlexItem>
+        </FlexItemDetails>
         <ToppingHeader>TOPPINGS</ToppingHeader>
         <ToppingsList>
           {item.toppings.map((topping) => (

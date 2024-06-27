@@ -10,6 +10,14 @@ const NavList = styled.ul`
   display: flex;
   align-items: center;
   gap: 32px;
+  transition: all 0.3s ease;
+
+  @media screen and (max-width: 1024px) {
+    gap: 16px;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledNavlink = styled(NavLink)`

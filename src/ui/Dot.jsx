@@ -9,4 +9,8 @@ export const Dot = styled.div`
   aspect-ratio: 1;
   background-color: var(--color-primary);
   border-radius: 5px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

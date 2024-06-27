@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import FaqItem from "./FaqItem";
 import { Button } from "../../ui/Button";
 
 const StyledFaq = styled.div`
-  padding: 6rem 4rem;
+  padding: 0rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 const H2 = styled.h2`
@@ -48,11 +51,7 @@ const Faqs = [
 
 export default function Faq() {
   return (
-    <StyledFaq
-      as={motion.div}
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opcaity: 1, y: 0, transition: { duration: 1 } }}
-    >
+    <StyledFaq>
       <H2>FAQs</H2>
       <P>
         Find answers to common questions about delivery areas, payment methods,

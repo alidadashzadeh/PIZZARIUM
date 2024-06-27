@@ -7,18 +7,9 @@ import { useLogout } from "../auth/useLogout";
 import { useNavigate } from "react-router-dom";
 import Avatar from "../../ui/Avatar";
 import { UserIcon } from "../../ui/UserIcon";
-import { useOrder } from "../../context/OrderContext";
-import { GoSun } from "react-icons/go";
-import { FaRegMoon } from "react-icons/fa";
+import DarkMode from "../../ui/DarkMode";
 import { useUser } from "../auth/useUser";
 
-const StyledMoon = styled(FaRegMoon)`
-  font-size: 28px;
-`;
-
-const StyledSun = styled(GoSun)`
-  font-size: 28px;
-`;
 const StyledPopup = styled.div`
   position: absolute;
   top: 100%;
@@ -37,10 +28,21 @@ const StyledPopup = styled.div`
   & span {
     font-size: 16px;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
+    padding: 0;
+    top: 0;
+    left: 100%;
+  }
 `;
 
 const Center = styled.div`
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const FlexItem = styled.div`
   display: flex;
@@ -68,7 +70,6 @@ const StyledLogoutIcon = styled(CiLogout)`
 export default function PopUpWindow({ currentUserInfo }) {
   const { logout } = useLogout();
   const navigate = useNavigate();
-  const { isDarkMode, setIsDarkMode } = useOrder();
   const { user } = useUser();
 
   return (
@@ -93,34 +94,7 @@ export default function PopUpWindow({ currentUserInfo }) {
         <span>Settings</span>
         <StyledSettingIcon />
       </FlexItem>
-      <FlexItem
-        onClick={() => {
-          setIsDarkMode((s) => !s);
-        }}
-      >
-        <span>Dark Mode</span>
-        <AnimatePresence mode="wait">
-          {isDarkMode ? (
-            <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.1 } }}
-              exit={{ opacity: 0, y: 100, transition: { duration: 0.1 } }}
-              key="moon"
-            >
-              <StyledMoon />
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.1 } }}
-              exit={{ opacity: 0, y: -100, transition: { duration: 0.1 } }}
-              key="sun"
-            >
-              <StyledSun />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </FlexItem>
+      <DarkMode />
       <FlexItem onClick={logout}>
         <span>Logout</span>
         <StyledLogoutIcon />

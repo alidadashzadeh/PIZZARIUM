@@ -4,13 +4,18 @@ import styled from "styled-components";
 import UserAddressForm from "./UserAddressForm";
 
 const StyledAddressSettings = styled.div`
-  margin: 0 auto;
+  /* margin: 0 auto; */
   border-bottom: 2px solid var(--color-text-grey);
   padding: 2rem;
-  margin-right: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem 0;
+    margin: 0;
+    max-width: 100vw;
+  }
 `;
 function UserAddresInformationForm() {
   const { currentUserData } = useUser();

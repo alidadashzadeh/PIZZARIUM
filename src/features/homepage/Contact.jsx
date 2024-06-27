@@ -7,6 +7,17 @@ const StyledContact = styled.div`
   padding: 6rem 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
 `;
 
 const StyledEmail = styled(MdOutlineEmail)`
@@ -20,11 +31,23 @@ const StyledMap = styled(FiMapPin)`
 `;
 
 const FlexItem = styled.div`
+  max-width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-grey-100);
+  border-radius: 50px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const H2 = styled.h2`

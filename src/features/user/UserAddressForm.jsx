@@ -16,12 +16,24 @@ const Form = styled.form`
   flex-direction: column;
   gap: 1rem;
   transform-origin: top;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const FlexItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
+
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 function UserAddressForm({ setShowForm }) {

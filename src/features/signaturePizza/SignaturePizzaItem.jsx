@@ -10,10 +10,16 @@ import SizeSelect from "../../ui/SizeSelect";
 
 const StyledSignaturePizzaItem = styled.div`
   display: grid;
-  grid-template-columns: 250px 2fr 1fr;
+  grid-template-columns: 250px 1fr 1fr;
   gap: 1rem;
   border: 1px solid var(--color-primary);
   border-radius: 500px;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    border-radius: 50px;
+    padding: 1rem;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -22,6 +28,7 @@ const ImgContainer = styled.div`
   overflow: hidden;
   width: 250px;
   aspect-ratio: 1;
+  margin: 0 auto;
 `;
 
 const Img = styled.img``;
@@ -31,12 +38,30 @@ const Details = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+
+  @media screen and (max-width: 1200px) {
+    align-items: center;
+  }
 `;
 const Title = styled.div`
   font-size: 18px;
   font-weight: 600;
 `;
 const FlexItem = styled.div`
+  display: flex;
+  gap: 16px;
+
+  & span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+const FlexItemDetails = styled.div`
   display: flex;
   gap: 16px;
 
@@ -51,12 +76,20 @@ const FlexItemVertical = styled.div`
   justify-content: center;
   align-items: center;
   gap: 32px;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 
 const Description = styled.div`
   font-size: 16px;
   font-weight: 500;
   color: var(--color-text-main);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Price = styled.div`
@@ -69,6 +102,10 @@ const ToppingsList = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 1200px) {
+    justify-content: center;
+  }
 `;
 const ToppingItem = styled.div`
   display: flex;
@@ -131,13 +168,13 @@ function SignaturePizzaItem({ pizza }) {
       </ImgContainer>
       <Details>
         <Title>{name}</Title>
-        <FlexItem>
+        <FlexItemDetails>
           <span>{calorie[size]}</span>
           <Devider />
           <span>Weight:{weight[size]}</span>
           <Devider />
           <span>Prepared in 15 Min</span>
-        </FlexItem>
+        </FlexItemDetails>
         <ToppingHeader>TOPPINGS</ToppingHeader>
         <ToppingsList>
           {toppings.map((topping) => (

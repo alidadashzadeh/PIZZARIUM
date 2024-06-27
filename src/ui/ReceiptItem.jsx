@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 const StyledReceiptItem = styled.div`
   display: grid;
-  grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 100px 1fr 1fr 1fr 1fr;
   align-items: center;
   text-align: center;
 
@@ -19,13 +19,13 @@ export default function ReceiptItem({ item }) {
       <div>{item.isDrink ? "--" : item.selectedSize}</div>
       <div>{item.quantity}</div>
       <div>{item.isDrink ? item.price : item.price[item.selectedSize]} $</div>
-      <div>
+      {/* <div>
         total:{" "}
         {item.quantity * item.isDrink
           ? item.price
           : item.price[item.selectedSize]}{" "}
         $
-      </div>
+      </div> */}
     </StyledReceiptItem>
   );
 }

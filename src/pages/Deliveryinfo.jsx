@@ -14,6 +14,11 @@ import PageTransition from "../ui/PageTransition";
 const StyledDeliveryInfo = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 `;
 const H2 = styled.h2`
   font-size: 20;

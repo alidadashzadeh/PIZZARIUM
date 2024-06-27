@@ -12,6 +12,16 @@ const StyledSummary = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-row: 2;
+    grid-column: 1;
+  }
 `;
 
 const Container = styled.div`

@@ -11,7 +11,11 @@ import PageTransition from "../ui/PageTransition";
 
 const StyledOrder = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const H2 = styled.h2`
@@ -25,6 +29,9 @@ const OrderItemsList = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 0 1rem;
+
+  @media screen and (max-width: 768px) {
+  }
 `;
 
 function Order() {
@@ -56,9 +63,7 @@ function Order() {
               })}
           </AnimatePresence>
         </OrderItemsList>
-        <div>
-          <OrderSummary step="cart" />
-        </div>
+        <OrderSummary step="cart" />
       </StyledOrder>
     </PageTransition>
   );

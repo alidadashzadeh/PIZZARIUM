@@ -6,6 +6,10 @@ import SignupForm from "../auth/SignupForm";
 const StyledEmptyDelivery = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const H2 = styled.h2`
   font-size: 20;
@@ -13,20 +17,18 @@ const H2 = styled.h2`
   padding: 1rem 2rem;
 `;
 const StyledInfo = styled.div`
-  margin: 0 2rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
 const Message = styled.div`
-  width: 60%;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 2px solid red;
   line-height: 1.3rem;
   padding: 1rem 2rem;
 `;
-const SummaryContainer = styled.div``;
 
 export default function EmptyDelivery() {
   return (
@@ -45,9 +47,9 @@ export default function EmptyDelivery() {
           </div>
           <SignupForm />
         </StyledInfo>
-        <SummaryContainer>
-          <OrderSummary step="delivery" />
-        </SummaryContainer>
+        {/* <div> */}
+        <OrderSummary step="delivery" />
+        {/* </div> */}
       </StyledEmptyDelivery>
     </>
   );

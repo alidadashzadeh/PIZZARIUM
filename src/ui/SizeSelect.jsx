@@ -21,6 +21,10 @@ const SizeItem = styled.div`
   & span {
     font-size: 16px;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 8px 16px;
+  }
 `;
 
 function SizeSelect({ item, size, setSize }) {

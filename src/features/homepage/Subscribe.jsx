@@ -7,7 +7,14 @@ import { Input } from "../../ui/Input";
 const StyledSubscribe = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 0rem 4rem;
+  padding: 2rem 4rem;
+  gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 2rem;
+  }
 `;
 
 const H2 = styled.h2`
@@ -33,7 +40,8 @@ const SmallText = styled.span`
   font-size: 12px;
 `;
 const Img = styled.img`
-  width: 500px;
+  width: 700px;
+  border-radius: 50px;
 `;
 
 export default function Subscribe() {
@@ -58,7 +66,7 @@ export default function Subscribe() {
           </SmallText>
         </div>
       </Content>
-      <Img src="https://cdn.dribbble.com/userupload/10735890/file/original-e5290dcea835e126a6ba9df2875504db.png?resize=2048x2046&vertical=center" />
+      <Img src="./offer.png" />
     </StyledSubscribe>
   );
 }

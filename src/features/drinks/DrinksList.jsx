@@ -7,8 +7,15 @@ import styled from "styled-components";
 
 const StyledDrinks = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 function DrinksContent() {
   const {

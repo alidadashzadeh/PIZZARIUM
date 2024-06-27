@@ -9,6 +9,10 @@ import PageTransition from "../ui/PageTransition";
 const StyledPayment = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const H2 = styled.h2`
   font-size: 20;
@@ -20,6 +24,10 @@ const StyledAd = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export default function Payment() {

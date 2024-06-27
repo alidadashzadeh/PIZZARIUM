@@ -12,6 +12,12 @@ const StyledSignaturePizzaItem = styled.div`
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
   padding-right: 4rem;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    border-radius: 50px;
+    padding: 1rem;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -19,6 +25,7 @@ const ImgContainer = styled.div`
   align-items: center;
   width: 250px;
   height: 100%;
+  margin: 0 auto;
 `;
 
 const Img = styled.img`
@@ -30,6 +37,9 @@ const Details = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+  @media screen and (max-width: 1200px) {
+    align-items: center;
+  }
 `;
 const Title = styled.div`
   font-size: 18px;
@@ -42,6 +52,10 @@ const FlexItem = styled.div`
     font-size: 16px;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 const FlexItemVertical = styled.div`
   display: flex;
@@ -49,8 +63,24 @@ const FlexItemVertical = styled.div`
   justify-content: center;
   align-items: center;
   gap: 32px;
-`;
 
+  @media screen and (max-width: 1200px) {
+    flex-direction: row;
+  }
+`;
+const FlexItemDetails = styled.div`
+  display: flex;
+  gap: 16px;
+
+  & span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
 const Price = styled.div`
   color: var(--color-text-main);
   font-size: 20px;
@@ -61,6 +91,10 @@ const ToppingsList = styled.div`
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const ToppingTitle = styled.div`
@@ -91,11 +125,11 @@ export default function CustomPizzaOrderItem({ item }) {
       <Details>
         <Title>{item.title}</Title>
         <ToppingHeader>YOUR RECIPE</ToppingHeader>
-        <FlexItem>
+        <FlexItemDetails>
           <span>{item.dough.name},</span>
           <span>{item.crust.name},</span>
           <span>{item.sauce.name}</span>
-        </FlexItem>
+        </FlexItemDetails>
         <ToppingHeader>TOPPINGS</ToppingHeader>
         <ToppingsList>
           {item.topping.map((topping) => (

@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import Navbar from "./Navbar";
 import UserInfo from "./UserInfo";
 import ShoppingCartButton from "./ShoppingCartButton";
+import BurgerMenu from "./BurgerMenu";
 
 const StyledHeader = styled.div`
   padding: 0 16px;
@@ -17,14 +18,24 @@ const FlexItem = styled.div`
   align-items: center;
   gap: 64px;
   padding-right: 64px;
+
+  @media screen and (max-width: 1024px) {
+    gap: 16px;
+    padding-right: 32px;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 function Header() {
   return (
     <StyledHeader>
       <Logo />
-      <Navbar />
+      <BurgerMenu />
+
       <FlexItem>
+        <Navbar />
         <ShoppingCartButton />
         <UserInfo />
       </FlexItem>

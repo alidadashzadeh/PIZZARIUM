@@ -4,6 +4,12 @@ const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  padding-left: 32px;
+
+  @media screen and (max-width: 768px) {
+    gap: 4px;
+    padding-left: 16px;
+  }
 `;
 
 const StyledImg = styled.img`

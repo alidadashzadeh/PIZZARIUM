@@ -21,17 +21,6 @@ const StyledProcess = styled.div`
   width: 80%;
   margin: 0 auto;
   position: relative;
-
-  /* &::after {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 1px;
-    background-color: red;
-    position: absolute;
-    z-index: -10;
-    top: 25%;
-  } */
 `;
 
 const Items = styled.div`

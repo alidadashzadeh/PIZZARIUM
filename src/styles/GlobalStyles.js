@@ -130,10 +130,9 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-
   &::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 }
 
 body {
@@ -141,7 +140,12 @@ body {
   color: var(--color-text-main);
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
-  
+}
+
+html,body
+{
+    width: 100%;
+    /* overflow-x: hidden;  */
 }
 
 input,
@@ -195,6 +199,8 @@ h6 {
   overflow-wrap: break-word;
   hyphens: auto;  
   color: inherit;
+
+
 }
 
 img {

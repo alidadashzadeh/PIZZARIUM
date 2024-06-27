@@ -11,6 +11,10 @@ const StyledSignaturePizzas = styled.div`
   display: grid;
   grid-template-columns: 14rem 1fr;
   padding: 1rem 2rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledPizzaList = styled.div`
@@ -19,8 +23,13 @@ const StyledPizzaList = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
+
 const H2 = styled.h2`
   padding: 0 3rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 const options = [
@@ -40,7 +49,7 @@ function SignaturePizzas() {
 
   return (
     <PageTransition>
-      <H2>Signature Pizza</H2>
+      <H2>Signature Pizzas</H2>
       <StyledSignaturePizzas>
         <NavigationList
           options={options}

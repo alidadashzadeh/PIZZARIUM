@@ -16,10 +16,13 @@ import InputLeftIcon from "../../ui/InputLeftIcon";
 const Form = styled.form`
   border-bottom: 2px solid var(--color-text-grey);
   padding: 1rem 2rem;
-  margin-right: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const StyledUsericon = styled(UserIcon)`
@@ -45,6 +48,15 @@ const FlexItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
+
+  @media screen and (max-width: 1200px) and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 `;
 
 const StyledButtonGroup = styled(ButtonGroup)`

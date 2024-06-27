@@ -16,10 +16,19 @@ const StyledOrderSummary = styled.div`
   margin: 1rem;
   border: 2px solid var(--color-secondary);
   border-radius: var(--border-radius-large);
+  min-width: 300px;
+  max-height: 300px;
 
   & span {
     font-size: 16px;
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-row: 1;
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
   }
 `;
 

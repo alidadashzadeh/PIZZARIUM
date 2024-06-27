@@ -11,7 +11,6 @@ export default function Home() {
     <PageTransition>
       <Hero />
       <Features />
-      <CTA />
       <Faq />
       <Subscribe />
       <Contact />

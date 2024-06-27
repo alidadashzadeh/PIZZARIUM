@@ -31,12 +31,21 @@ const StyledForm = styled.form`
   border: 1px solid var(--color-text-grey);
   padding: 1rem 2rem;
   border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const GridItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 120px 60px;
   gap: 4px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const FlexAlign = styled.div`

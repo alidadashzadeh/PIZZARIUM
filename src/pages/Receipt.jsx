@@ -11,6 +11,10 @@ const StyledReceipt = styled.div`
   grid-template-columns: 2fr 1fr;
   min-height: 100vh;
   background-color: var(--color-grey-50);
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const FlexItem = styled.div`
   display: flex;
@@ -37,6 +41,10 @@ const VerticalFlex = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 const PaymentDetails = styled.div`
   display: flex;

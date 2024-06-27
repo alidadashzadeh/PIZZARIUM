@@ -6,7 +6,11 @@ const Img = styled.img`
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
-  border-radius: 50%;
+  border-radius: 500px;
+
+  @media screen and (max-width: 1024px) {
+    width: 32px;
+  }
 `;
 
 function Avatar({ size }) {

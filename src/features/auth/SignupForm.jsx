@@ -24,6 +24,10 @@ const FlexItem = styled.div`
   gap: 1rem;
   flex-direction: ${(props) =>
     props.direction === "vertical" ? "column" : null};
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledUserIcon = styled(CiUser)`

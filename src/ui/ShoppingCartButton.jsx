@@ -26,13 +26,23 @@ const Count = styled.span`
   border-radius: 90px;
   color: var(--color-text-white);
 `;
+
+const StyledCartIcon = styled(FaCartShopping)`
+  font-size: 24px;
+  transition: all 0.3s ease;
+
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
+`;
+
 function ShoppingCartButton() {
   const navigate = useNavigate();
   const { order } = useOrder();
   return (
     <StyledToggle onClick={() => navigate("/order")}>
       <Text>
-        <FaCartShopping />
+        <StyledCartIcon />
       </Text>
       <Count>{order.length}</Count>
     </StyledToggle>

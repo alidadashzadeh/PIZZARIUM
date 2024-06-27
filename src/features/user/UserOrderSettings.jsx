@@ -7,7 +7,7 @@ import { totalOrderCost } from "../../utils/orderCalculations";
 
 const StyledOrders = styled.div`
   display: grid;
-  grid-template-columns: 100px 200px 200px 200px 1fr;
+  grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
   gap: 1rem;
 `;
 
@@ -24,7 +24,7 @@ function UserOrderSettings() {
     <>
       <h2>Orders History</h2>
       <StyledOrders>
-        <div>Order ID</div>
+        <div>ID</div>
         <div>Date</div>
         <div>order #</div>
         <div>Total Cost</div>

@@ -14,6 +14,15 @@ const StyledSettings = styled.div`
   display: grid;
   grid-template-columns: 14rem 1fr;
   padding: 1rem 2rem;
+
+  @media screen and (max-width: 1200px) and (min-width: 768px) {
+    grid-template-columns: 12rem 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 `;
 
 const StyledForms = styled.div`

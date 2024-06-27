@@ -5,7 +5,8 @@ import Footer from "../ui/Footer";
 
 const StyledAppLayout = styled.div`
   display: grid;
-  max-width: 100vw;
+  margin: 0 auto;
+  max-width: 1536px;
   grid-template-rows: 120px 1fr;
   background-color: var(--color-background);
 `;

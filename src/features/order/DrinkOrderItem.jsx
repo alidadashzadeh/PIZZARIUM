@@ -12,6 +12,12 @@ const StyledDrinkItem = styled.div`
   border: 2px solid var(--color-secondary);
   border-radius: 500px;
   padding-right: 4rem;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    border-radius: 50px;
+    padding: 1rem;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -20,6 +26,7 @@ const ImgContainer = styled.div`
   justify-content: center;
   width: 250px;
   height: 150px;
+  margin: 0 auto;
 `;
 
 const Img = styled.img`
@@ -42,12 +49,31 @@ const FlexItem = styled.div`
     font-weight: 500;
   }
 `;
+const Details = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-direction: column;
+
+  & span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    align-items: center;
+  }
+`;
 const FlexItemVertical = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 32px;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: row;
+  }
 `;
 const Devider = styled.div`
   width: 2px;
@@ -75,7 +101,7 @@ function DrinkOrderItem({ item }) {
       <ImgContainer>
         <Img src={item.picture} />
       </ImgContainer>
-      <FlexItem>
+      <Details>
         <Title>{item.title}</Title>
         <FlexItem>
           <span>110 Calories</span>
@@ -83,7 +109,7 @@ function DrinkOrderItem({ item }) {
           <span>size: 300 ml</span>
         </FlexItem>
         <Count item={item} />
-      </FlexItem>
+      </Details>
       <FlexItemVertical>
         <Price> $ {item.price}</Price>
         <RemoveButton item={item} />

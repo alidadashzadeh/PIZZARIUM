@@ -15,9 +15,21 @@ const StyledCreatePizza = styled.div`
   display: grid;
   grid-template-columns: 14rem 3fr 1fr;
   padding: 1rem 2rem;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const H2 = styled.h2`
   padding: 0 3rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 const options = [
   { label: "Dough", value: "dough" },

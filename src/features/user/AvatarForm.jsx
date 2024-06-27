@@ -9,10 +9,14 @@ import { Button } from "../../ui/Button";
 const Form = styled.form`
   border-bottom: 2px solid var(--color-text-grey);
   padding: 1rem 2rem;
-  margin-right: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and (max-width: 1200px) {
+    padding: 1rem;
+    margin: 0;
+  }
 `;
 
 const FormTitle = styled.div`
@@ -24,6 +28,10 @@ const FlexItem = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 const StyledButtonGroup = styled(ButtonGroup)`
   align-self: flex-end;
